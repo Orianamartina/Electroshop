@@ -5,8 +5,7 @@ import "./landing.scss";
 const Landing = () => {
   const navigate = useNavigate();
 
-  const { token, id: userId } =
-    JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { token } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const handleExploreClick = () => {
     navigate("/home");
@@ -22,12 +21,8 @@ const Landing = () => {
       <aside>
         <h1 className="title">ElectroShop</h1>
         <div>
-          <p className="subtitle">
-            Bienvenido a nuestra tienda de productos electrónicos
-          </p>
-          <p className="desc">
-            Aquí encontrarás los mejores productos al mejor precio
-          </p>
+          <p className="subtitle">Bienvenido a nuestra tienda de productos electrónicos</p>
+          <p className="desc">Aquí encontrarás los mejores productos al mejor precio</p>
         </div>
         <button className="button-landing" onClick={handleExploreClick}>
           Explorar productos

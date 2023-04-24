@@ -3,6 +3,8 @@ import "./addProduct.scss";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -17,10 +19,7 @@ const AddProduct = () => {
 
   const [isLoading, setLoading] = useState(false);
 
-  // Local
-  //const URL = "http://localhost:3001/products"
-  // Deploy
-  const URL = "https://electroshop-production.up.railway.app/products"
+  const API_URL = process.env.API_URL + "products";
 
   // Cloudinary
   var uploadedImage = "";
@@ -30,17 +29,15 @@ const AddProduct = () => {
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "uq7hpsv9");
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data)
-      .then((response) => {
-        console.log(response);
-        uploadedImage = response.data.secure_url;
-        console.log(uploadedImage);
-        setFormData({
-          ...formData,
-          image: uploadedImage,
-        });
+    axios.post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data).then((response) => {
+      console.log(response);
+      uploadedImage = response.data.secure_url;
+      console.log(uploadedImage);
+      setFormData({
+        ...formData,
+        image: uploadedImage,
       });
+    });
   };
   ///////////
 
@@ -55,10 +52,7 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        URL,
-        formData
-      );
+      const response = await axios.post(API_URL, formData);
       if (response) {
         toast.success("Producto agregado exitosamente");
       }
@@ -77,84 +71,39 @@ const AddProduct = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Nombre:</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="price">Precio:</label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
+          <input type="number" name="price" id="price" value={formData.price} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="image">Imagen:</label>
 
-          <input
-            type="file"
-            name="image"
-            id="image"
-            value={uploadedImage}
-            onChange={uploadImage}
-          />
+          <input type="file" name="image" id="image" value={uploadedImage} onChange={uploadImage} />
         </div>
         <div className="form-group">
           <label htmlFor="brand">Marca:</label>
-          <input
-            type="text"
-            name="brand"
-            id="brand"
-            value={formData.brand}
-            onChange={handleChange}
-          />
+          <input type="text" name="brand" id="brand" value={formData.brand} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="stock">Cantidad en Stock:</label>
-          <input
-            type="number"
-            name="stock"
-            id="stock"
-            value={formData.stock}
-            onChange={handleChange}
-          />
+          <input type="number" name="stock" id="stock" value={formData.stock} onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="category">Categoría:</label>
-          <input
-            type="text"
-            name="category"
-            id="category"
-            value={formData.category}
-            onChange={handleChange}
-          />
+          <input type="text" name="category" id="category" value={formData.category} onChange={handleChange} />
         </div>
         <div className="form-group form-group-description">
           <label htmlFor="description">Descripción:</label>
-          <textarea
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
+          <textarea name="description" id="description" value={formData.description} onChange={handleChange} />
         </div>
         <div>
           <img src={formData.image} alt="" width={"100px"} />
           Preview
         </div>
         <button type="submit" disabled={isLoading}>
-          {isLoading ? (
-            <BeatLoader color={"#ffffff"} size={7} />
-          ) : (
-            "Agregar Producto"
-          )}
+          {isLoading ? <BeatLoader color={"#ffffff"} size={7} /> : "Agregar Producto"}
         </button>
       </form>
     </div>
