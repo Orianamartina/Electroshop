@@ -13,7 +13,7 @@ const Accepted = () => {
   //const API_PRODUCTS_URL = "http://localhost:3001/products/";
   
   // Deploy
-  const HOST = "htpps://electroshop-production.up.railway.app/";
+  const HOST = "https://electroshop-production.up.railway.app/";
   const API_URL =  HOST + "cart/";
   const API_PRODUCTS_URL = HOST + "products/";
 
