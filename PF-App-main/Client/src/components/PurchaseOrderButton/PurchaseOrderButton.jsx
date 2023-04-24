@@ -6,7 +6,7 @@ const PurchaseOrderButton = ({products, user}) => {
   // Local
   //const URL = "http://localhost:3001/payment"
   // Deploy
-  const URL = "https://pf-app-production.up.railway.app/payment"
+  const URL = "https://electroshop-production.up.railway.app/payment"
 
   const handlePayment = () => {
     axios
