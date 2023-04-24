@@ -21,7 +21,7 @@ const Detail = () => {
   // Local
   //const URL = "http://localhost:3001/cart/add"
   // Deploy
-  const URL = "https://electroshop-production.up.railway.app"
+  const URL = "https://electroshop-production.up.railway.app/cart/add"
   
   const buyProduct = [
     {
