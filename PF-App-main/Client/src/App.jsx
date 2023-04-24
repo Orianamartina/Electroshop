@@ -13,6 +13,7 @@ import Accepted  from "./components/Payment/PaymentAccepted"
 import Rejected from "./components/Payment/Rejected";
 import AddProduct from "./components/Profile/AddProduct/AddProduct";
 
+
 function App() {
   const location = useLocation();
 
