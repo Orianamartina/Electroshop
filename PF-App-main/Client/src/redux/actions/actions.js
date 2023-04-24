@@ -8,7 +8,7 @@ import qs from "query-string";
 //const API_URL = "http://localhost:3001";
 
 // Deploy
-const API_URL = "pf-app-production.up.railway.app";
+const API_URL = "https://electroshop-production.up.railway.app";
 
 
 export const loginUser = (user, url) => {
