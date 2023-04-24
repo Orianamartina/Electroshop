@@ -86,7 +86,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         </Modal.Body>
         <Modal.Footer>
           <button className="applyDiscount" type="submit" onClick={applyDiscountCode} disabled={isLoading}>
-            {isLoading ? <BeatLoader color={"#ffffff"} size={7} /> : "Aplicar descuento"}
+            {isLoading ? <BeatLoader color={"#fcfcfc"} size={7} /> : "Aplicar descuento"}
           </button>
         </Modal.Footer>
       </Modal>
