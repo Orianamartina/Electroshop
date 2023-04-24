@@ -4,7 +4,7 @@ import qs from "query-string";
 import dotenv from "dotenv";
 dotenv.config();
 
-const API_URL = process.env.API_URL;
+const API_URL = "http://localhost:3001/"
 
 export const loginUser = (user, url) => {
   return async (dispatch) => {
