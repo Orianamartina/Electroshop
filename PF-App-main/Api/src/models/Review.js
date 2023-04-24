@@ -8,15 +8,16 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
     rating: {
-      validate: {
+      validate: { 
         max: 5,
         min: 1,
       },
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    reviewText: {
+    text: {
       type: DataTypes.TEXT,
     },
+   
   });
 };
