@@ -1,8 +1,6 @@
 import axios from "axios";
-
 import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "./actions-types";
 import qs from "query-string";
-
 
 // Local
 //const API_URL = "http://localhost:3001";
