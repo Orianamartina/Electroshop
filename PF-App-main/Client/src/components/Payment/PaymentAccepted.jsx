@@ -5,13 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import accepted from "/assets/img/accepted.gif";
 import "./payment.scss";
-// import dotenv from "dotenv";
-// dotenv.config();
 
 const Accepted = () => {
-  const HOST = axios();
-  const API_URL = HOST + "cart/";
-  const API_PRODUCTS_URL = HOST + ("products/");
+  const API_URL = "cart/";
+  const API_PRODUCTS_URL = "products/";
 
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
@@ -39,7 +36,7 @@ const Accepted = () => {
           })
         );
         // Crear orden de compra
-        await axios.post(`${HOST}order/create/${id}`);
+        await axios.post(`order/create/${id}`);
 
         // Vaciar carrito
         await axios.post(`${API_URL}empty/${id}`);

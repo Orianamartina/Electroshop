@@ -4,7 +4,7 @@ import axios from "axios";
 // dotenv.config();
 
 const PurchaseOrderButton = ({ products, user }) => {
-  const API_URL = axios("payment");
+  const API_URL = "payment";
 
   const handlePayment = () => {
     axios.post(API_URL, { items: [...products], userId: user }).then((res) => {

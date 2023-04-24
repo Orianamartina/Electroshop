@@ -21,7 +21,7 @@ const Detail = () => {
   const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
-  const API_URL = axios( "cart/add");
+  const API_URL = "cart/add";
 
   const buyProduct = [
     {

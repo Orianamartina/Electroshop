@@ -1,10 +1,6 @@
 import axios from "axios";
 import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "./actions-types";
 import qs from "query-string";
-import dotenv from "dotenv";
-// dotenv.config();
-
-// const API_URL = process.env.API_URL;
 
 export const loginUser = (user, url) => {
   return async (dispatch) => {
@@ -87,7 +83,7 @@ export function allFilters(payload) {
   };
 
   // construir la URL de consulta usando query-string
-  const query = `${axios()}products?${qs.stringify(params)}`;
+  const query = `products?${qs.stringify(params)}`;
 
   return async (dispatch) => {
     try {
