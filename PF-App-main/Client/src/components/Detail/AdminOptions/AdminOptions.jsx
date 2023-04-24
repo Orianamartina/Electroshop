@@ -3,11 +3,14 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./adminOptions.scss";
+import dotenv from "dotenv";
+dotenv.config();
 
 const AdminOptions = ({ productDetail }) => {
   const [productEdit, setProductEdit] = useState(productDetail);
   const [show, setShow] = useState(false);
-  const URL = `https://electroshop-production.up.railway.app/products/${productDetail.id}`;
+
+  const API_URL = process.env.API_URL + `products/${productDetail.id}`;
 
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ const AdminOptions = ({ productDetail }) => {
 
   const handleEditProduct = useCallback(async () => {
     try {
-      await axios.put(URL, productEdit);
+      await axios.put(API_URL, productEdit);
       handleClose();
     } catch (error) {
       throw new Error(error);
@@ -33,7 +36,7 @@ const AdminOptions = ({ productDetail }) => {
 
   const handleDeleteProduct = useCallback(async () => {
     try {
-      await axios.delete(URL);
+      await axios.delete(API_URL);
       handleClose();
       navigate("/home");
     } catch (error) {

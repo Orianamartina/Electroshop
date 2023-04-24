@@ -10,6 +10,8 @@ import error404 from "/assets/img/404.png";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import AdminOptions from "./AdminOptions/AdminOptions";
+import dotenv from "dotenv";
+dotenv.config();
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -18,11 +20,9 @@ const Detail = () => {
   const { id } = useParams();
   const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
-  // Local
-  //const URL = "http://localhost:3001/cart/add"
-  // Deploy
-  const URL = "https://electroshop-production.up.railway.app/cart/add"
-  
+
+  const API_URL = process.env.API_URL + "cart/add";
+
   const buyProduct = [
     {
       ...productDetail,
@@ -38,7 +38,7 @@ const Detail = () => {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post(URL, {
+      await axios.post(API_URL, {
         productId: productDetail.id,
         userId,
       });

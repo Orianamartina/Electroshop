@@ -3,18 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
-import accepted from "/assets/img/accepted.gif"
+import accepted from "/assets/img/accepted.gif";
 import "./payment.scss";
+import dotenv from "dotenv";
+dotenv.config();
 
 const Accepted = () => {
-  // Local
-  //const HOST = "http://localhost:3001/";
-  //const API_URL = "http://localhost:3001/cart/";
-  //const API_PRODUCTS_URL = "http://localhost:3001/products/";
-  
-  // Deploy
-  const HOST = "https://electroshop-production.up.railway.app/";
-  const API_URL =  HOST + "cart/";
+  const HOST = process.env.API_URL;
+  const API_URL = HOST + "cart/";
   const API_PRODUCTS_URL = HOST + "products/";
 
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
