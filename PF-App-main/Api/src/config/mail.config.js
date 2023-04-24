@@ -63,7 +63,7 @@ module.exports = {
           <h2>Hola ${email}</h2>
           <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
           <a
-              href="http://localhost:3001/user/confirm/${token}"
+              href="https://electroshop-production.up.railway.app/user/confirm/${token}"
               target="_blank"
           >Confirmar Cuenta</a>
       </div>
@@ -80,7 +80,7 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Has realizado un cambio de contraseña en ElectroShop. Si tu no realizaste esta acción, ignora este mensaje.</p>
               <a
-                  href="http://localhost:3001/user/confirmchange/${token}"
+                  href="https://electroshop-production.up.railway.app/user/confirmchange/${token}"
                   target="_blank"
               >Confirma el cambio de tu contraseña</a>
           </div>
@@ -97,7 +97,7 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Has sido invitado a formar parate del equipo administrativo de Electro Shop</p>
               <a
-                  href="http://localhost:3000/user/login"
+                  href="https://electroshop-production.up.railway.app/user/login"
                   target="_blank"
               >Te invitamos a iniciar sesión</a>
           </div>
@@ -114,7 +114,7 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Te comunicamos que tu permanencia en el equipo administrativo de Electro Shop ha sido revocada. Para más información comunicate con nosotros a ${sender}</p>
               <a
-                  href="http://localhost:3000"
+                  href="https://electroshop-delta.vercel.app/home"
                   target="_blank"
           </div>
         `;
@@ -175,7 +175,7 @@ module.exports = {
               <h2>Hola ${email}</h2>
               <p>Para establecer una nueva contraseña has click en el siguiente enlace</p>
               <a
-                  href="http://localhost:3001/pasword/reset/${token}"
+                  href="https://electroshop-production.up.railway.app/pasword/reset/${token}"
                   target="_blank"
               >Establecer nueva contraseña</a>
           </div>
