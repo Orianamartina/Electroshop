@@ -7,7 +7,7 @@ import "./adminOptions.scss";
 const AdminOptions = ({ productDetail }) => {
   const [productEdit, setProductEdit] = useState(productDetail);
   const [show, setShow] = useState(false);
-  const URL = `/products/${productDetail.id}`;
+  const URL = `htpps://electroshop-production.up.railway.app/products/${productDetail.id}`;
 
   const navigate = useNavigate();
 
