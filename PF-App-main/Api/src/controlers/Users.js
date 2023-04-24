@@ -112,7 +112,7 @@ module.exports = {
       }
       user.verified = true;
       await user.save();
-      return res.redirect("http://localhost:3000/home");
+      return res.redirect("https://electroshop-delta.vercel.app/home");
       //return res.redirect("home del deploy")
     } catch (error) {
       return res.json({
