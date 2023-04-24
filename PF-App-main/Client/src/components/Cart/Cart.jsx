@@ -7,15 +7,14 @@ import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import axios from "axios";
 import DiscountCodeInput from "./DiscountCodeInput/DiscountCodeInput";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const Cart = () => {
   const dispatch = useDispatch();
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
-  
-  // Local
-  //const API_URL = "http://localhost:3001/cart/";
 
-  // Deploy
-  const API_URL = "https://electroshop-production.up.railway.app/cart/"
+  const API_URL = process.env.API_URL + "cart/";
 
   const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
   const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);

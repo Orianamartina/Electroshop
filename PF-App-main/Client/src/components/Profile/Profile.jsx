@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./profile.scss";
 import { useState } from "react";
 import AddProduct from "./AddProduct/AddProduct";
@@ -8,6 +8,8 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import "react-toastify/dist/ReactToastify.css";
+import dotenv from "dotenv";
+dotenv.config();
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
@@ -22,10 +24,8 @@ const Profile = () => {
   const [editedLastName, setEditedLastName] = useState(lastName);
 
   const [isLoading, setLoading] = useState(false);
-  // Local
-  //const URL = "http://localhost:3001/user/update"
-  // Deploy
-  const URL = "https://electroshop-production.up.railway.app/user/update"
+
+  const API_URL = process.env.API_URL + "user/update";
 
   const saveChanges = async () => {
     const updatedUserData = {
@@ -36,7 +36,7 @@ const Profile = () => {
     };
     setLoading(true);
     try {
-      await axios.put(URL, updatedUserData);
+      await axios.put(API_URL, updatedUserData);
       setTimeout(() => {
         setEditMode(false);
         setEditedName(editedName);
@@ -70,37 +70,19 @@ const Profile = () => {
               <>
                 <div className="cards">
                   <h4>Nombre de usuario</h4>
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={userName}
-                    readOnly
-                  />
+                  <input className="input-readOnly" type="text" value={userName} readOnly />
                 </div>
                 <div className="cards">
                   <h4>E-mail</h4>
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={email}
-                    readOnly
-                  />
+                  <input className="input-readOnly" type="text" value={email} readOnly />
                 </div>
                 <div className="cards">
                   <h4>Nombre</h4>
-                  <input
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                  />
+                  <input type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)} />
                 </div>
                 <div className="cards">
                   <h4>Apellido</h4>
-                  <input
-                    type="text"
-                    value={editedLastName}
-                    onChange={(e) => setEditedLastName(e.target.value)}
-                  />
+                  <input type="text" value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)} />
                 </div>
               </>
             ) : (
@@ -137,10 +119,7 @@ const Profile = () => {
           {admin ? null : (
             <div className="purchases">
               <h2>Historial de compras</h2>
-              <h3>
-                Aún no has realizado ninguna compra. ¡Visita nuestra tienda y
-                compra!
-              </h3>
+              <h3>Aún no has realizado ninguna compra. ¡Visita nuestra tienda y compra!</h3>
             </div>
           )}
 
@@ -168,11 +147,7 @@ const Profile = () => {
 
                 {showProductModal && (
                   <div className="option-title">
-                    <Modal
-                      show={showProductModal}
-                      onHide={() => setshowProductModal(false)}
-                      size="lg"
-                    >
+                    <Modal show={showProductModal} onHide={() => setshowProductModal(false)} size="lg">
                       <Modal.Header closeButton>
                         <div className="option-title">
                           <Modal.Title>Agregar Producto</Modal.Title>
@@ -183,11 +158,7 @@ const Profile = () => {
                   </div>
                 )}
                 {showUsersModal && (
-                  <Modal
-                    show={showUsersModal}
-                    onHide={() => setshowUsersModal(false)}
-                    size="lg"
-                  >
+                  <Modal show={showUsersModal} onHide={() => setshowUsersModal(false)} size="lg">
                     <Modal.Header closeButton>
                       <div className="option-title">
                         <Modal.Title>Administrar Usuarios</Modal.Title>
