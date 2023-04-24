@@ -9,7 +9,7 @@ import axios from "axios";
 // dotenv.config();
 
 const ManageUsers = () => {
-  const API_URL =  axios("user/");
+  const API_URL = "user/";
 
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);

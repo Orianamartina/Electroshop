@@ -13,7 +13,7 @@ function DiscountCodeInput({ userId, handleCart }) {
   const [isLoading, setLoading] = useState(false);
   const [errorDiscount, setErrorDiscount] = useState(false);
 
-  const API_URL = axios("cart/desc");
+  const API_URL = "cart/desc";
 
   function handleInputChange(e) {
     setString(e.target.value);

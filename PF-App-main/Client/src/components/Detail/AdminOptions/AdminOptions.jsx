@@ -10,7 +10,7 @@ const AdminOptions = ({ productDetail }) => {
   const [productEdit, setProductEdit] = useState(productDetail);
   const [show, setShow] = useState(false);
 
-  const API_URL = axios`products/${productDetail.id}`;
+  const API_URL = `products/${productDetail.id}`;
 
   const navigate = useNavigate();
 

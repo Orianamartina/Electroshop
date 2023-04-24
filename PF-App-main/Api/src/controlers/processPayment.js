@@ -1,16 +1,14 @@
 const mercadopago = require("mercadopago");
-const { Product }= require("../db");
-const { emptyShoppingCart } = require('./ShoppingCart')
-
+const { Product } = require("../db");
+const { emptyShoppingCart } = require("./ShoppingCart");
 
 mercadopago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 const payment = async (req, res) => {
   const products = req.body.items;
-  const id = req.body.userId
+  const id = req.body.userId;
   const preference = await {
     items: products.map((p) => {
-
       return {
         id: p.id,
         title: p.brand + " " + p.category,
@@ -23,17 +21,16 @@ const payment = async (req, res) => {
       };
     }),
     back_urls: {
-      //success: "http://localhost:3000/accepted",
-      success: "https://electroshop-delta.vercel.app/accepted",
-      //failure: "http://localhost:3000/rejected",
-      failure: "https://electroshop-delta.vercel.app/rejected",
+      success: "http://localhost:3000/accepted",
+      // success: "https://electroshop-delta.vercel.app/accepted",
+      failure: "http://localhost:3000/rejected",
+      // failure: "https://electroshop-delta.vercel.app/rejected",
       pending: "",
     },
     auto_return: "approved",
     binary_mode: true,
   };
-  
-  
+
   mercadopago.preferences
     .create(preference)
     .then((response) => res.status(200).send({ response }))

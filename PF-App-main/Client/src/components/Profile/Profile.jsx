@@ -25,7 +25,7 @@ const Profile = () => {
 
   const [isLoading, setLoading] = useState(false);
 
-  const API_URL = axios("user/update");
+  const API_URL = "user/update";
 
   const saveChanges = async () => {
     const updatedUserData = {
