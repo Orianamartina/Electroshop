@@ -23,10 +23,10 @@ const payment = async (req, res) => {
       };
     }),
     back_urls: {
-      success: "http://localhost:3000/accepted",
-      //success: "/payment"
-      failure: "http://localhost:3000/rejected",
-      //failure: "/payment",
+      //success: "http://localhost:3000/accepted",
+      success: "https://electroshop-delta.vercel.app/accepted",
+      //failure: "http://localhost:3000/rejected",
+      failure: "https://electroshop-delta.vercel.app/rejected",
       pending: "",
     },
     auto_return: "approved",
