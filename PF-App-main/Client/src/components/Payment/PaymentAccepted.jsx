@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import accepted from "/assets/img/accepted.gif";
 import "./payment.scss";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const Accepted = () => {
-  const HOST = process.env.API_URL;
+  const HOST = axios();
   const API_URL = HOST + "cart/";
-  const API_PRODUCTS_URL = HOST + "products/";
+  const API_PRODUCTS_URL = HOST + ("products/");
 
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 

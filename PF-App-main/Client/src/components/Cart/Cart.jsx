@@ -7,14 +7,14 @@ import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import axios from "axios";
 import DiscountCodeInput from "./DiscountCodeInput/DiscountCodeInput";
 
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
-  const API_URL = process.env.API_URL + "cart/";
+  const API_URL = axios("cart/");
 
   const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
   const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);

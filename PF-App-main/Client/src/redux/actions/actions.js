@@ -2,14 +2,14 @@ import axios from "axios";
 import { GET_USER, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, GET_CART, ALL_FILTERS } from "./actions-types";
 import qs from "query-string";
 import dotenv from "dotenv";
-dotenv.config();
+// dotenv.config();
 
-const API_URL = process.env.API_URL;
+// const API_URL = process.env.API_URL;
 
 export const loginUser = (user, url) => {
   return async (dispatch) => {
     try {
-      let response = await axios.post(API_URL + `user/login/${url}`, user);
+      let response = await axios.post(`user/login/${url}`, user);
       localStorage.setItem("userData", JSON.stringify(response.data));
       return dispatch({
         type: GET_USER,
@@ -31,7 +31,7 @@ export const loginUser = (user, url) => {
 
 export const createUser = async (user) => {
   try {
-    const response = await axios.post(API_URL + "user", user);
+    const response = await axios.post("user", user);
     if (response.data.success) {
     } else {
       throw new Error(response.data.msg);
@@ -44,7 +44,7 @@ export const createUser = async (user) => {
 
 export const getCart = (userId) => async (dispatch) => {
   try {
-    const response = await axios.get(API_URL + `cart/user/${userId}`);
+    const response = await axios.get(`cart/user/${userId}`);
     dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
     console.error("Error al obtener el carrito del usuario:", error);
@@ -54,7 +54,7 @@ export const getCart = (userId) => async (dispatch) => {
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(API_URL + "products");
+      let response = await axios.get("products");
       return dispatch({
         type: GET_ALL_PRODUCTS,
         payload: response.data,
@@ -68,7 +68,7 @@ export const getAllProducts = () => {
 export function getProductDetail(id) {
   return async function (dispatch) {
     try {
-      let productId = await axios.get(API_URL + `products/${id}`);
+      let productId = await axios.get(`products/${id}`);
       return dispatch({
         type: GET_PRODUCT_DETAIL,
         payload: productId.data,
@@ -87,7 +87,7 @@ export function allFilters(payload) {
   };
 
   // construir la URL de consulta usando query-string
-  const query = `${API_URL}products?${qs.stringify(params)}`;
+  const query = `${axios()}products?${qs.stringify(params)}`;
 
   return async (dispatch) => {
     try {
@@ -108,7 +108,7 @@ export function allFilters(payload) {
 export const getAllUsers = () => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(API_URL + "user");
+      let response = await axios("user");
       return dispatch({
         type: GET_USER,
         payload: response.data,
