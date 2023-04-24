@@ -1,0 +1,100 @@
+.adminOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--light-gray-matte);
+  margin: 0 auto;
+  height: 150px;
+  padding: 20px;
+  row-gap: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+
+  h2 {
+    font-size: 23px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--dark-color);
+  }
+
+  .modify {
+    background-color: #5cb85c;
+    color: #fcfcfc;
+    &:hover {
+      background-color: #449d44;
+    }
+  }
+}
+.adminForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+
+  .form-group {
+    label {
+      display: block;
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input,
+    textarea {
+      width: 90%;
+      padding: 3px 10px;
+      border: 1px solid var(--silver-matte);
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 300;
+      outline: none;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      &:focus {
+        border: 1px solid var(--steel-blue-matte);
+      }
+    }
+  }
+
+  .form-group:last-child {
+    grid-column: 1 / 3;
+    textarea {
+      min-height: 150px;
+      resize: none;
+    }
+  }
+}
+
+.adminButtons {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+
+.edit {
+  background-color: #dbb657;
+  color: var(--light-color);
+  &:hover {
+    background-color: #c7a04f;
+  }
+}
+
+.delete {
+  background-color: var(--ligth-color);
+  color: #d9534f;
+  &:hover {
+    color: var(--bg-color);
+    background-color: #d9534f;
+  }
+}

@@ -1,0 +1,45 @@
+.linksPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  height: 50px;
+  width: 95%;
+}
+
+.linksPagination ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linksPagination ul li {
+  margin: 0 0.5rem;
+}
+
+.linksPagination ul li button {
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+  display: block;
+  border-radius: 10%;
+  height: 32px;
+  width: 35px;
+  line-height: 2rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.linksPagination ul li button:hover {
+  background-color: var(--steel-blue-matte);
+  color: #fcfcfc;
+  cursor: pointer;
+}
+
+.linksPagination ul li button.active {
+  background-color: var(--steel-blue-matte);
+  color: #fcfcfc;
+}

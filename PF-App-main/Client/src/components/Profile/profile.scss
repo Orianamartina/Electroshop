@@ -1,0 +1,99 @@
+.profile {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  padding: 10px;
+  margin-top: 20px;
+  color: var(--dark-color);
+  .data {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    h3 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    .cards {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid var(--light-gray-matte);
+      border-radius: 5px;
+      input {
+        margin-bottom: 15px;
+        border: none;
+        border-bottom: 1px solid var(--light-gray-matte);
+        width: 65%;
+        &:focus {
+          outline: none;
+        }
+      }
+      .input-readOnly {
+        color: rgba(0, 0, 0, 0.45);
+        border: none;
+      }
+    }
+    h2,
+    h3 {
+      text-align: center;
+    }
+    h4 {
+      color: rgba(0, 0, 0, 0.8);
+    }
+    p {
+      padding: 0;
+      color: rgba(0, 0, 0, 0.45);
+    }
+    .hidden-buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+    button {
+      margin-top: 15px;
+      border: none;
+      font-size: 14px;
+      color: var(--steel-blue-matte);
+      &:hover {
+        color: var(--steel-blue-medium-matte);
+      }
+      &:active {
+        color: var(--steel-blue-matte);
+      }
+    }
+  }
+  .purchases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30px;
+    h3 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  }
+
+  .panel-admin {
+    display: flex;
+    flex-direction: column;
+
+    h2,
+    a {
+      text-align: center;
+    }
+    .options-container {
+      margin: 55px 55px;
+      display: flex;
+      flex-direction: column;
+      .optionButton {
+        height: 50px;
+        margin-bottom: 20px;
+        border: 1px solid var(--light-gray-matte);
+        border-radius: 5px;
+        &:hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+}
+.option-title {
+  margin-left: 36%;
+}

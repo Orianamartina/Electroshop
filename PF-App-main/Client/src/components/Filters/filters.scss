@@ -1,0 +1,55 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20% 0;
+  border-radius: 10px;
+  padding: 25px 0px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--white-color);
+
+  h4 {
+    margin-top: 10px;
+    font-size: 17px;
+  }
+
+  .cleanFilters {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: auto;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 85%;
+
+    select,
+    section,
+    input {
+      padding: 3px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    input {
+      border: 1px solid var(--dark-color);
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    select {
+      transition: all 0.3s ease;
+      &:focus {
+        outline: none;
+        border: 1px solid var(--light-color);
+      }
+    }
+  }
+}
+
+.searchBar-input {
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+}

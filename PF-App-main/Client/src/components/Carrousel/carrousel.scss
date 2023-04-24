@@ -1,0 +1,65 @@
+.carrousel {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  color: #fcfcfc;
+  background-image: linear-gradient(to right, #3b719d, #37a0ab);
+
+  .scrollCarrousel {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    font-size: 36px;
+    z-index: 1;
+    color: #fcfcfc;
+    font-weight: bold;
+    height: 50%;
+    width: 4%;
+    filter: brightness(0.9);
+    transition: all 0.3s ease-in-out;
+
+    &:first-child {
+      left: 0;
+    }
+    &:last-child {
+      right: 0;
+    }
+    &:hover {
+      cursor: pointer;
+      width: 5%;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+
+  img {
+    padding-left: 100px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h3 {
+      font-weight: 400;
+      letter-spacing: 1px;
+      font-size: 32px;
+    }
+
+    button {
+      border: none;
+      color: var(--storm-gray-matte);
+      padding: 12px 60px;
+      font-size: 18px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      &:hover {
+        color: var(--storm-gray-matte);
+        background-color: var(--light-color);
+      }
+    }
+  }
+}

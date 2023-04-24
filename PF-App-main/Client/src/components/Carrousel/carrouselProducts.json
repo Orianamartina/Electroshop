@@ -1,0 +1,27 @@
+[
+  {
+    "id": 2,
+    "name": "Apple Macbook Air",
+    "image": "/assets/carrousel/macbook.webp"
+  },
+  {
+    "id": 9,
+    "name": "Monitor Gamer Curvo Samsung",
+    "image": "/assets/carrousel/monitor.webp"
+  },
+  {
+    "id": 39,
+    "name": "Pc Gamer Ryzen 5 4600g",
+    "image": "/assets/carrousel/pcArmada.webp"
+  },
+  {
+    "id": 14,
+    "name": "Memoria Ram Fury Beast Gamer",
+    "image": "/assets/carrousel/ram.webp"
+  },
+  {
+    "id": 11,
+    "name": "Mouse Gamer Inalámbrico Logitech",
+    "image": "/assets/carrousel/mouse.webp"
+  }
+]
