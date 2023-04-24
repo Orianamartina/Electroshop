@@ -7,7 +7,7 @@ import "./adminOptions.scss";
 const AdminOptions = ({ productDetail }) => {
   const [productEdit, setProductEdit] = useState(productDetail);
   const [show, setShow] = useState(false);
-  const URL = `http://localhost:3001/products/${productDetail.id}`;
+  const URL = `/products/${productDetail.id}`;
 
   const navigate = useNavigate();
 

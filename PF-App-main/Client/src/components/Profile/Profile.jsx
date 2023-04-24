@@ -25,7 +25,7 @@ const Profile = () => {
   // Local
   //const URL = "http://localhost:3001/user/update"
   // Deploy
-  const URL = "https://pf-app-production.up.railway.app/user/update"
+  const URL = "https://electroshop-production.up.railway.app/user/update"
 
   const saveChanges = async () => {
     const updatedUserData = {

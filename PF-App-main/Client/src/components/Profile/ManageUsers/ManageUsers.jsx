@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const ManageUsers = () => {
-  const API_URL = "http://localhost:3001/user/";
+  const API_URL = "https://electroshop-production.up.railway.app/user/";
 
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);

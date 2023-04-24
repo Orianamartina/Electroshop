@@ -18,7 +18,7 @@ function DiscountCodeInput({ userId, handleCart }) {
   //const URL = "http://localhost:3001/cart/desc"
   
   // Depeloy
-  const URL = "https://pf-app-production.up.railway.app/"
+  const URL = "https://electroshop-production.up.railway.app/cart/desc"
 
   function handleInputChange(e) {
     setString(e.target.value);

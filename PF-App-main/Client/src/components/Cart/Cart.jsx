@@ -15,7 +15,7 @@ const Cart = () => {
   //const API_URL = "http://localhost:3001/cart/";
 
   // Deploy
-  const API_URL = "https://pf-app-production.up.railway.app/"
+  const API_URL = "https://electroshop-production.up.railway.app/cart/"
 
   const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
   const { totalPrice, discountPrice } = useSelector((state) => state.cartDetail);

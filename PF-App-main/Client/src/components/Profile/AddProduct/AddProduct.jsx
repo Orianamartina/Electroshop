@@ -20,7 +20,7 @@ const AddProduct = () => {
   // Local
   //const URL = "http://localhost:3001/products"
   // Deploy
-  const URL = "https://pf-app-production.up.railway.app/products"
+  const URL = "https://electroshop-production.up.railway.app/products"
 
   // Cloudinary
   var uploadedImage = "";
