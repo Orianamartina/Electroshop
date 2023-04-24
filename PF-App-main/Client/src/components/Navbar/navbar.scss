@@ -30,6 +30,26 @@
       font-weight: bold;
       transition: all 0.3s ease;
     }
+    @media screen and (max-width: 400px) {
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+          font-size: 12px;
+        }
+        .links {
+          width: 29px;
+        }
+        .navbar__links {
+          width: 70%;
+        }
+        .desconectarse {
+          width: 70px;
+        }
+      }
+    }
+
     .ingresar {
       background-image: linear-gradient(to right, #3b719d, #37a0ab);
       color: #f2f2f2;

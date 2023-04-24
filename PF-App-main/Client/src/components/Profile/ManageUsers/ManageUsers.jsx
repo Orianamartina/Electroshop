@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 import { getAllUsers } from "../../../redux/actions/actions";
 import { toast } from "react-toastify";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const ManageUsers = () => {
-  const API_URL = process.env.API_URL + "user/";
+  const API_URL = "user/";
 
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);

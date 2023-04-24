@@ -3,14 +3,14 @@ import axios from "axios";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "./adminOptions.scss";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const AdminOptions = ({ productDetail }) => {
   const [productEdit, setProductEdit] = useState(productDetail);
   const [show, setShow] = useState(false);
 
-  const API_URL = process.env.API_URL + `products/${productDetail.id}`;
+  const API_URL = `products/${productDetail.id}`;
 
   const navigate = useNavigate();
 

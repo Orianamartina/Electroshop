@@ -4,8 +4,8 @@ import "./discountCodeInput.scss";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
 import discountIcon from "/assets/img/discount.png";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 function DiscountCodeInput({ userId, handleCart }) {
   const [string, setString] = useState("");
@@ -13,7 +13,7 @@ function DiscountCodeInput({ userId, handleCart }) {
   const [isLoading, setLoading] = useState(false);
   const [errorDiscount, setErrorDiscount] = useState(false);
 
-  const API_URL = process.env.API_URL + "cart/desc";
+  const API_URL = "cart/desc";
 
   function handleInputChange(e) {
     setString(e.target.value);

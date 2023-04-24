@@ -3,8 +3,8 @@ import "./addProduct.scss";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
