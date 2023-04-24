@@ -10,8 +10,8 @@ import error404 from "/assets/img/404.png";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import AdminOptions from "./AdminOptions/AdminOptions";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const Detail = () => {
   const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
-  const API_URL = process.env.API_URL + "cart/add";
+  const API_URL = axios( "cart/add");
 
   const buyProduct = [
     {

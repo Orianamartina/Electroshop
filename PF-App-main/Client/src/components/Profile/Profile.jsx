@@ -8,8 +8,8 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import "react-toastify/dist/ReactToastify.css";
-import dotenv from "dotenv";
-dotenv.config();
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
@@ -25,7 +25,7 @@ const Profile = () => {
 
   const [isLoading, setLoading] = useState(false);
 
-  const API_URL = process.env.API_URL + "user/update";
+  const API_URL = axios("user/update");
 
   const saveChanges = async () => {
     const updatedUserData = {
