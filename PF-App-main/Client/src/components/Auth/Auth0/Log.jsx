@@ -5,6 +5,7 @@ import GoogleLogin from "react-google-login";
 import { loginUser } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { DotLoader } from "react-spinners";
+import axios from "axios";
 
 function log() {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ function log() {
 
   const onSuccess = (response) => {
     setLoading(true);
-    setUser(response.profileObj);
     const loginData = {
       name: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
@@ -26,20 +26,36 @@ function log() {
       admin: false,
       image: response.profileObj.imageUrl
     };
-    const startSession = () => {
+    const startSession = async () => {
       try {
         dispatch(loginUser(loginData, "google"));
+        const response = await axios("http://localhost:3001/user/" + loginData.email);
+        const user = response.data;
+        if (user.disabled === false) {
+          setUser(user);
+          setTimeout(() => {
+            navigate("/home");
+          }, 1000);
+        } else {
+          setUser({});
+          setLoading(false);
+          alert("Esta cuenta está bloqueada");
+          console.log("Usuario bloqueado, no se permitió el inicio de sesión");
+          return;
+        }
       } catch (error) {
         console.error("Error al registrar usuario:", error);
       }
     };
     document.getElementsByClassName("btn").hidden = true;
+    
     startSession();
     setTimeout(() => {
       navigate("/home");
     }, 1000);
-  };
 
+  };
+  
   const onFailure = () => {
     console.log("Something went wrong");
   };

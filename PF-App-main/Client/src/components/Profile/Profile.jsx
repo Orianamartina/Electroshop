@@ -43,7 +43,8 @@ const Profile = () => {
         setEditedImage(uploadedImage);
       });
   };
-
+  ///////////
+  
   const saveChanges = async () => {
     const updatedUserData = {
       email: email,
