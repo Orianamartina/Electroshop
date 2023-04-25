@@ -24,6 +24,7 @@ function log() {
       email: response.profileObj.email,
       verified: true,
       admin: false,
+      image: response.profileObj.imageUrl
     };
     const startSession = () => {
       try {

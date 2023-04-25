@@ -1,14 +1,10 @@
-const {
-    createReview,
-    getProductReview,
-    getUserReviews,
-    getProductAverage
-  } = require("../controlers/Reviews.js");
+const { createReview, getProductReview, getUserReviews, getProductAverage } = require("../controlers/Reviews.js");
 const express = require("express");
 const router = express.Router();
 router.use(express.json());
 
 router.post("/", async (req, res) => {
+
     const {userId, text, rating, ProductId} = req.body
     try { 
         const newReview = await createReview(userId, text, rating, ProductId)
@@ -54,4 +50,4 @@ router.delete("/delete/:reviewId", async (req, res) => {
     }
 })
 
-  module.exports = router;
+module.exports = router;

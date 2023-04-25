@@ -192,6 +192,7 @@ module.exports = {
           name: user.name,
           lastName: user.lastName,
           cellphone: user.cellphone,
+          image: user.image,
           shoppingCart: user.shoppingCart,
         };
         const token = generateToken(userFormated);
@@ -454,8 +455,8 @@ module.exports = {
     }
   },
   updateUser: async (req, res) => {
-    const { email, name, lastName, cellphone, password } = req.body;
-    console.log(cellphone)
+    const { email, name, lastName, cellphone, password, image } = req.body;
+    console.log(email, "esto es lo que llega")
     try {
       const user = await User.findOne({
         where: {
@@ -471,11 +472,13 @@ module.exports = {
         user.save();
       }
       if (cellphone) {
-        console.log(user.cellphone)
-        console.log(cellphone)
         user.cellphone = cellphone;
         user.save()
-      } 
+      }
+      if (image) {
+        user.image = image;
+        user.save();
+      }
       if (password) {
         let passwordHashed = await bcrypt.hash(password, 10);
         const token = generateToken({ email, passwordHashed });
