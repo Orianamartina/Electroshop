@@ -21,23 +21,40 @@ router.post("/create/:userId", async (req, res) => {
 });
 
 /* buscar todas las ordenes de compras o por usuario o por nombre */
-router.get("/", async (req, res) => {
+router.get("/user/:userid", async (req, res) => {
   try {
-    const { userId, orderId } = req.query;
-    if (userId) {
-      const userOrders = await getPurchaseOrderByUser(userId);
-      return res.status(200).json(userOrders);
-    }
-    if (orderId) {
-      const orderById = await getPurchaseOrderById(orderId);
-      return res.status(200).json(orderById);
-    }
-    allOrders = await getAllPurchaseOrders();
-    return res.status(200).json(allOrders);
+    const { userid } = req.params;
+    
+    const userOrders = await getPurchaseOrderByUser(userid);
+  
+    return res.status(200).json(userOrders);
+    
   } catch (error) {
     return res.status(400).json("Error fetching all shopping orders");
   }
 });
+
+router.get("/:orderId", async(req, res) =>{
+  try {
+    const {orderId} = req.params
+    const orderById = await getPurchaseOrderById(orderId);
+    return res.status(200).json(orderById);
+    
+  } catch (error) {
+    return res.status(400).json("Error fetching all shopping orders");
+  }
+}
+)
+router.get("/", async(req, res) => {
+  try {
+    allOrders = await getAllPurchaseOrders();
+    return res.status(200).json(allOrders);
+    
+  } catch (error) {
+    return res.status(400).json("Error fetching all shopping orders");
+  }
+}
+)
 
 /* buscar ordenes de compra de un usuario */
 

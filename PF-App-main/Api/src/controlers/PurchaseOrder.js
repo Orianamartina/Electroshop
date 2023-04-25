@@ -1,4 +1,4 @@
-const { PurchaseOrder, Order_Products, User } = require("../db");
+const { PurchaseOrder, User } = require("../db");
 
 module.exports = {
   createPurchaseOrder: async function (userId) {
@@ -8,7 +8,7 @@ module.exports = {
           id: userId,
         },
       });
-
+      
       if (!user) return "user not found";
 
       const cart = await user.getShoppingCart();
@@ -38,16 +38,19 @@ module.exports = {
         },
       });
       const allOrders = []
-    
+      
       for (let i = 0; i < orders.length; i++) {
+      
         let product = await orders[i].getProducts()
+        let orderId = orders[i].id
+        let userId = orders[i].UserId
         let date  = orders[i].date
         let totalPrice = orders[i].totalPrice
         let status = orders[i].status
-        allOrders.push({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status: status})
+        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status})
         
       }
-      
+   
       return allOrders
       
       
@@ -69,7 +72,8 @@ module.exports = {
         let totalPrice = orders[i].totalPrice
         let orderId = orders[i].id
         let status = orders[i].status
-        allOrders.push({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status: status})
+        let userId = orders[i].UserId
+        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status})
         
       }
       
@@ -85,9 +89,10 @@ module.exports = {
       let date  = foundOrder.date
       let totalPrice = foundOrder.totalPrice
       let orderId = foundOrder.id
+       let userId = foundOrder.UserId
       let status = foundOrder.status
       if (!foundOrder) return "order not found";
-      return ({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status:status});
+      return ({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status:status});
     } catch (error) {
       return error;
     }
