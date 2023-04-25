@@ -32,7 +32,10 @@ const DarkMode = ({ darkMode, setDarkMode }) => {
 
   return (
     <button className="dark-mode" type="button" onClick={handleDarkMode}>
-      <img src={darkMode ? lightIcon : darkIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
+      <img
+        src={darkMode ? lightIcon : darkIcon}
+        alt={darkMode ? "Light Mode" : "Dark Mode"}
+      />
     </button>
   );
 };

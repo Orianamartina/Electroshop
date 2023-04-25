@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getAllProducts } from "../../redux/actions/actions";
 import "./home.scss";
 
@@ -19,7 +18,10 @@ const Home = () => {
 
   const numOfLastProduct = currentPage * productsPerPage;
   const numOfFirstProduct = numOfLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
+  const currentProducts = allProducts.slice(
+    numOfFirstProduct,
+    numOfLastProduct
+  );
 
   const handlePagination = (page) => {
     setCurrentPage(page);
