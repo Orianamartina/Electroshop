@@ -10,8 +10,8 @@ import error404 from "/assets/img/404.png";
 import { ClipLoader } from "react-spinners";
 import axios from "axios";
 import AdminOptions from "./AdminOptions/AdminOptions";
-// import dotenv from "dotenv";
-// dotenv.config();
+import Reviews from "./Reviews/Reviews";
+import Stars from "./Reviews/Stars";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -55,6 +55,21 @@ const Detail = () => {
       .catch(() => setLoading(false));
   }, [dispatch, id]);
 
+  const [averageReviews, setAverageReviews] = useState(0);
+
+  useEffect(() => {
+    const getAverageReviews = async () => {
+      try {
+        const response = await axios.get(`review/average/${id}`);
+        setAverageReviews(response.data);
+        dispatch(getProductDetail(id));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getAverageReviews();
+  }, []);
+
   return (
     <>
       {loading ? (
@@ -71,6 +86,7 @@ const Detail = () => {
               </div>
               <div className="detail-info">
                 <h3>{productDetail.name}</h3>
+                <Stars rating={averageReviews} editable={false} />
                 <h2>$ {productDetail.price.toLocaleString()}</h2>{" "}
               </div>
               <div className="detail-buy">
@@ -97,6 +113,7 @@ const Detail = () => {
                 <h3>Marca: {productDetail.brand}</h3>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
+                <Reviews productId={productDetail.id} userId={userId} />
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
             </>

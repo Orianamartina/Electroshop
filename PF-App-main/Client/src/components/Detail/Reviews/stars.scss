@@ -1,0 +1,16 @@
+.reviews-stars {
+  display: flex;
+  padding: 5px;
+
+  label {
+    margin: 0 1px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    margin: 0;
+    margin-left: 5px;
+  }
+}

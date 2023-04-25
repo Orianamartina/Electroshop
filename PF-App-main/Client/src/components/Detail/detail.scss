@@ -36,6 +36,13 @@
     h3 {
       font-size: 22px;
     }
+    .reviews-stars {
+      label {
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
     h2 {
       margin-top: 10px;
     }
@@ -90,9 +97,10 @@
 
   .detail-description {
     display: flex;
+    flex-direction: column;
+    row-gap: 25px;
     padding: 20px;
     grid-column: span 2;
-    flex-direction: column;
     h2 {
       margin-bottom: 10px;
       font-size: 24px;
