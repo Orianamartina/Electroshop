@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
-import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import axios from "axios";
 import DiscountCodeInput from "./DiscountCodeInput/DiscountCodeInput";
 
@@ -95,7 +94,10 @@ const Cart = () => {
             <button onClick={handleEmptyCart} className="empty-cart">
               Vaciar carrito
             </button>
-            <PurchaseOrderButton products={cartProducts} user={id} />
+
+            <Link to="/shipping" className="buyButton">
+              Continuar comprando
+            </Link>
           </section>
         </div>
       ) : (

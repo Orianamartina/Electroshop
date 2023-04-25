@@ -38,6 +38,7 @@ router.post("/", async (req, res) => {
       .json("there was a problem adding the shipping address");
   }
 });
+
 router.get("/:orderId", async (req, res) => {
   const { orderId } = req.params;
   try {
