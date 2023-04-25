@@ -1,7 +1,7 @@
-const { PurchaseOrder, User } = require("../db");
+const { PurchaseOrder, User, ShippingAddress } = require("../db");
 
 module.exports = {
-  createPurchaseOrder: async function (userId) {
+  createPurchaseOrder: async function (userId, street, number, postCode, apartment, floor, city, state, country) {
     try {
       const user = await User.findOne({
         where: {
@@ -10,6 +10,7 @@ module.exports = {
       });
       
       if (!user) return "user not found";
+     
 
       const cart = await user.getShoppingCart();
       const cartProducts = await cart.getProducts();
@@ -24,7 +25,40 @@ module.exports = {
       const newOrder = await user.createPurchaseOrder({
         totalPrice: totalPrice,
       });
+      const shipping = await ShippingAddress.findOne({where:
+      {
+          street: street,
+          number: number, 
+          postCode: postCode,
+          apartment: apartment,
+          floor: floor,
+          city: city, 
+          state: state,
+          country: country,
+      }})
+      
+      if (shipping){
+        newOrder.ShippingAddressId = shipping.id
+        await newOrder.save()
+
+       
+      }
+      else{
+        await newOrder.createShippingAddress({
+          
+          street: street,
+          number: number, 
+          postCode: postCode,
+          apartment: apartment,
+          floor: floor,
+          city: city, 
+          state: state,
+          country: country,
+      })
+      }
+       
       newOrder.addProducts(productsData);
+      
     } catch (error) {
       return error;
     }
