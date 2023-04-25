@@ -36,13 +36,12 @@ const Profile = () => {
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "uq7hpsv9");
 
-    axios.post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data).then((response) => {
-      console.log(response);
-      uploadedImage = response.data.secure_url;
-      console.log(uploadedImage);
-      
-      setEditedImage(uploadedImage)
-    });
+    axios
+      .post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data)
+      .then((response) => {
+        uploadedImage = response.data.secure_url;
+        setEditedImage(uploadedImage);
+      });
   };
   ///////////
   
@@ -52,9 +51,8 @@ const Profile = () => {
       name: editedName,
       lastName: editedLastName,
       password: "",
-      image: editedImage
+      image: editedImage,
     };
-    
     setLoading(true);
     try {
       await axios.put(API_URL, updatedUserData);
@@ -75,7 +73,6 @@ const Profile = () => {
       console.error("Error al realizar la solicitud PUT:", error);
       toast.error("Error al actualizar los datos");
     }
-
   };
 
   return (
@@ -87,53 +84,128 @@ const Profile = () => {
         </div>
       ) : (
         <div className="profile">
+          {/* Datos del usuario */}
+          {/* Imagen y nombre */}
           <div className="data">
-            <h2>{userName}</h2>
-            <img src={image } width="90px" alt="" />
-            <h3>Mis datos</h3>
+            <div className="data-img-text">
+              <div className="data-img">
+                <img src={image} width="90px" alt="" />
+              </div>
+              <div className="data-text">
+                <h2>{userName}</h2>
+              </div>
+            </div>
             {editMode ? (
               <>
+                {/* Cards data */}
                 <div className="cards">
-                  <h4>Nombre de usuario</h4>
-                  <input className="input-readOnly" type="text" value={userName} readOnly />
+                  <div className="cards-textField">
+                    <h4>Nombre de usuario</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      className="input-readOnly"
+                      type="text"
+                      value={userName}
+                      readOnly
+                    />
+                  </div>
                 </div>
+                {/* Cards data */}
                 <div className="cards">
-                  <h4>E-mail</h4>
-                  <input className="input-readOnly" type="text" value={email} readOnly />
+                  <div className="cards-textField">
+                    <h4>E-mail</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      className="input-readOnly"
+                      type="text"
+                      value={email}
+                      readOnly
+                    />
+                  </div>
                 </div>
+                {/* Cards data */}
                 <div className="cards">
-                  <h4>Nombre</h4>
-                  <input type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)} />
+                  <div className="cards-textField">
+                    <h4>Nombre</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      type="text"
+                      value={editedName}
+                      onChange={(e) => setEditedName(e.target.value)}
+                    />
+                  </div>
                 </div>
+                {/* Cards data */}
                 <div className="cards">
-                  <h4>Apellido</h4>
-                  <input type="text" value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)} />
+                  <div className="cards-textField">
+                    <h4>Apellido</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      type="text"
+                      value={editedLastName}
+                      onChange={(e) => setEditedLastName(e.target.value)}
+                    />
+                  </div>
                 </div>
+                {/* Cards data */}
                 <div className="cards">
-                  <h4>Foto de Perfil</h4>
-                  <input type="file" value={uploadedImage} onChange={uploadImage} />
+                  <div className="cards-textField">
+                    <h4>Foto de Perfil</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      type="file"
+                      value={uploadedImage}
+                      onChange={uploadImage}
+                    />
+                  </div>
                 </div>
               </>
             ) : (
               <>
+                {/* Cards modificables */}
                 <div className="cards">
-                  <h4>Nombre de usuario</h4>
-                  <p>{userName}</p>
+                  <div className="cards-textField">
+                    <h4>Nombre de usuario</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <p>{userName}</p>
+                  </div>
                 </div>
+                {/* Cards modificables */}
                 <div className="cards">
-                  <h4>E-mail</h4>
-                  <p>{email}</p>
+                  <div className="cards-textField">
+                    <h4>E-mail</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <p>{email}</p>
+                  </div>
                 </div>
+                {/* Cards modificables */}
                 <div className="cards">
-                  <h4>Nombre</h4>
-                  <p>{name}</p>
+                  <div className="cards-textField">
+                    <h4>Nombre</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <p>{name}</p>
+                  </div>
                 </div>
+                {/* Cards modificables */}
                 <div className="cards">
-                  <h4>Apellido</h4>
-                  <p>{lastName}</p>
+                  <div className="cards-textField">
+                    <h4>Apellido</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <p>{lastName}</p>
+                  </div>
                 </div>
               </>
             )}
+            {/* Botones modificar datos */}
             {editMode ? (
               <div className="hidden-buttons">
                 <button onClick={() => saveChanges()} disabled={isLoading}>
@@ -145,13 +217,17 @@ const Profile = () => {
               <button onClick={() => setEditMode(true)}>Modificar datos</button>
             )}
           </div>
+          {/* Historial de compras */}
           {admin ? null : (
             <div className="purchases">
               <h2>Historial de compras</h2>
-              <h3>Aún no has realizado ninguna compra. ¡Visita nuestra tienda y compra!</h3>
+              <h3>
+                Aún no has realizado ninguna compra. ¡Visita nuestra tienda y
+                compra!
+              </h3>
             </div>
           )}
-
+          {/* Botones de administrador */}
           {admin ? (
             <div className="panel-admin">
               <h2>Panel de Administrador</h2>
@@ -176,7 +252,11 @@ const Profile = () => {
 
                 {showProductModal && (
                   <div className="option-title">
-                    <Modal show={showProductModal} onHide={() => setshowProductModal(false)} size="lg">
+                    <Modal
+                      show={showProductModal}
+                      onHide={() => setshowProductModal(false)}
+                      size="lg"
+                    >
                       <Modal.Header closeButton>
                         <div className="option-title">
                           <Modal.Title>Agregar Producto</Modal.Title>
@@ -187,7 +267,11 @@ const Profile = () => {
                   </div>
                 )}
                 {showUsersModal && (
-                  <Modal show={showUsersModal} onHide={() => setshowUsersModal(false)} size="lg">
+                  <Modal
+                    show={showUsersModal}
+                    onHide={() => setshowUsersModal(false)}
+                    size="lg"
+                  >
                     <Modal.Header closeButton>
                       <div className="option-title">
                         <Modal.Title>Administrar Usuarios</Modal.Title>

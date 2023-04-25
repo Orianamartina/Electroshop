@@ -8,19 +8,40 @@
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    h3 {
-      font-size: 22px;
-      margin-top: 20px;
+    .data-img-text {
+      display: flex;
+      gap: 20px;
+      .data-img {
+        img {
+          border-radius: 50%;
+          height: 60px;
+          width: 60px;
+          object-fit: cover;
+        }
+      }
+      .data-text {
+        display: flex;
+        align-items: center;
+        h2 {
+          font-size: 24px;
+        }
+      }
     }
     .cards {
-      margin-top: 15px;
+      display: flex;
+      margin-top: 20px;
       padding: 10px;
-      border: 1px solid var(--light-gray-matte);
       border-radius: 5px;
+      .cards-textField {
+        width: 200px;
+      }
+      .cards-inputField {
+        display: flex;
+        justify-content: flex-start;
+      }
       input {
         margin-bottom: 15px;
         border: none;
-        border-bottom: 1px solid var(--light-gray-matte);
         width: 65%;
         &:focus {
           outline: none;
@@ -35,8 +56,10 @@
     h3 {
       text-align: center;
     }
+
     h4 {
       color: rgba(0, 0, 0, 0.8);
+      font-size: 18px;
     }
     p {
       padding: 0;
