@@ -230,10 +230,12 @@ module.exports = {
         email: user.email,
       },
     });
-    if (verified.disabled){
-      return res.json({message: "Esta cuenta se encuentra bloqiueada para iniciar sesión"});
-    }
+    console.log(verified)
+    
     if (verified) {
+      if (verified.disabled === true){
+        return res.json({message: "Esta cuenta se encuentra bloqiueada para iniciar sesión"});
+      }
       const userJson = verified.toJSON();
       const token = generateToken(userJson);
       const payload = {
