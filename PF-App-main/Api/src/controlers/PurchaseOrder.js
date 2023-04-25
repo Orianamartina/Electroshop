@@ -41,7 +41,10 @@ module.exports = {
     
       for (let i = 0; i < orders.length; i++) {
         let product = await orders[i].getProducts()
-        allOrders.push(product)
+        let date  = orders[i].date
+        let totalPrice = orders[i].totalPrice
+        let status = orders[i].status
+        allOrders.push({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status: status})
         
       }
       
@@ -56,8 +59,21 @@ module.exports = {
 
   getAllPurchaseOrders: async function () {
     try {
-      const allOrders = await PurchaseOrder.findAll();
-      return allOrders;
+      const orders = await PurchaseOrder.findAll();
+      
+      const allOrders = []
+    
+      for (let i = 0; i < orders.length; i++) {
+        let product = await orders[i].getProducts()
+        let date  = orders[i].date
+        let totalPrice = orders[i].totalPrice
+        let orderId = orders[i].id
+        let status = orders[i].status
+        allOrders.push({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status: status})
+        
+      }
+      
+      return allOrders
     } catch (error) {
       return error;
     }
@@ -65,8 +81,13 @@ module.exports = {
   getPurchaseOrderById: async function (Id) {
     try {
       const foundOrder = await PurchaseOrder.findByPk(Id);
+      let product = await foundOrder.getProducts()
+      let date  = foundOrder.date
+      let totalPrice = foundOrder.totalPrice
+      let orderId = foundOrder.id
+      let status = foundOrder.status
       if (!foundOrder) return "order not found";
-      return foundOrder;
+      return ({orderId: orderId, products: product, date: date, totalPrice: totalPrice, status:status});
     } catch (error) {
       return error;
     }
@@ -76,7 +97,7 @@ module.exports = {
       const foundOrder = await PurchaseOrder.findByPk(Id);
       foundOrder.status = status;
       foundOrder.save();
-      return foundOrder;
+      return foundOrder.status;
     } catch (error) {
       return error;
     }
