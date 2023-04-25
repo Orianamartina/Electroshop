@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
-  const { userName, name, lastName, email } = user;
+  const { userName, name, lastName, email, image } = user;
   const { admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const [editMode, setEditMode] = useState(false);
@@ -22,10 +22,28 @@ const Profile = () => {
 
   const [editedName, setEditedName] = useState(name);
   const [editedLastName, setEditedLastName] = useState(lastName);
+  const [editedImage, setEditedImage] = useState(image);
 
   const [isLoading, setLoading] = useState(false);
 
   const API_URL = "user/update";
+
+  // Cloudinary
+  var uploadedImage = "";
+  const uploadImage = (e) => {
+    const data = new FormData();
+
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", "uq7hpsv9");
+
+    axios.post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data).then((response) => {
+      console.log(response);
+      uploadedImage = response.data.secure_url;
+      console.log(uploadedImage);
+      
+      setEditedImage(uploadedImage)
+    });
+  };
 
   const saveChanges = async () => {
     const updatedUserData = {
@@ -33,7 +51,9 @@ const Profile = () => {
       name: editedName,
       lastName: editedLastName,
       password: "",
+      image: editedImage
     };
+    console.log(updatedUserData, "esto se envia al back")
     setLoading(true);
     try {
       await axios.put(API_URL, updatedUserData);
@@ -41,9 +61,11 @@ const Profile = () => {
         setEditMode(false);
         setEditedName(editedName);
         setEditedLastName(editedLastName);
+        setEditedImage(editedImage);
         const user = JSON.parse(localStorage.getItem("userData"));
         user.name = editedName;
         user.lastName = editedLastName;
+        user.image = editedImage;
         localStorage.setItem("userData", JSON.stringify(user));
         toast.success("Datos actualizados correctamente");
         setLoading(false);
@@ -52,6 +74,7 @@ const Profile = () => {
       console.error("Error al realizar la solicitud PUT:", error);
       toast.error("Error al actualizar los datos");
     }
+
   };
 
   return (
@@ -65,6 +88,7 @@ const Profile = () => {
         <div className="profile">
           <div className="data">
             <h2>{userName}</h2>
+            <img src={image } width="90px" alt="" />
             <h3>Mis datos</h3>
             {editMode ? (
               <>
@@ -83,6 +107,10 @@ const Profile = () => {
                 <div className="cards">
                   <h4>Apellido</h4>
                   <input type="text" value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)} />
+                </div>
+                <div className="cards">
+                  <h4>Foto de Perfil</h4>
+                  <input type="file" value={uploadedImage} onChange={uploadImage} />
                 </div>
               </>
             ) : (

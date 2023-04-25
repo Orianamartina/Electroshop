@@ -51,6 +51,9 @@ module.exports = (sequelize) => {
     disabled: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-    }
+    },
+    image: {
+      type: DataTypes.STRING,
+    },
   });
 };
