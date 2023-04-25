@@ -10,10 +10,20 @@ const {
 } = require("../controlers/PurchaseOrder");
 
 /* crear orden de compra*/
-router.post("/create/:userId", async (req, res) => {
-  const { userId } = req.params;
+router.post("/create", async (req, res) => {
+  const { 
+      userId, 
+      street,
+      number,
+      postCode,
+      apartment,
+      floor,
+      city,
+      state,
+      country,
+  } = req.body;
   try {
-    const createOrder = createPurchaseOrder(userId);
+    const createOrder = createPurchaseOrder(userId, street, number, postCode, apartment, floor, city, state, country);
     res.status(200).json("Order created");
   } catch (error) {
     res.status(400).json("oops");
