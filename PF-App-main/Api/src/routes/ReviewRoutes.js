@@ -45,5 +45,13 @@ router.get("/average/:productId", async (req, res) =>{
         return res.status(500).json("server error")
     }
 })
+router.delete("/delete/:reviewId", async (req, res) => {
+    const {reviewId} = req.params
+    try {
+        
+    } catch (error) {
+        
+    }
+})
 
   module.exports = router;
