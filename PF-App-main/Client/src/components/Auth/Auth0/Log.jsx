@@ -17,8 +17,6 @@ function log() {
 
   const onSuccess = (response) => {
     setLoading(true);
-    
-    console.log(user, "este el usuario en el estado al inicio")
     const loginData = {
       name: response.profileObj.givenName,
       lastName: response.profileObj.familyName,
