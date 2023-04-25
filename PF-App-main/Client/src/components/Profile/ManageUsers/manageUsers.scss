@@ -39,12 +39,15 @@
             border-radius: 5px;
             transition: all 0.3s ease;
             &:hover {
-              background-color: var(--steel-blue-medium-matte);
+              background-color: var(--modal-red-button);
               color: var(--bg-color);
             }
           }
           button:nth-child(2):hover {
-            background-color: var(--modal-yellow-button); 
+            background-color: var(--modal-yellow-button);
+          }
+          button:nth-child(3):hover {
+            background-color: var(--steel-blue-medium-matte);
           }
         }
       }
