@@ -5,6 +5,7 @@ import GoogleLogin from "react-google-login";
 import { loginUser } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { DotLoader } from "react-spinners";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 function log() {
@@ -39,8 +40,7 @@ function log() {
         } else {
           setUser({});
           setLoading(false);
-          alert("Esta cuenta está bloqueada");
-          console.log("Usuario bloqueado, no se permitió el inicio de sesión");
+          toast.error("Usuario bloqueado, no se permitió el inicio de sesión");
           return;
         }
       } catch (error) {
@@ -52,7 +52,7 @@ function log() {
     startSession();
     setTimeout(() => {
       navigate("/home");
-    }, 1000);
+    }, 5000);
 
   };
   
@@ -71,6 +71,7 @@ function log() {
 
   return (
     <div className="loginAuth0">
+      <ToastContainer />
       <GoogleLogin
         clientId={clientID}
         onSuccess={onSuccess}
