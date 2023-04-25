@@ -121,6 +121,21 @@ module.exports = {
       });
     }
   },
+  getUserByEmail: async (req, res) => {
+    const {email} = req.params
+    try {
+      const user = await User.findOne({
+        where: {
+          email,
+        }
+      })
+      res.status(200).send(user)
+    } catch (error) {
+      res.send(error)
+    }
+    
+
+  },
   getUsers: async (req, res) => {
     const { id } = req.query;
 
@@ -215,6 +230,9 @@ module.exports = {
         email: user.email,
       },
     });
+    if (verified.disabled){
+      return res.json({message: "Esta cuenta se encuentra bloqiueada para iniciar sesión"});
+    }
     if (verified) {
       const userJson = verified.toJSON();
       const token = generateToken(userJson);

@@ -12,13 +12,15 @@ const {
   updateUser,
   deleteUser,
   loginGoogle,
-  confirmPasswordChange
+  confirmPasswordChange,
+  getUserByEmail
 } = require("../controlers/Users");
 const router = express.Router();
 router.use(express.json());
 
 router.post("/", registerUser);
 router.get("/", getUsers);
+router.get("/:email", getUserByEmail)
 router.put("/setadmin", setAdminRightsToUser);
 router.put("/removeadmin", removeAdminRightsToUser);
 router.post("/createadmin", createAdmin);
