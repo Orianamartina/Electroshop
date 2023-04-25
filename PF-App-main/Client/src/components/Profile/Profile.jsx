@@ -44,7 +44,8 @@ const Profile = () => {
       setEditedImage(uploadedImage)
     });
   };
-
+  ///////////
+  
   const saveChanges = async () => {
     const updatedUserData = {
       email: email,
@@ -53,7 +54,7 @@ const Profile = () => {
       password: "",
       image: editedImage
     };
-    console.log(updatedUserData, "esto se envia al back")
+    
     setLoading(true);
     try {
       await axios.put(API_URL, updatedUserData);
