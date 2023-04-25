@@ -7,6 +7,7 @@ const Reviews = ({ userId, productId }) => {
   const [reviews, setReviews] = useState([]);
   const [userReviews, setUserReviews] = useState({ rating: 0, text: "" });
   const [numReviewsToShow, setNumReviewsToShow] = useState(5);
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   const getProductReviews = async () => {
     try {
@@ -37,6 +38,12 @@ const Reviews = ({ userId, productId }) => {
 
   const handleShowMoreReviews = () => {
     setNumReviewsToShow(numReviewsToShow + 5);
+    setShowAllReviews(true);
+  };
+
+  const handleShowLessReviews = () => {
+    setNumReviewsToShow(5);
+    setShowAllReviews(false);
   };
 
   useEffect(() => {
@@ -72,7 +79,10 @@ const Reviews = ({ userId, productId }) => {
               <p className="product-review-comment">{review.text}</p>
             </div>
           ))}
-          {reviews.length > numReviewsToShow && <button onClick={handleShowMoreReviews}>Mostrar más</button>}
+          {reviews.length > numReviewsToShow && !showAllReviews && (
+            <button onClick={handleShowMoreReviews}>Mostrar más</button>
+          )}
+          {reviews.length > 5 && showAllReviews && <button onClick={handleShowLessReviews}>Mostrar menos</button>}
         </div>
       )}
     </div>

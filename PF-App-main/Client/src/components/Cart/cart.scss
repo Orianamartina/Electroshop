@@ -201,7 +201,8 @@
 .section-totalPrice-buttons {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
-  button {
+  button,
+  a {
     cursor: pointer;
     width: 60%;
     border: none;

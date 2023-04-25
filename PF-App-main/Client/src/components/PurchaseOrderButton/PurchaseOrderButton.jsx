@@ -1,12 +1,17 @@
 import React from "react";
 import axios from "axios";
-// import dotenv from "dotenv";
-// dotenv.config();
 
-const PurchaseOrderButton = ({ products, user }) => {
+const PurchaseOrderButton = ({ products, user, shippingData }) => {
   const API_URL = "payment";
 
+  const { userId, street, number, postCode, apartment, floor, city, state, country } = shippingData;
+
+  const handleOrder = () => {
+    axios.post("order/create/", { userId, street, number, postCode, apartment, floor, city, state, country });
+  };
+
   const handlePayment = () => {
+    handleOrder();
     axios.post(API_URL, { items: [...products], userId: user }).then((res) => {
       window.location.href = res.data.response.body.init_point;
     });
@@ -14,7 +19,7 @@ const PurchaseOrderButton = ({ products, user }) => {
 
   return (
     <button className="buyButton" onClick={handlePayment}>
-      Continuar compra
+      Completar compra
     </button>
   );
 };

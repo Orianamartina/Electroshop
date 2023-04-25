@@ -1,17 +1,26 @@
-import "./detail.scss";
-import { getProductDetail, getCart } from "../../redux/actions/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+// Paquetes
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import shipping from "/assets/img/shipping.png";
-import "react-toastify/dist/ReactToastify.css";
-import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
-import error404 from "/assets/img/404.png";
-import { ClipLoader } from "react-spinners";
 import axios from "axios";
+
+// Componentes
+import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import AdminOptions from "./AdminOptions/AdminOptions";
 import Reviews from "./Reviews/Reviews";
 import Stars from "./Reviews/Stars";
+
+// Acciones
+import { getProductDetail, getCart } from "../../redux/actions/actions";
+
+// Imágenes
+import shipping from "/assets/img/shipping.png";
+import error404 from "/assets/img/404.png";
+
+// Estilos
+import "./detail.scss";
+import "react-toastify/dist/ReactToastify.css";
+import { ClipLoader } from "react-spinners";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -62,13 +71,12 @@ const Detail = () => {
       try {
         const response = await axios.get(`review/average/${id}`);
         setAverageReviews(response.data);
-        dispatch(getProductDetail(id));
       } catch (error) {
         console.error(error);
       }
     };
     getAverageReviews();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -97,8 +105,6 @@ const Detail = () => {
                 <p>
                   Stock: <b>{productDetail.stock} unidades</b>
                 </p>
-
-                <PurchaseOrderButton products={buyProduct} user={userId} />
 
                 <button className="button-cart" onClick={handleAddToCart}>
                   Agregar al carrito

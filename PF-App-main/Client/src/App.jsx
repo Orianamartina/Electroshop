@@ -9,10 +9,10 @@ import Detail from "./components/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Cart from "./components/Cart/Cart";
 import Error404 from "./components/Error404/Error404";
-import Accepted  from "./components/Payment/PaymentAccepted"
+import Accepted from "./components/Payment/PaymentAccepted";
 import Rejected from "./components/Payment/Rejected";
 import AddProduct from "./components/Profile/AddProduct/AddProduct";
-
+import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 
 function App() {
   const location = useLocation();
@@ -27,6 +27,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/shipping" element={<ShippingAddress />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/accepted" element={<Accepted />} />

@@ -35,9 +35,6 @@ const Accepted = () => {
             await axios.put(`${API_PRODUCTS_URL}${p.id}`, productEdit);
           })
         );
-        // Crear orden de compra
-        //await axios.post(`order/create/${id}`);
-
         // Vaciar carrito
         await axios.post(`${API_URL}empty/${id}`);
 

@@ -22,7 +22,7 @@ const Stars = ({ rating, editable, setUserReviews, userReviews }) => {
               <FaStar
                 className="star"
                 color={ratingValue <= (hover || ratingRounded) ? "#3483fa" : "#c5dafa"}
-                size={16}
+                size={18}
                 onClick={() => handleStarClick(ratingValue)}
                 onMouseEnter={() => setHover(ratingValue)}
                 onMouseLeave={() => setHover(null)}

@@ -1,6 +1,7 @@
 .reviews {
   display: flex;
   flex-direction: column;
+  color: var(--dark-color);
 
   .form-reviews {
     display: flex;
@@ -20,6 +21,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         resize: none;
+        background-color: var(--white-color);
       }
 
       button {
@@ -48,7 +50,7 @@
     .product-review {
       display: flex;
       flex-direction: column;
-      padding: 20px 0;
+      padding: 15px 0;
       border-bottom: 1px solid #ccc;
       width: 100%;
 
@@ -66,6 +68,8 @@
         padding: 2px;
         border-left: 2px solid #ccc;
         padding-left: 10px;
+        font-size: 14px;
+        color: var(--dark-color);
       }
     }
 
@@ -74,6 +78,7 @@
       margin-right: auto;
       padding: 25px 5px;
       color: var(--steel-blue-medium-matte);
+      background-color: unset;
 
       &:hover {
         cursor: pointer;
