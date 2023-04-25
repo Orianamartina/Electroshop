@@ -37,7 +37,8 @@ function log() {
           setTimeout(() => {
             navigate("/home");
           }, 1000);
-        } else {
+        }
+        if(user.disabled === true) {
           setUser({});
           setLoading(false);
           toast.error("Usuario bloqueado, no se permitió el inicio de sesión");
