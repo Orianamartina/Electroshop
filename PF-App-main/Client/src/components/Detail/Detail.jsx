@@ -32,15 +32,6 @@ const Detail = () => {
 
   const API_URL = "cart/add";
 
-  const buyProduct = [
-    {
-      ...productDetail,
-      ShoppingCart_Products: {
-        quantity: 1,
-      },
-    },
-  ];
-
   const backToHome = () => {
     navigate("/home");
   };

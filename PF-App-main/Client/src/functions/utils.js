@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 export const handleOrder = (allProducts, orderProducts) => {
   const sortedProducts = allProducts.sort((a, b) => {
     if (orderProducts === "menor") {
