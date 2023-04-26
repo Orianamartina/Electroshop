@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
+  a{
+    text-decoration: none;
+  }
   .history-cards {
     background-color: var(--white-color);
     padding: 10px 20px;
