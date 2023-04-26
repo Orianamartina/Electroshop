@@ -39,13 +39,9 @@ const ShippingHistory = ({ id }) => {
             <p>{item.date}</p>
             {item.products.map((product) => (
               <Link to={`/detail/${product.id}`} key={product.id}>
-                <div>
-                  <p>Producto: {product.name}</p>
-                  <p>Precio: {product.price}</p>
-                  <img src={product.image} alt="" />
-                  <p>{product.category}</p>
-                  <p>Marca: {product.brand}</p>
-                  <p>Monto total: {item.totalPrice}</p>
+                <div className="products-card">
+                  <p>{product.name}</p>
+                  <img src={product.image} alt="Producto-del-historial" />
                 </div>
               </Link>
             ))}
