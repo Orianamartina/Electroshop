@@ -559,12 +559,6 @@ module.exports = {
           email,
         },
       });
-
-      // const Addresses = await ShippingAddress.findAll({
-      //   where: {
-      //     UserId: user.id,
-      //   },
-      // });
       const template = templateEliminacionDeCuenta(user.email, sender);
       await sendStatusEmail(
         user.email,
