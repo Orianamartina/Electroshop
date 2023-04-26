@@ -1,4 +1,4 @@
-const { User, ShippingAddress, ShoppingCart } = require("../db");
+const { User, Product, Favorites } = require("../db");
 const bcrypt = require("bcrypt");
 
 const { v4 } = require("uuid");
@@ -16,6 +16,7 @@ const {
   templateChangePassword
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
+
 const sender = process.env.EMAIL;
 
 dotenv.config();
@@ -583,4 +584,29 @@ module.exports = {
       res.status(400).send("oops");
     }
   },
+  addToFavorite: async function(req, res){
+    const {userId, productId}  = req.body
+    const user = await User.findByPk(userId)
+    const product = await Product.findByPk(productId)
+    try {
+      await user.addProduct(product)
+      return res.status(200).json("product added to favorites")
+    } catch (error) {
+      return res.status(400).json("failed to add product to favorites")
+    }
+  },
+  getUserFavorites: async function (req, res){
+      const {userId} = req.params
+      try {
+        const products = await Favorites.findAll({
+          where:{
+            UserId: userId
+          },
+          attributes: ["ProductId"]
+        })
+        res.status(200).json(products)
+      } catch (error) {
+        res.status(400).send("failed to get user's favorites")
+      }
+  }
 };
