@@ -7,26 +7,28 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
+import { FaStar } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import ShippingHistory from "./ShippingHistory/ShippingHistory";
 // import dotenv from "dotenv";
 // dotenv.config();
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
-  const { userName, name, lastName, email, image } = user;
+  const { userName, name, lastName, email, image, cellphone } = user;
   const { admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
-  const [editMode, setEditMode] = useState(false);
-  const [showProductModal, setshowProductModal] = useState(false);
-  const [showUsersModal, setshowUsersModal] = useState(false);
-
+  //Para modificar datos del perfil
   const [editedName, setEditedName] = useState(name);
   const [editedLastName, setEditedLastName] = useState(lastName);
   const [editedImage, setEditedImage] = useState(image);
-
+  const [editedCellphone, setEditedCellphone] = useState(cellphone);
   const [isLoading, setLoading] = useState(false);
 
-  const API_URL = "user/update";
+  //Para las opciones de administrador
+  const [editMode, setEditMode] = useState(false);
+  const [showProductModal, setshowProductModal] = useState(false);
+  const [showUsersModal, setshowUsersModal] = useState(false);
 
   // Cloudinary
   var uploadedImage = "";
@@ -43,8 +45,7 @@ const Profile = () => {
         setEditedImage(uploadedImage);
       });
   };
-  ///////////
-  
+
   const saveChanges = async () => {
     const updatedUserData = {
       email: email,
@@ -52,19 +53,22 @@ const Profile = () => {
       lastName: editedLastName,
       password: "",
       image: editedImage,
+      cellphone: editedCellphone,
     };
     setLoading(true);
     try {
-      await axios.put(API_URL, updatedUserData);
+      await axios.put("user/update", updatedUserData);
       setTimeout(() => {
         setEditMode(false);
         setEditedName(editedName);
         setEditedLastName(editedLastName);
         setEditedImage(editedImage);
+        setEditedCellphone(editedCellphone);
         const user = JSON.parse(localStorage.getItem("userData"));
         user.name = editedName;
         user.lastName = editedLastName;
         user.image = editedImage;
+        user.cellphone = editedCellphone;
         localStorage.setItem("userData", JSON.stringify(user));
         toast.success("Datos actualizados correctamente");
         setLoading(false);
@@ -97,7 +101,7 @@ const Profile = () => {
             </div>
             {editMode ? (
               <>
-                {/* Cards data */}
+                {/* Modo edicion */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Nombre de usuario</h4>
@@ -111,7 +115,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                {/* Cards data */}
+                {/* Modo edicion */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>E-mail</h4>
@@ -125,7 +129,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                {/* Cards data */}
+                {/* Modo edicion */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Nombre</h4>
@@ -138,7 +142,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                {/* Cards data */}
+                {/* Modo edicion */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Apellido</h4>
@@ -151,7 +155,20 @@ const Profile = () => {
                     />
                   </div>
                 </div>
-                {/* Cards data */}
+                {/* Modo edicion */}
+                <div className="cards">
+                  <div className="cards-textField">
+                    <h4>Teléfono</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <input
+                      type="text"
+                      value={editedCellphone}
+                      onChange={(e) => setEditedCellphone(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {/* Modo edicion */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Foto de Perfil</h4>
@@ -167,7 +184,7 @@ const Profile = () => {
               </>
             ) : (
               <>
-                {/* Cards modificables */}
+                {/* Cards readOnly */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Nombre de usuario</h4>
@@ -176,7 +193,7 @@ const Profile = () => {
                     <p>{userName}</p>
                   </div>
                 </div>
-                {/* Cards modificables */}
+                {/* Cards readOnly */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>E-mail</h4>
@@ -185,7 +202,7 @@ const Profile = () => {
                     <p>{email}</p>
                   </div>
                 </div>
-                {/* Cards modificables */}
+                {/* Cards readOnly */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Nombre</h4>
@@ -194,13 +211,22 @@ const Profile = () => {
                     <p>{name}</p>
                   </div>
                 </div>
-                {/* Cards modificables */}
+                {/* Cards readOnly */}
                 <div className="cards">
                   <div className="cards-textField">
                     <h4>Apellido</h4>
                   </div>
                   <div className="cards-inputField">
                     <p>{lastName}</p>
+                  </div>
+                </div>
+                {/* Cards readOnly */}
+                <div className="cards">
+                  <div className="cards-textField">
+                    <h4>Teléfono</h4>
+                  </div>
+                  <div className="cards-inputField">
+                    <p>{cellphone}</p>
                   </div>
                 </div>
               </>
@@ -218,15 +244,7 @@ const Profile = () => {
             )}
           </div>
           {/* Historial de compras */}
-          {admin ? null : (
-            <div className="purchases">
-              <h2>Historial de compras</h2>
-              <h3>
-                Aún no has realizado ninguna compra. ¡Visita nuestra tienda y
-                compra!
-              </h3>
-            </div>
-          )}
+          {admin ? null : <ShippingHistory id={user.id} />}
           {/* Botones de administrador */}
           {admin ? (
             <div className="panel-admin">

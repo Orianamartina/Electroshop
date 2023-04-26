@@ -34,13 +34,43 @@ const Accepted = () => {
             await axios.put(`${API_PRODUCTS_URL}${p.id}`, productEdit);
           })
         );
+
+        const shippingData = JSON.parse(localStorage.getItem("shippingData"));
+
+        const {
+          userId,
+          street,
+          number,
+          postCode,
+          apartment,
+          floor,
+          city,
+          state,
+          country,
+        } = shippingData;
+
+        await axios.post("order/create/", {
+          userId,
+          street,
+          number,
+          postCode,
+          apartment,
+          floor,
+          city,
+          state,
+          country,
+        });
+
         // Vaciar carrito
         await axios.post(`${API_URL}empty/${id}`);
-  
+
+        localStorage.removeItem("shippingData");
+
         // Obtener carrito actualizado
         dispatch(getCart(id));
   
         // Redireccionar a home
+
         setTimeout(() => {
           navigate("/home");
         }, 3000);

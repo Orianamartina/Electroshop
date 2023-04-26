@@ -1,0 +1,16 @@
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  .history-cards {
+    background-color: var(--white-color);
+    h3 {
+      font-size: 22px;
+      margin-top: 20px;
+    }
+    img {
+      height: 100px;
+    }
+  }
+}

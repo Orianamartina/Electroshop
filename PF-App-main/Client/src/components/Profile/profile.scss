@@ -42,7 +42,7 @@
       input {
         margin-bottom: 15px;
         border: none;
-        width: 65%;
+        width: 100%;
         &:focus {
           outline: none;
         }
@@ -80,16 +80,6 @@
       &:active {
         color: var(--steel-blue-matte);
       }
-    }
-  }
-  .purchases {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 30px;
-    h3 {
-      font-size: 22px;
-      margin-top: 20px;
     }
   }
 
