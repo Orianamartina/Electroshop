@@ -614,12 +614,12 @@ module.exports = {
   getUserFavorites: async function (req, res){
       const {userId} = req.params
       try {
-        const products = await Favorites.findAll({
-          where:{
-            UserId: userId
-          },
-          attributes: ["ProductId"]
+        const user = await User.findByPk(userId)
+        
+        const products = await user.getProducts({
+          attributes: ["name", "image", "price"]
         })
+        
         res.status(200).json(products)
       } catch (error) {
         res.status(400).send("failed to get user's favorites")
