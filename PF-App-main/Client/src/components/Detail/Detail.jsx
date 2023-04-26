@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import axios from "axios";
 
 // Componentes
@@ -71,6 +72,7 @@ const Detail = () => {
 
   return (
     <>
+      <ToastContainer />
       {loading ? (
         <div className="loading">
           <ClipLoader color="#4a90e2" size={50} />

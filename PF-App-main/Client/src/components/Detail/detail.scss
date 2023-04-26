@@ -85,10 +85,11 @@
     }
 
     .button-cart {
-      background-color: var(--bg-color);
-      color: var(--steel-blue-medium-matte);
+      background-color: var(--steel-blue-medium-matte);
+      color: var(--light-color);
+      color: #fcfcfc;
       &:hover {
-        background-color: var(--light-sky-blue-matte);
+        background-color: var(--steel-blue-matte);
       }
     }
     .p-return {
