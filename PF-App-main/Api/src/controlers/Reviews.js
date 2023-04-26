@@ -19,11 +19,18 @@ module.exports = {
         
         try {
             const reviews = await Review.findAll({
+            
             where: {
                 ProductId: productId
-            }
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ["id", "name", "lastName", "userName", "image"]
+                }
+            ]
             })
-            return reviews
+        return reviews
         } catch (error) {
             return error
         }
