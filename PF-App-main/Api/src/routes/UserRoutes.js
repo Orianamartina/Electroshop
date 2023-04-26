@@ -15,7 +15,8 @@ const {
   confirmPasswordChange,
   getUserByEmail,
   addToFavorite,
-  getUserFavorites
+  getUserFavorites,
+  deleteUserFavorites
 } = require("../controlers/Users");
 const router = express.Router();
 router.use(express.json());
@@ -35,6 +36,7 @@ router.put("/update", updateUser);
 router.delete("/del", deleteUser);
 router.get("/confirmchange/:token", confirmPasswordChange)
 
-router.post("/fav/add", addToFavorite)
+router.post("/fav", addToFavorite)
+router.delete("/fav",  deleteUserFavorites)
 router.get("/fav/:userId", getUserFavorites)
 module.exports = router;

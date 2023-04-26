@@ -586,11 +586,27 @@ module.exports = {
   },
   addToFavorite: async function(req, res){
     const {userId, productId}  = req.body
-    const user = await User.findByPk(userId)
-    const product = await Product.findByPk(productId)
+   
     try {
-      await user.addProduct(product)
-      return res.status(200).json("product added to favorites")
+        
+        const foundProduct = await Favorites.findOne({
+        where:{
+          UserId: userId,
+          ProductId: productId
+        }
+        
+      })
+      
+      if (!foundProduct){
+        const user = await User.findByPk(userId)
+        const product = await Product.findByPk(productId)
+        await user.addProduct(product)
+        return res.status(200).json("product added to favorites")
+      }else{
+        return res.status(400).json("product already in favorites")
+      }
+      
+      
     } catch (error) {
       return res.status(400).json("failed to add product to favorites")
     }
@@ -608,5 +624,29 @@ module.exports = {
       } catch (error) {
         res.status(400).send("failed to get user's favorites")
       }
+  },
+  deleteUserFavorites: async function(req, res){
+    const {userId, productId} = req.body
+    try {
+      const product = await Favorites.findOne({
+        where:{
+          UserId: userId,
+          ProductId: productId
+        }
+      })
+  
+      if (product) {
+        await Favorites.destroy({where:{
+          UserId: userId,
+          ProductId: productId
+        }})
+      }
+      else{
+        res.status(400).send("product not in favorites")
+      }
+      res.status(200).send("product deleted from favorites")
+    } catch (error) {
+      res.status(400).send("failed to delete product from favorites")
+    }
   }
 };
