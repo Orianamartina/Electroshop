@@ -11,8 +11,8 @@ const Filters = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products);
-  const brands = products?.map((product) => product.brand);
-  const category = products?.map((product) => product.category);
+  const brands = Array.from(new Set(products?.map((product) => product.brand)));
+  const category = Array.from(new Set(products?.map((product) => product.category)));
 
   const [filterState, setFilterState] = useState({
     search: "",
