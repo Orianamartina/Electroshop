@@ -22,6 +22,7 @@
       .data-text {
         display: flex;
         align-items: center;
+        color: var(--dark-color);
         h2 {
           font-size: 24px;
         }
@@ -58,12 +59,14 @@
     }
 
     h4 {
-      color: rgba(0, 0, 0, 0.8);
+      color: var(--dark-color);
+      // color: rgba(0, 0, 0, 0.8);
       font-size: 18px;
     }
     p {
       padding: 0;
-      color: rgba(0, 0, 0, 0.45);
+      color: var(--dark-color);
+      // color: rgba(0, 0, 0, 0.45);
     }
     .hidden-buttons {
       display: flex;
