@@ -230,7 +230,6 @@ module.exports = {
         email: user.email,
       },
     });
-    console.log(verified)
     
     if (verified) {
       if (verified.disabled === true){
