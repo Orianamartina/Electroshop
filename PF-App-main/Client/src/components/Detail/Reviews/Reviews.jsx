@@ -75,6 +75,12 @@ const Reviews = ({ userId, productId }) => {
           <h4>Opiniones del producto</h4>
           {reviews.slice(0, numReviewsToShow).map((review) => (
             <div className="product-review" key={review.id}>
+              <div className="review-user-data">
+                {review.User.image && <img src={review.User.image} alt={review.User.name} />}
+                <h5>
+                  {review.User.name} {review.User.lastName}
+                </h5>
+              </div>
               <Stars rating={review.rating} editable={false} />
               <p className="product-review-comment">{review.text}</p>
             </div>
