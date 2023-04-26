@@ -18,11 +18,11 @@ module.exports = {
         product.Order_Products = {
           quantity: product.ShoppingCart_Products.quantity,
         };
-        product.quantitySold = product.quantitySold + 1
+        product.quantitySold = product.quantitySold + product.ShoppingCart_Products.quantity
          product.save()
         return product;
       });
-      console.log(productsData)
+      
       const totalPrice = cart.discountPrice
       const newOrder = await user.createPurchaseOrder({
         totalPrice: totalPrice,
