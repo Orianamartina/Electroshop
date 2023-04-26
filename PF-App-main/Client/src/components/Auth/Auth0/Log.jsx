@@ -53,7 +53,7 @@ function log() {
     startSession();
     setTimeout(() => {
       navigate("/home");
-    }, 5000);
+    }, 2000);
 
   };
   

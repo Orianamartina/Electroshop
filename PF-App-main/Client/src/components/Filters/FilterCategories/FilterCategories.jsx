@@ -1,8 +1,7 @@
 import React from "react";
-import { categories } from "../../../functions/constants";
-import './filterCategories.scss'
+import "./filterCategories.scss";
 
-const FilterCategories = ({ filterState, setFilterState, setCurrentPage }) => {
+const FilterCategories = ({ filterState, setFilterState, setCurrentPage, categories }) => {
   const handleBrandChange = (e) => {
     const categoryValue = e.target.value;
     setFilterState({
@@ -15,7 +14,9 @@ const FilterCategories = ({ filterState, setFilterState, setCurrentPage }) => {
   return (
     <div className="filterBrand">
       <select className="option" value={filterState.category} onChange={handleBrandChange}>
-        <option className="option" value="">Seleccione una categoria</option>
+        <option className="option" value="">
+          Seleccione una categoria
+        </option>
         {categories.map((category, index) => {
           return (
             <option className="option" key={index} value={category}>

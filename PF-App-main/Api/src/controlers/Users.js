@@ -19,6 +19,8 @@ const dotenv = require("dotenv");
 const sender = process.env.EMAIL;
 
 dotenv.config();
+const CLIENT_HOST = process.env.CLIENT_HOST
+const EMAIL = process.env.EMAIL
 
 module.exports = {
   registerUser: async (req, res) => {
@@ -112,7 +114,7 @@ module.exports = {
       }
       user.verified = true;
       await user.save();
-      return res.redirect("https://electroshop-delta.vercel.app/home");
+      return res.redirect(`${CLIENT_HOST}home`);
       //return res.redirect("home del deploy")
     } catch (error) {
       return res.json({
@@ -230,7 +232,6 @@ module.exports = {
         email: user.email,
       },
     });
-    console.log(verified)
     
     if (verified) {
       if (verified.disabled === true){
@@ -463,7 +464,7 @@ module.exports = {
     if (!user) {
       const user = await User.create({
         name: "Grupo 6",
-        email: "auxiliarparaproyectos@gmail.com",
+        email: EMAIL,
         admin: true,
         verified: true,
         code: v4(),
@@ -542,8 +543,7 @@ module.exports = {
       }
       user.password = passwordHashed;
       await user.save();
-      return res.redirect("http://localhost:3000/home");
-      //return res.redirect("home del deploy")
+      return res.redirect(`${CLIENT_HOST}home`);
     } catch (error) {
       return res.json({
         success: false,
@@ -572,9 +572,6 @@ module.exports = {
         template
       );
 
-      // for (let i = 0; i < Addresses.length; i++) {
-      //   Addresses[i].destroy();
-      // }
       if (user.email === sender) {
         return res.status(400).send({
           message: `La cuenta ${user.userName} no puede ser eliminada`,

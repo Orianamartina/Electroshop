@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import axios from "axios";
 
 // Componentes
@@ -31,15 +32,6 @@ const Detail = () => {
   const productDetail = useSelector((state) => state.productDetail);
 
   const API_URL = "cart/add";
-
-  const buyProduct = [
-    {
-      ...productDetail,
-      ShoppingCart_Products: {
-        quantity: 1,
-      },
-    },
-  ];
 
   const backToHome = () => {
     navigate("/home");
@@ -80,6 +72,7 @@ const Detail = () => {
 
   return (
     <>
+      <ToastContainer />
       {loading ? (
         <div className="loading">
           <ClipLoader color="#4a90e2" size={50} />

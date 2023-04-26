@@ -19,7 +19,7 @@ const AddProduct = () => {
 
   const [isLoading, setLoading] = useState(false);
 
-  const API_URL = process.env.API_URL + "products";
+  const API_URL = "products";
 
   // Cloudinary
   var uploadedImage = "";

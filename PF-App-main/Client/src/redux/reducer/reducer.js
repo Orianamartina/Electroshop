@@ -3,6 +3,7 @@ import { handleFilters } from "../../functions/utils.js";
 
 const initialState = {
   user: {},
+  products: [],
   allProducts: [],
   productDetail: {},
   cartProducts: [],
@@ -14,7 +15,7 @@ export default function reducer(state = initialState, action) {
     case GET_USER:
       return { ...state, user: action.payload };
     case GET_ALL_PRODUCTS:
-      return { ...state, allProducts: action.payload };
+      return { ...state, allProducts: action.payload, products: action.payload };
     case GET_CART:
       return {
         ...state,

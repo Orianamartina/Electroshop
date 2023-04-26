@@ -1,15 +1,16 @@
 .profile {
   display: grid;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 3fr 7fr;
   padding: 10px;
   margin-top: 20px;
   color: var(--dark-color);
   .data {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin: 0 40px;
     .data-img-text {
       display: flex;
+      justify-content: center;
       gap: 20px;
       .data-img {
         img {
@@ -21,9 +22,23 @@
       }
       .data-text {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
+        color: var(--dark-color);
         h2 {
           font-size: 24px;
+          margin: 0;
+        }
+        label{
+          font-size: 12px;
+          color: var(--steel-blue-matte);
+          &:hover{
+            color: var(--steel-blue-medium-matte);
+            cursor: pointer;
+          }
+          &:active{
+            color: var(--steel-blue-matte);
+          }
         }
       }
     }
@@ -32,17 +47,19 @@
       margin-top: 20px;
       padding: 10px;
       border-radius: 5px;
+      background-color: var(--white-color);
       .cards-textField {
         width: 200px;
       }
       .cards-inputField {
         display: flex;
         justify-content: flex-start;
+        width: 400px;
       }
       input {
-        margin-bottom: 15px;
+        margin-bottom: 14px;
         border: none;
-        width: 65%;
+        width: 100%;
         &:focus {
           outline: none;
         }
@@ -58,38 +75,30 @@
     }
 
     h4 {
-      color: rgba(0, 0, 0, 0.8);
+      color: var(--dark-color);
       font-size: 18px;
     }
     p {
       padding: 0;
-      color: rgba(0, 0, 0, 0.45);
+      color: var(--dark-color);
     }
     .hidden-buttons {
       display: flex;
-      justify-content: space-around;
+      justify-content: center;
+      gap: 150px;
     }
     button {
       margin-top: 15px;
       border: none;
       font-size: 14px;
       color: var(--steel-blue-matte);
+      background-color: transparent;
       &:hover {
         color: var(--steel-blue-medium-matte);
       }
       &:active {
         color: var(--steel-blue-matte);
       }
-    }
-  }
-  .purchases {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 30px;
-    h3 {
-      font-size: 22px;
-      margin-top: 20px;
     }
   }
 

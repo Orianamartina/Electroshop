@@ -54,7 +54,26 @@
       border-bottom: 1px solid #ccc;
       width: 100%;
 
+      .review-user-data {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        h5 {
+          margin: 0;
+          margin-left: 5px;
+          font-size: 16px;
+        }
+      }
       .reviews-stars {
+        padding: 2px;
+        margin-left: 3%;
+
         label {
           &:hover {
             cursor: default;
@@ -64,7 +83,7 @@
 
       .product-review-comment {
         margin: 0;
-        margin-left: 10px;
+        margin-left: 4%;
         padding: 2px;
         border-left: 2px solid #ccc;
         padding-left: 10px;
