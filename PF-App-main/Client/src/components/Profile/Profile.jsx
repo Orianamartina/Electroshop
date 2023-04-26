@@ -10,6 +10,7 @@ import { ClipLoader } from "react-spinners";
 import "react-toastify/dist/ReactToastify.css";
 import SideBar from "./SideBar/SideBar";
 import ShippingHistory from "./ShippingHistory/ShippingHistory";
+
 // import dotenv from "dotenv";
 // dotenv.config();
 
@@ -165,7 +166,7 @@ const Profile = () => {
                           id="uploadInput"
                           type="file"
                           onChange={uploadImage}
-                          style={{ display: "none" }} 
+                          style={{ display: "none" }}
                         />
                       </label>
                     </div>

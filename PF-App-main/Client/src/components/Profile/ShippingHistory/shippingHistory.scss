@@ -2,20 +2,56 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
-  a{
-    text-decoration: none;
+  padding: 20px;
+  border: 1px solid var(--light-gray-matte);
+  border-radius: 10px;
+  margin: 50px;
+  h2{
+    font-size: 24px;
   }
   .history-cards {
+    display: flex;
+    flex-direction: column;
     background-color: var(--white-color);
-    padding: 10px 20px;
-    margin: 20px 0;
+    padding: 20px;
+    margin: 20px;
     border-radius: 10px;
-    p {
-      font-size: 12px;
+    h5 {
+      font-size: 14px;
+      font-weight: bold;
     }
-    img {
-      height: 100px;
+    hr {
+      margin: 0;
+    }
+    .products-card {
+      display: flex;
+      margin: 10px 0;
+      padding: 10px 0;
+      img {
+        height: 80px;
+        width: 100px;
+        object-fit: contain;
+        border: 1px solid var(--light-gray-matte);
+        border-radius: 5px;
+      }
+      p {
+        margin: 20px;
+        width: 80%;
+        font-size: 12px;
+      }
+    }
+    button {
+      padding: 5px;
+      width: 150px;
+      font-size: 15px;
+      align-self: center;
+      border-radius: 5px;
+      border: none;
+      background-color: var(--steel-blue-medium-matte);
+      color: var(--white-color);
+      &:active{
+        background-color: var(--steel-blue-matte);
+      }
     }
   }
 }
