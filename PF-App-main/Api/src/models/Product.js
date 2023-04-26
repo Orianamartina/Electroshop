@@ -38,6 +38,11 @@ module.exports = (sequelize) => {
     disable:{
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    quantitySold:{
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
+
   });
 };
