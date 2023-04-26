@@ -156,6 +156,20 @@ const Profile = () => {
                 </div>
                 <div className="data-text">
                   <h2>{userName}</h2>
+                  {/* Boton cambiar foto de perfil */}
+                  {editMode ? (
+                    <div>
+                      <label htmlFor="uploadInput">
+                        Cambiar foto de perfil
+                        <input
+                          id="uploadInput"
+                          type="file"
+                          onChange={uploadImage}
+                          style={{ display: "none" }} 
+                        />
+                      </label>
+                    </div>
+                  ) : null}
                 </div>
               </div>
               {editMode ? (
@@ -224,19 +238,6 @@ const Profile = () => {
                         type="text"
                         value={editedCellphone}
                         onChange={(e) => setEditedCellphone(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  {/* Modo edicion */}
-                  <div className="cards">
-                    <div className="cards-textField">
-                      <h4>Foto de Perfil</h4>
-                    </div>
-                    <div className="cards-inputField">
-                      <input
-                        type="file"
-                        value={uploadedImage}
-                        onChange={uploadImage}
                       />
                     </div>
                   </div>

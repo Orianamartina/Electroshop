@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./reviews.scss";
+import { toast } from "react-toastify";
 import Stars from "./Stars";
 
 const Reviews = ({ userId, productId }) => {
@@ -19,8 +20,8 @@ const Reviews = ({ userId, productId }) => {
   };
 
   const handleAddReview = async () => {
-    if (!userReviews.rating) return alert("Debes seleccionar una calificación");
-    if (!userReviews.text) return alert("Debes escribir una reseña");
+    if (!userReviews.rating) return toast.info("Debes seleccionar una calificación");
+    if (!userReviews.text) return toast.info("Debes escribir una reseña");
 
     try {
       await axios.post("review/", {
@@ -54,7 +55,12 @@ const Reviews = ({ userId, productId }) => {
     <div className="reviews">
       <div className="form-reviews">
         <h4>Deja tu opinión sobre el producto</h4>
-        <Stars rating={userReviews.rating} editable={true} setUserReviews={setUserReviews} userReviews={userReviews} />
+        <Stars
+          rating={userReviews.rating}
+          editable={true}
+          setUserReviews={setUserReviews}
+          userReviews={userReviews}
+        />
         <div className="reviews-comment">
           <textarea
             className="reviews-textarea"
@@ -63,7 +69,9 @@ const Reviews = ({ userId, productId }) => {
             cols="40"
             maxLength="200"
             value={userReviews.text}
-            onChange={(e) => setUserReviews({ ...userReviews, text: e.target.value })}
+            onChange={(e) =>
+              setUserReviews({ ...userReviews, text: e.target.value })
+            }
           />
           <button className="reviews-button" onClick={handleAddReview}>
             Enviar
@@ -76,7 +84,9 @@ const Reviews = ({ userId, productId }) => {
           {reviews.slice(0, numReviewsToShow).map((review) => (
             <div className="product-review" key={review.id}>
               <div className="review-user-data">
-                {review.User.image && <img src={review.User.image} alt={review.User.name} />}
+                {review.User.image && (
+                  <img src={review.User.image} alt={review.User.name} />
+                )}
                 <h5>
                   {review.User.name} {review.User.lastName}
                 </h5>
@@ -88,7 +98,9 @@ const Reviews = ({ userId, productId }) => {
           {reviews.length > numReviewsToShow && !showAllReviews && (
             <button onClick={handleShowMoreReviews}>Mostrar más</button>
           )}
-          {reviews.length > 5 && showAllReviews && <button onClick={handleShowLessReviews}>Mostrar menos</button>}
+          {reviews.length > 5 && showAllReviews && (
+            <button onClick={handleShowLessReviews}>Mostrar menos</button>
+          )}
         </div>
       )}
     </div>
