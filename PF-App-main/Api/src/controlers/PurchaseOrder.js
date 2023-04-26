@@ -70,6 +70,7 @@ module.exports = {
         where: {
           UserId: userId,
         },
+        include: ShippingAddress
       });
       const allOrders = []
       
@@ -81,7 +82,8 @@ module.exports = {
         let date  = orders[i].date
         let totalPrice = orders[i].totalPrice
         let status = orders[i].status
-        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status})
+        let shippingAddress = orders[i].ShippingAddress
+        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status, shippingAddress: shippingAddress})
         
       }
    
@@ -96,7 +98,9 @@ module.exports = {
 
   getAllPurchaseOrders: async function () {
     try {
-      const orders = await PurchaseOrder.findAll();
+      const orders = await PurchaseOrder.findAll({
+        include: ShippingAddress
+      });
       
       const allOrders = []
     
@@ -107,7 +111,8 @@ module.exports = {
         let orderId = orders[i].id
         let status = orders[i].status
         let userId = orders[i].UserId
-        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status})
+        let shippingAddress = orders[i].ShippingAddress
+        allOrders.push({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status: status, shippingAddress: shippingAddress})
         
       }
       
@@ -118,15 +123,21 @@ module.exports = {
   },
   getPurchaseOrderById: async function (Id) {
     try {
-      const foundOrder = await PurchaseOrder.findByPk(Id);
+      const foundOrder = await PurchaseOrder.findOne({
+        where: {
+        id: Id,
+      },
+      include: ShippingAddress});
+      if (!foundOrder) return "order not found";
       let product = await foundOrder.getProducts()
       let date  = foundOrder.date
       let totalPrice = foundOrder.totalPrice
       let orderId = foundOrder.id
-       let userId = foundOrder.UserId
+      let userId = foundOrder.UserId
       let status = foundOrder.status
-      if (!foundOrder) return "order not found";
-      return ({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status:status});
+      let shippingAddress = foundOrder.ShippingAddress
+      
+      return ({orderId: orderId, userId: userId, products: product, date: date, totalPrice: totalPrice, status:status, shippingAddress: shippingAddress});
     } catch (error) {
       return error;
     }
