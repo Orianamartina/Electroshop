@@ -1,15 +1,16 @@
 .profile {
   display: grid;
-  grid-template-columns: 4fr 6fr;
+  grid-template-columns: 3fr 7fr;
   padding: 10px;
   margin-top: 20px;
   color: var(--dark-color);
   .data {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin: 0 40px;
     .data-img-text {
       display: flex;
+      justify-content: center;
       gap: 20px;
       .data-img {
         img {
@@ -33,12 +34,14 @@
       margin-top: 20px;
       padding: 10px;
       border-radius: 5px;
+      background-color: var(--white-color);
       .cards-textField {
         width: 200px;
       }
       .cards-inputField {
         display: flex;
         justify-content: flex-start;
+        width: 400px;
       }
       input {
         margin-bottom: 15px;

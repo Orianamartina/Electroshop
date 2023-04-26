@@ -7,8 +7,8 @@ import { Modal } from "react-bootstrap";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { ClipLoader } from "react-spinners";
-import { FaStar } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import SideBar from "./SideBar/SideBar";
 import ShippingHistory from "./ShippingHistory/ShippingHistory";
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -87,220 +87,226 @@ const Profile = () => {
           <ClipLoader color={"#4a90e2"} size={50} />
         </div>
       ) : (
-        <div className="profile">
-          {/* Datos del usuario */}
-          {/* Imagen y nombre */}
-          <div className="data">
-            <div className="data-img-text">
-              <div className="data-img">
-                <img src={image} width="90px" alt="" />
-              </div>
-              <div className="data-text">
-                <h2>{userName}</h2>
-              </div>
-            </div>
-            {editMode ? (
-              <>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Nombre de usuario</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      className="input-readOnly"
-                      type="text"
-                      value={userName}
-                      readOnly
-                    />
-                  </div>
-                </div>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>E-mail</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      className="input-readOnly"
-                      type="text"
-                      value={email}
-                      readOnly
-                    />
-                  </div>
-                </div>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Nombre</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      type="text"
-                      value={editedName}
-                      onChange={(e) => setEditedName(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Apellido</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      type="text"
-                      value={editedLastName}
-                      onChange={(e) => setEditedLastName(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Teléfono</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      type="text"
-                      value={editedCellphone}
-                      onChange={(e) => setEditedCellphone(e.target.value)}
-                    />
-                  </div>
-                </div>
-                {/* Modo edicion */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Foto de Perfil</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <input
-                      type="file"
-                      value={uploadedImage}
-                      onChange={uploadImage}
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Cards readOnly */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Nombre de usuario</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <p>{userName}</p>
-                  </div>
-                </div>
-                {/* Cards readOnly */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>E-mail</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <p>{email}</p>
-                  </div>
-                </div>
-                {/* Cards readOnly */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Nombre</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <p>{name}</p>
-                  </div>
-                </div>
-                {/* Cards readOnly */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Apellido</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <p>{lastName}</p>
-                  </div>
-                </div>
-                {/* Cards readOnly */}
-                <div className="cards">
-                  <div className="cards-textField">
-                    <h4>Teléfono</h4>
-                  </div>
-                  <div className="cards-inputField">
-                    <p>{cellphone}</p>
-                  </div>
-                </div>
-              </>
-            )}
-            {/* Botones modificar datos */}
-            {editMode ? (
-              <div className="hidden-buttons">
-                <button onClick={() => saveChanges()} disabled={isLoading}>
-                  Guardar
-                </button>
-                <button onClick={() => setEditMode(false)}>Cancelar</button>
-              </div>
-            ) : (
-              <button onClick={() => setEditMode(true)}>Modificar datos</button>
-            )}
-          </div>
-          {/* Historial de compras */}
-          {admin ? null : <ShippingHistory id={user.id} />}
-          {/* Botones de administrador */}
-          {admin ? (
-            <div className="panel-admin">
-              <h2>Panel de Administrador</h2>
-              <div className="options-container">
-                <button
-                  className="optionButton"
-                  onClick={() => {
-                    setshowProductModal(true);
-                  }}
-                >
-                  Agregar Productos
-                </button>
-                <button
-                  className="optionButton"
-                  onClick={() => {
-                    setshowUsersModal(true);
-                  }}
-                >
-                  Administrar Usuarios
-                </button>
-                <button className="optionButton">Enviar Cupones</button>
+        <div>
+          <div className="profile">
+            {/* Botones de administrador */}
+            {admin ? (
+              <div className="panel-admin">
+                <h2>Panel de Administrador</h2>
+                <div className="options-container">
+                  <button
+                    className="optionButton"
+                    onClick={() => {
+                      setshowProductModal(true);
+                    }}
+                  >
+                    Agregar Productos
+                  </button>
+                  <button
+                    className="optionButton"
+                    onClick={() => {
+                      setshowUsersModal(true);
+                    }}
+                  >
+                    Administrar Usuarios
+                  </button>
+                  <button className="optionButton">Enviar Cupones</button>
 
-                {showProductModal && (
-                  <div className="option-title">
+                  {showProductModal && (
+                    <div className="option-title">
+                      <Modal
+                        show={showProductModal}
+                        onHide={() => setshowProductModal(false)}
+                        size="lg"
+                      >
+                        <Modal.Header closeButton>
+                          <div className="option-title">
+                            <Modal.Title>Agregar Producto</Modal.Title>
+                          </div>
+                        </Modal.Header>
+                        <AddProduct />
+                      </Modal>
+                    </div>
+                  )}
+                  {showUsersModal && (
                     <Modal
-                      show={showProductModal}
-                      onHide={() => setshowProductModal(false)}
+                      show={showUsersModal}
+                      onHide={() => setshowUsersModal(false)}
                       size="lg"
                     >
                       <Modal.Header closeButton>
                         <div className="option-title">
-                          <Modal.Title>Agregar Producto</Modal.Title>
+                          <Modal.Title>Administrar Usuarios</Modal.Title>
                         </div>
                       </Modal.Header>
-                      <AddProduct />
+                      <ManageUsers />
                     </Modal>
-                  </div>
-                )}
-                {showUsersModal && (
-                  <Modal
-                    show={showUsersModal}
-                    onHide={() => setshowUsersModal(false)}
-                    size="lg"
-                  >
-                    <Modal.Header closeButton>
-                      <div className="option-title">
-                        <Modal.Title>Administrar Usuarios</Modal.Title>
-                      </div>
-                    </Modal.Header>
-                    <ManageUsers />
-                  </Modal>
-                )}
+                  )}
+                </div>
               </div>
+            ) : (
+              <SideBar />
+            )}
+            {/* Datos del usuario */}
+            {/* Imagen y nombre */}
+            <div className="data">
+              <div className="data-img-text">
+                <div className="data-img">
+                  <img src={image} width="90px" alt="" />
+                </div>
+                <div className="data-text">
+                  <h2>{userName}</h2>
+                </div>
+              </div>
+              {editMode ? (
+                <>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Nombre de usuario</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        className="input-readOnly"
+                        type="text"
+                        value={userName}
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>E-mail</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        className="input-readOnly"
+                        type="text"
+                        value={email}
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Nombre</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        type="text"
+                        value={editedName}
+                        onChange={(e) => setEditedName(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Apellido</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        type="text"
+                        value={editedLastName}
+                        onChange={(e) => setEditedLastName(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Teléfono</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        type="text"
+                        value={editedCellphone}
+                        onChange={(e) => setEditedCellphone(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  {/* Modo edicion */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Foto de Perfil</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <input
+                        type="file"
+                        value={uploadedImage}
+                        onChange={uploadImage}
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Modo fijo */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Nombre de usuario</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <p>{userName}</p>
+                    </div>
+                  </div>
+                  {/* Modo fijo */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>E-mail</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <p>{email}</p>
+                    </div>
+                  </div>
+                  {/* Modo fijo */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Nombre</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <p>{name}</p>
+                    </div>
+                  </div>
+                  {/* Modo fijo */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Apellido</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <p>{lastName}</p>
+                    </div>
+                  </div>
+                  {/* Modo fijo */}
+                  <div className="cards">
+                    <div className="cards-textField">
+                      <h4>Teléfono</h4>
+                    </div>
+                    <div className="cards-inputField">
+                      <p>{cellphone}</p>
+                    </div>
+                  </div>
+                </>
+              )}
+              {/* Botones modificar datos */}
+              {editMode ? (
+                <div className="hidden-buttons">
+                  <button onClick={() => saveChanges()} disabled={isLoading}>
+                    Guardar
+                  </button>
+                  <button onClick={() => setEditMode(false)}>Cancelar</button>
+                </div>
+              ) : (
+                <button onClick={() => setEditMode(true)}>
+                  Modificar datos
+                </button>
+              )}
             </div>
-          ) : null}
+          </div>
+          {/* Historial de compras */}
+          <ShippingHistory id={user.id} />
         </div>
       )}
     </>
