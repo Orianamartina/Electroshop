@@ -54,9 +54,7 @@ export default function ForgotPass() {
   }
   if(id){
     useEffect(() => {
-      setTimeout(() => {
-        navigate("/home");
-      }, 1000);
+        navigate("/home");;
     },[])
   }
   
