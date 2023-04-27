@@ -33,8 +33,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { id: userId, admin } =
-    JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
   const API_URL = "cart/add";
@@ -120,11 +119,7 @@ const Detail = () => {
                   <p>Devolución gratis</p>
                 </div>
 
-                <ShareProduct
-                  id={productDetail.id}
-                  name={productDetail.name}
-                  image={productDetail.image}
-                />
+                <ShareProduct id={productDetail.id} name={productDetail.name} image={productDetail.image} />
               </div>
               <div className="detail-description">
                 <h2>Características del producto</h2>
@@ -132,7 +127,7 @@ const Detail = () => {
                 <h3>Marca: {productDetail.brand}</h3>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
-                <RelatedProducts />
+                <RelatedProducts category={productDetail.category} />
                 <Reviews productId={productDetail.id} userId={userId} />
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
