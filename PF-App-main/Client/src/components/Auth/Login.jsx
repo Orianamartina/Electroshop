@@ -1,5 +1,5 @@
 import "./auth.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ import Log from "./Auth0/Log";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const [dataLogin, setDataLogin] = useState({
     email: "",
@@ -54,7 +55,11 @@ const Login = () => {
     const { errors } = validateLoginData({ ...dataLogin, [name]: value });
     setErrors(errors);
   };
-
+  if(id){
+    useEffect(() => {
+        navigate("/home");;
+    },[])
+  }
   return (
     <>
       <ToastContainer />
@@ -94,6 +99,9 @@ const Login = () => {
           </button>
           <p>
             ¿No tienes cuenta? <Link to="/register">Registrate</Link>
+          </p>
+          <p>
+            <Link to="/password/reset">¿Olvidaste tu contraseña? </Link> 
           </p>
           <p className="pAuth"> O ingresa con: </p>
           <Log />
