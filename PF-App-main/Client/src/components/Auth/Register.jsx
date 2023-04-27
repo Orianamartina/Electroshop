@@ -1,5 +1,6 @@
 import "./auth.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { validateRegisterData } from "../../functions/validate";
 import { createUser } from "../../redux/actions/actions";
@@ -8,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { BeatLoader } from "react-spinners";
 
 const Register = () => {
+  const { token } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const navigate = useNavigate();
+
   const [dataRegister, setDataRegister] = useState({
     name: "",
     lastName: "",
@@ -28,9 +32,7 @@ const Register = () => {
     setLoading(true);
     try {
       await createUser(formData);
-      toast.info(
-        "Registro exitoso. Por favor, revise su correo para validar su cuenta."
-      );
+      toast.info("Registro exitoso. Por favor, revise su correo para validar su cuenta.");
     } catch (error) {
       toast.error(`${error.message}`);
     } finally {
@@ -49,6 +51,12 @@ const Register = () => {
     const { errors } = validateRegisterData({ ...dataRegister, [name]: value });
     setErrors(errors);
   };
+
+  if (token) {
+    useEffect(() => {
+      navigate("/home");
+    }, []);
+  }
 
   return (
     <div className="authDiv">
@@ -71,13 +79,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          onChange={handleChange}
-          value={dataRegister.name}
-        />
+        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} value={dataRegister.name} />
 
         {dataRegister.name !== "" && errors.name ? (
           <p className="error">{errors.name}</p>
@@ -103,13 +105,7 @@ const Register = () => {
           </p>
         )}
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          value={dataRegister.email}
-        />
+        <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataRegister.email} />
         {dataRegister.email !== "" && errors.email ? (
           <p className="error">{errors.email}</p>
         ) : (
@@ -148,11 +144,7 @@ const Register = () => {
         )}
 
         <button className="authButton" type="submit" disabled={isLoading}>
-          {isLoading ? (
-            <BeatLoader color={"#ffffff"} size={7} />
-          ) : (
-            "Registrarse"
-          )}
+          {isLoading ? <BeatLoader color={"#ffffff"} size={7} /> : "Registrarse"}
         </button>
         <p>
           ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>

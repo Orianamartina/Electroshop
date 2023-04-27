@@ -16,8 +16,14 @@
     column-gap: 50px;
 
     a {
-      min-width: 250px;
       max-width: 300px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+      border-radius: 5px;
+
+      &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
     }
   }
 }
