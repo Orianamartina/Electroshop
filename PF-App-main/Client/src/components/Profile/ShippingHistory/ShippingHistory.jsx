@@ -46,23 +46,48 @@ const ShippingHistory = ({ id }) => {
       <h2>Historial de Compras</h2>
       <ul>
         {shippingHistory.map((item, index) => (
-          <li key={item.id} className="history-cards">
+          <li key={item.id} className="shipping-cards">
             <h5>{formatDate(item.date)}</h5>
             <hr />
             {selectedItem === index ? (
-              <div>
-                <p>Detalles de la compra:</p>
-                <ul>
+              <div className="shipping-detail">
+                <div>
                   {item.products.map((product) => (
-                    <li key={product.id}>
-                      <p>{product.name}</p>
-                      <p>${product.price}</p>
-                      <img src={product.image} alt="Producto" />
-                      <p>Cantidad ({product.quantitySold})</p>
-                    </li>
+                    <div key={product.id}>
+                      <div className="shipping-name">
+                        <img src={product.image} alt="Producto" />
+                        <h4>{product.name}</h4>
+                      </div>
+                      <hr />
+                      <div className="shipping-price">
+                        <p>
+                          Precio unitario: $ {product.price.toLocaleString()}
+                        </p>
+                        <p>Cantidad: {product.quantitySold}</p>
+                        <hr />
+                      </div>
+                    </div>
                   ))}
-                  <p>Total: ${item.totalPrice}</p>
-                </ul>
+                  <h3 className="total-price">
+                    Total de la compra: $ {item.totalPrice.toLocaleString()}
+                  </h3>
+                </div>
+                <div className="shipping-adress">
+                  <div className="shipping-adress-title">
+                    <h5>Detalles del envío</h5>
+                  </div>
+                  <div className="shipping-adress-text">
+                    <p>
+                      Dirección: {item.shippingAddress.street}{" "}
+                      {item.shippingAddress.number}
+                    </p>
+                    <p>Departamento: {item.shippingAddress.floor}</p>
+                    <p>Ciudad: {item.shippingAddress.city}</p>
+                    <p> Código postal : {item.shippingAddress.postCode}</p>
+                    <p>Provincia: {item.shippingAddress.state}</p>
+                    <p>País: {item.shippingAddress.country}</p>
+                  </div>
+                </div>
               </div>
             ) : (
               item.products.map((product) => (
@@ -76,7 +101,7 @@ const ShippingHistory = ({ id }) => {
                 </div>
               ))
             )}
-            <button onClick={() => handleItemClick(index)}>
+            <button className="button-close" onClick={() => handleItemClick(index)}>
               {selectedItem === index ? "Cerrar" : "Detalles"}
             </button>
           </li>
