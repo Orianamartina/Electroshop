@@ -1,0 +1,102 @@
+.data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .data-img-text {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .data-img {
+      img {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+      }
+    }
+    .data-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: var(--dark-color);
+      h2 {
+        font-size: 24px;
+        margin: 0;
+      }
+      label {
+        font-size: 12px;
+        color: var(--steel-blue-matte);
+        &:hover {
+          color: var(--steel-blue-medium-matte);
+          cursor: pointer;
+        }
+        &:active {
+          color: var(--steel-blue-matte);
+        }
+      }
+    }
+  }
+  .cards {
+    display: flex;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--white-color);
+    .cards-textField {
+      display: flex;
+      align-items: center;
+      width: 200px;
+      align-items: center;
+      gap: 10px;
+      h4 {
+        margin: 0;
+      }
+    }
+    .cards-inputField {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 400px;
+      p {
+        margin: 0;
+        padding: 0 8px;
+        color: rgba(0, 0, 0, 0.45);
+      }
+      .input-readOnly {
+        color: rgba(0, 0, 0, 0.45);
+        border: none;
+      }
+      input {
+        width: 100%;
+        border: 1px solid var(--light-gray-matte);
+        border-radius: 5px;
+        padding: 0 8px;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  h4 {
+    font-size: 18px;
+  }
+
+  .hidden-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 150px;
+  }
+  button {
+    margin-top: 15px;
+    border: none;
+    font-size: 14px;
+    color: var(--steel-blue-matte);
+    background-color: transparent;
+    &:hover {
+      color: var(--steel-blue-medium-matte);
+    }
+    &:active {
+      color: var(--steel-blue-matte);
+    }
+  }
+}

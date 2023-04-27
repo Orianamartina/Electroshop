@@ -11,9 +11,8 @@ import Cart from "./components/Cart/Cart";
 import Error404 from "./components/Error404/Error404";
 import Accepted from "./components/Payment/PaymentAccepted";
 import Rejected from "./components/Payment/Rejected";
-import AddProduct from "./components/Profile/AddProduct/AddProduct";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
-import ForgotPass from "./components/Pass/ForgotPass"
+import ForgotPass from "./components/Pass/ForgotPass";
 
 function App() {
   const location = useLocation();
@@ -26,7 +25,6 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/shipping" element={<ShippingAddress />} />
         <Route path="/profile" element={<Profile />} />
