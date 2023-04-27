@@ -1,4 +1,4 @@
-const { User, ShippingAddress, ShoppingCart } = require("../db");
+const { User, Product, Favorites } = require("../db");
 const bcrypt = require("bcrypt");
 
 const { v4 } = require("uuid");
@@ -16,6 +16,7 @@ const {
   templateChangePassword
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
+
 const sender = process.env.EMAIL;
 
 dotenv.config();
@@ -577,4 +578,69 @@ module.exports = {
       res.status(400).send("oops");
     }
   },
+  addToFavorite: async function(req, res){
+    const {userId, productId}  = req.body
+   
+    try {
+        
+        const foundProduct = await Favorites.findOne({
+        where:{
+          UserId: userId,
+          ProductId: productId
+        }
+        
+      })
+      
+      if (!foundProduct){
+        const user = await User.findByPk(userId)
+        const product = await Product.findByPk(productId)
+        await user.addProduct(product)
+        return res.status(200).json("product added to favorites")
+      }else{
+        return res.status(400).json("product already in favorites")
+      }
+      
+      
+    } catch (error) {
+      return res.status(400).json("failed to add product to favorites")
+    }
+  },
+  getUserFavorites: async function (req, res){
+      const {userId} = req.params
+      try {
+        const user = await User.findByPk(userId)
+        
+        const products = await user.getProducts({
+          attributes: ["name", "image", "price"]
+        })
+        
+        res.status(200).json(products)
+      } catch (error) {
+        res.status(400).send("failed to get user's favorites")
+      }
+  },
+  deleteUserFavorites: async function(req, res){
+    const {userId, productId} = req.body
+    try {
+      const product = await Favorites.findOne({
+        where:{
+          UserId: userId,
+          ProductId: productId
+        }
+      })
+  
+      if (product) {
+        await Favorites.destroy({where:{
+          UserId: userId,
+          ProductId: productId
+        }})
+      }
+      else{
+        res.status(400).send("product not in favorites")
+      }
+      res.status(200).send("product deleted from favorites")
+    } catch (error) {
+      res.status(400).send("failed to delete product from favorites")
+    }
+  }
 };

@@ -1,15 +1,17 @@
 // Paquetes
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import axios from "axios";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 // Componentes
-import PurchaseOrderButton from "../PurchaseOrderButton/PurchaseOrderButton";
 import AdminOptions from "./AdminOptions/AdminOptions";
 import Reviews from "./Reviews/Reviews";
 import Stars from "./Reviews/Stars";
+import RelatedProducts from "../RelatedProducts/RelatedProducts";
+import Favorite from "./Favorite/Favorite";
 
 // Acciones
 import { getProductDetail, getCart } from "../../redux/actions/actions";
@@ -22,6 +24,9 @@ import error404 from "/assets/img/404.png";
 import "./detail.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
+import ShareProduct from "./ShareProduct/ShareProduct";
+import { RxReset } from "react-icons/rx";
+import { BsShieldCheck } from "react-icons/bs";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
@@ -91,10 +96,13 @@ const Detail = () => {
                 <h2>$ {productDetail.price.toLocaleString()}</h2>{" "}
               </div>
               <div className="detail-buy">
-                <p className="p-shipping">
-                  <img src={shipping} alt="shipping" />
-                  Envío gratis a todo el país
-                </p>
+                <div>
+                  <p className="p-shipping">
+                    <img src={shipping} alt="shipping" />
+                    Envío gratis a todo el país
+                  </p>
+                  <Favorite userId={userId} productId={productDetail.id} />
+                </div>
                 <p>
                   Stock: <b>{productDetail.stock} unidades</b>
                 </p>
@@ -102,9 +110,16 @@ const Detail = () => {
                 <button className="button-cart" onClick={handleAddToCart}>
                   Agregar al carrito
                 </button>
+                <div className="return-protected">
+                  <RxReset />
+                  <p>Compra protegida</p>
+                </div>
+                <div className="return-protected">
+                  <BsShieldCheck />
+                  <p>Devolución gratis</p>
+                </div>
 
-                <p className="p-return">Devolución gratis</p>
-                <p className="p-return">Compra protegida</p>
+                <ShareProduct id={productDetail.id} name={productDetail.name} image={productDetail.image} />
               </div>
               <div className="detail-description">
                 <h2>Características del producto</h2>
@@ -112,6 +127,7 @@ const Detail = () => {
                 <h3>Marca: {productDetail.brand}</h3>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
+                <RelatedProducts category={productDetail.category} />
                 <Reviews productId={productDetail.id} userId={userId} />
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
