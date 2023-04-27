@@ -153,6 +153,7 @@
     row-gap: 25px;
     padding: 20px;
     grid-column: span 2;
+
     h2 {
       margin-bottom: 10px;
       font-size: 24px;
@@ -164,7 +165,7 @@
       margin-top: 15px;
     }
     p {
-      color: var(--storm-gray-medium-matte);
+      color: var(--dark-color);
     }
   }
 

@@ -1,6 +1,7 @@
 import "./cart.scss";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getCart } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,7 +9,8 @@ import DiscountCodeInput from "./DiscountCodeInput/DiscountCodeInput";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const navigate = useNavigate();
+  const { id, token } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const API_URL = "cart/";
 
@@ -25,6 +27,12 @@ const Cart = () => {
   useEffect(() => {
     dispatch(getCart(id));
   }, []);
+
+  if (!token) {
+    useEffect(() => {
+      navigate("/home");
+    }, []);
+  }
 
   const handleProduct = async (productId, url) => {
     try {

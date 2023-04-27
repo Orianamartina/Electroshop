@@ -12,7 +12,7 @@ import Log from "./Auth0/Log";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { token } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const [dataLogin, setDataLogin] = useState({
     email: "",
@@ -55,10 +55,11 @@ const Login = () => {
     const { errors } = validateLoginData({ ...dataLogin, [name]: value });
     setErrors(errors);
   };
-  if(id){
+
+  if (token) {
     useEffect(() => {
-        navigate("/home");;
-    },[])
+      navigate("/home");
+    }, []);
   }
   return (
     <>
@@ -66,13 +67,7 @@ const Login = () => {
       <div className="authDiv">
         <form className="authForm authFormLogin" onSubmit={handleSubmit}>
           <h1>Iniciar sesion</h1>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={dataLogin.email}
-          />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
           {dataLogin.email !== "" && errors.email ? (
             <p className="error">{errors.email}</p>
           ) : (
@@ -101,7 +96,7 @@ const Login = () => {
             ¿No tienes cuenta? <Link to="/register">Registrate</Link>
           </p>
           <p>
-            <Link to="/password/reset">¿Olvidaste tu contraseña? </Link> 
+            <Link to="/password/reset">¿Olvidaste tu contraseña? </Link>
           </p>
           <p className="pAuth"> O ingresa con: </p>
           <Log />

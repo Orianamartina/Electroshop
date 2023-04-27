@@ -7,7 +7,7 @@ const ShareProduct = ({ id, name, image }) => {
   const shareUrl = `https://electroshop-delta.vercel.app/detail/${id}`;
   const shareText = `Hola, te quiero compartir este producto que acabo de encontrar en Electroshop. Se trata de ${name}.
   
-  `;
+`;
 
   return (
     <div className="share">
