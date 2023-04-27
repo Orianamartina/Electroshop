@@ -25,13 +25,16 @@ import "./detail.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ClipLoader } from "react-spinners";
 import ShareProduct from "./ShareProduct/ShareProduct";
+import { RxReset } from "react-icons/rx";
+import { BsShieldCheck } from "react-icons/bs";
 
 const Detail = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { id: userId, admin } =
+    JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
   const API_URL = "cart/add";
@@ -108,11 +111,20 @@ const Detail = () => {
                 <button className="button-cart" onClick={handleAddToCart}>
                   Agregar al carrito
                 </button>
+                <div className="return-protected">
+                  <RxReset />
+                  <p>Compra protegida</p>
+                </div>
+                <div className="return-protected">
+                  <BsShieldCheck />
+                  <p>Devolución gratis</p>
+                </div>
 
-                <ShareProduct id={productDetail.id} name={productDetail.name} image={productDetail.image} />
-
-                <p className="p-return">Devolución gratis</p>
-                <p className="p-return">Compra protegida</p>
+                <ShareProduct
+                  id={productDetail.id}
+                  name={productDetail.name}
+                  image={productDetail.image}
+                />
               </div>
               <div className="detail-description">
                 <h2>Características del producto</h2>

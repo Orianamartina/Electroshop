@@ -110,8 +110,9 @@
     }
 
     .share {
+      display: flex;
+      flex-direction: column;
       padding: 20px 0;
-
       h4 {
         font-size: 17px;
       }
@@ -119,6 +120,7 @@
       .share-icons {
         display: flex;
         margin: 15px 0;
+        gap: 30px;
       }
 
       .share-icons > * {
@@ -131,10 +133,16 @@
         }
       }
     }
-
-    .p-return {
-      color: var(--steel-blue-medium-matte);
-      font-size: 12px;
+    .return-protected {
+      display: flex;
+      justify-content: flex-start;
+      margin: 2px;
+      gap: 10px;
+      p {
+        font-size: 14px;
+        margin: 0;
+        color: var(--steel-blue-medium-matte);
+      }
     }
   }
 
@@ -221,5 +229,12 @@
       border: none;
       color: var(--storm-gray-matte);
     }
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .detail-container {
+    width: 90%;
+    padding: 10px;
   }
 }
