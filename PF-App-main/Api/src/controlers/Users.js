@@ -13,15 +13,15 @@ const {
   templateRehabilitacionDeCuenta,
   templateEliminacionDeCuenta,
   templateAdminSuspension,
-  templateChangePassword
+  templateChangePassword,
 } = require("../config/mail.config");
 const dotenv = require("dotenv");
 
 const sender = process.env.EMAIL;
 
 dotenv.config();
-const CLIENT_HOST = process.env.CLIENT_HOST
-const EMAIL = process.env.EMAIL
+const CLIENT_HOST = process.env.CLIENT_HOST;
+const EMAIL = process.env.EMAIL;
 
 module.exports = {
   registerUser: async (req, res) => {
@@ -125,19 +125,17 @@ module.exports = {
     }
   },
   getUserByEmail: async (req, res) => {
-    const {email} = req.params
+    const { email } = req.params;
     try {
       const user = await User.findOne({
         where: {
           email,
-        }
-      })
-      res.status(200).send(user)
+        },
+      });
+      res.status(200).send(user);
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
-    
-
   },
   getUsers: async (req, res) => {
     const { id } = req.query;
@@ -191,11 +189,9 @@ module.exports = {
           .send({ message: "Cuenta de usuario deshabilitada" });
       }
       if (user.verified === false) {
-        return res
-          .status(400)
-          .send({
-            message: "Debes confirmar tu cuenta primero. Revisa tu email",
-          });
+        return res.status(400).send({
+          message: "Debes confirmar tu cuenta primero. Revisa tu email",
+        });
       }
 
       const passwordMatch = await bcrypt.compare(password, user.password);
@@ -233,10 +229,12 @@ module.exports = {
         email: user.email,
       },
     });
-    
+
     if (verified) {
-      if (verified.disabled === true){
-        return res.json({message: "Esta cuenta se encuentra bloqiueada para iniciar sesión"});
+      if (verified.disabled === true) {
+        return res.json({
+          message: "Esta cuenta se encuentra bloqiueada para iniciar sesión",
+        });
       }
       const userJson = verified.toJSON();
       const token = generateToken(userJson);
@@ -259,9 +257,9 @@ module.exports = {
       );
       const register = await User.findOne({
         where: {
-          email: user.email
-        }
-      })
+          email: user.email,
+        },
+      });
       const registerJson = register.toJSON();
       const token = generateToken(registerJson);
       const payload = {
@@ -385,7 +383,11 @@ module.exports = {
           formerAdmin.admin = false;
           formerAdmin.save();
           const template = templateAdminSuspension(email, sender);
-          await sendEmail(email, "Derechos administrativos revocados", template);
+          await sendEmail(
+            email,
+            "Derechos administrativos revocados",
+            template
+          );
           return res.send({
             message: `Derechos administrativos revocados a ${formerAdmin.userName}`,
           });
@@ -394,12 +396,10 @@ module.exports = {
         res.status(400).send(error.message);
       }
     } else {
-      return res
-        .status(400)
-        .send({
-          message:
-            "No es posible quitarle derechos administrativos a esta cuenta",
-        });
+      return res.status(400).send({
+        message:
+          "No es posible quitarle derechos administrativos a esta cuenta",
+      });
     }
   },
   createAdmin: async (req, res) => {
@@ -478,7 +478,7 @@ module.exports = {
   },
   updateUser: async (req, res) => {
     const { email, name, lastName, cellphone, password, image } = req.body;
-    console.log(email, "esto es lo que llega")
+    console.log(email, "esto es lo que llega");
     try {
       const user = await User.findOne({
         where: {
@@ -495,7 +495,7 @@ module.exports = {
       }
       if (cellphone) {
         user.cellphone = cellphone;
-        user.save()
+        user.save();
       }
       if (image) {
         user.image = image;
@@ -529,8 +529,8 @@ module.exports = {
       }
 
       const { email, passwordHashed } = data;
-      console.log(email)
-      console.log(passwordHashed)
+      console.log(email);
+      console.log(passwordHashed);
       let user = await User.findOne({
         where: {
           email,
@@ -544,7 +544,7 @@ module.exports = {
       }
       user.password = passwordHashed;
       await user.save();
-      return res.redirect(`${CLIENT_HOST}home`);
+      return res.redirect(`${CLIENT_HOST}login`);
     } catch (error) {
       return res.json({
         success: false,
@@ -560,12 +560,6 @@ module.exports = {
           email,
         },
       });
-
-      // const Addresses = await ShippingAddress.findAll({
-      //   where: {
-      //     UserId: user.id,
-      //   },
-      // });
       const template = templateEliminacionDeCuenta(user.email, sender);
       await sendStatusEmail(
         user.email,
@@ -584,69 +578,66 @@ module.exports = {
       res.status(400).send("oops");
     }
   },
-  addToFavorite: async function(req, res){
-    const {userId, productId}  = req.body
-   
+  addToFavorite: async function (req, res) {
+    const { userId, productId } = req.body;
+
     try {
-        
-        const foundProduct = await Favorites.findOne({
-        where:{
+      const foundProduct = await Favorites.findOne({
+        where: {
           UserId: userId,
-          ProductId: productId
-        }
-        
-      })
-      
-      if (!foundProduct){
-        const user = await User.findByPk(userId)
-        const product = await Product.findByPk(productId)
-        await user.addProduct(product)
-        return res.status(200).json("product added to favorites")
-      }else{
-        return res.status(400).json("product already in favorites")
+          ProductId: productId,
+        },
+      });
+
+      if (!foundProduct) {
+        const user = await User.findByPk(userId);
+        const product = await Product.findByPk(productId);
+        await user.addProduct(product);
+        return res.status(200).json("product added to favorites");
+      } else {
+        return res.status(400).json("product already in favorites");
       }
-      
-      
     } catch (error) {
-      return res.status(400).json("failed to add product to favorites")
+      return res.status(400).json("failed to add product to favorites");
     }
   },
-  getUserFavorites: async function (req, res){
-      const {userId} = req.params
-      try {
-        const user = await User.findByPk(userId)
-        
-        const products = await user.getProducts({
-          attributes: ["name", "image", "price"]
-        })
-        
-        res.status(200).json(products)
-      } catch (error) {
-        res.status(400).send("failed to get user's favorites")
-      }
+  getUserFavorites: async function (req, res) {
+    const { userId } = req.params;
+    try {
+      const user = await User.findByPk(userId);
+
+      const products = await user.getProducts({
+        attributes: ["name", "image", "price"],
+      });
+
+      res.status(200).json(products);
+    } catch (error) {
+      res.status(400).send("failed to get user's favorites");
+    }
   },
-  deleteUserFavorites: async function(req, res){
-    const {userId, productId} = req.body
+  deleteUserFavorites: async function (req, res) {
+    const { userId, productId } = req.body;
     try {
       const product = await Favorites.findOne({
-        where:{
+        where: {
           UserId: userId,
-          ProductId: productId
-        }
-      })
-  
+          ProductId: productId,
+        },
+      });
+
       if (product) {
-        await Favorites.destroy({where:{
-          UserId: userId,
-          ProductId: productId
-        }})
+        await Favorites.destroy({
+          where: {
+            UserId: userId,
+            ProductId: productId,
+          },
+        });
+      } else {
+        res.status(400).send("product not in favorites");
       }
-      else{
-        res.status(400).send("product not in favorites")
-      }
-      res.status(200).send("product deleted from favorites")
+      res.status(200).send("product deleted from favorites");
     } catch (error) {
-      res.status(400).send("failed to delete product from favorites")
+      res.status(400).send("failed to delete product from favorites");
     }
-  }
+  },
 };
