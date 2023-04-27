@@ -95,6 +95,9 @@ const Login = () => {
           <p>
             ¿No tienes cuenta? <Link to="/register">Registrate</Link>
           </p>
+          <p>
+            <Link to="/password/reset">¿Olvidaste tu contraseña? </Link> 
+          </p>
           <p className="pAuth"> O ingresa con: </p>
           <Log />
         </form>

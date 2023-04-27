@@ -13,6 +13,7 @@ import Accepted from "./components/Payment/PaymentAccepted";
 import Rejected from "./components/Payment/Rejected";
 import AddProduct from "./components/Profile/AddProduct/AddProduct";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
+import ForgotPass from "./components/Pass/ForgotPass"
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/accepted" element={<Accepted />} />
         <Route path="/rejected" element={<Rejected />} />
+        <Route path="/password/reset" element={<ForgotPass />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
