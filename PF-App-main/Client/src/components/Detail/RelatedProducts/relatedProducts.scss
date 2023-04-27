@@ -16,7 +16,8 @@
     column-gap: 50px;
 
     a {
-      width: 30%;
+      min-width: 250px;
+      max-width: 300px;
     }
   }
 }
