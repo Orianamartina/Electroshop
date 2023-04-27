@@ -1,0 +1,22 @@
+.relatedProducts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--light-gray-matte);
+  border-bottom: 1px solid var(--light-gray-matte);
+  padding-bottom: 100px;
+  padding-top: 35px;
+
+  h2 {
+    padding: 25px;
+  }
+
+  div {
+    display: flex;
+    column-gap: 50px;
+
+    a {
+      width: 30%;
+    }
+  }
+}
