@@ -4,13 +4,12 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 // Componentes
 import AdminOptions from "./AdminOptions/AdminOptions";
 import Reviews from "./Reviews/Reviews";
 import Stars from "./Reviews/Stars";
-import RelatedProducts from "../RelatedProducts/RelatedProducts";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import Favorite from "./Favorite/Favorite";
 
 // Acciones
@@ -33,7 +32,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { id: userId, admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { id: userId, admin, token } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
   const API_URL = "cart/add";
@@ -101,7 +100,7 @@ const Detail = () => {
                     <img src={shipping} alt="shipping" />
                     Envío gratis a todo el país
                   </p>
-                  <Favorite userId={userId} productId={productDetail.id} />
+                  {token && <Favorite userId={userId} productId={productDetail.id} />}
                 </div>
                 <p>
                   Stock: <b>{productDetail.stock} unidades</b>
@@ -127,8 +126,8 @@ const Detail = () => {
                 <h3>Marca: {productDetail.brand}</h3>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
-                <RelatedProducts category={productDetail.category} />
-                <Reviews productId={productDetail.id} userId={userId} />
+                <RelatedProducts category={productDetail.category} productId={productDetail.id} />
+                <Reviews productId={productDetail.id} userId={userId} token={token} />
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
             </>

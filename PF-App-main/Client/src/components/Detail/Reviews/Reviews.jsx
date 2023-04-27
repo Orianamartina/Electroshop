@@ -4,7 +4,7 @@ import "./reviews.scss";
 import { toast } from "react-toastify";
 import Stars from "./Stars";
 
-const Reviews = ({ userId, productId }) => {
+const Reviews = ({ userId, productId, token }) => {
   const [reviews, setReviews] = useState([]);
   const [userReviews, setUserReviews] = useState({ rating: 0, text: "" });
   const [numReviewsToShow, setNumReviewsToShow] = useState(5);
@@ -53,40 +53,38 @@ const Reviews = ({ userId, productId }) => {
 
   return (
     <div className="reviews">
-      <div className="form-reviews">
-        <h4>Deja tu opinión sobre el producto</h4>
-        <Stars
-          rating={userReviews.rating}
-          editable={true}
-          setUserReviews={setUserReviews}
-          userReviews={userReviews}
-        />
-        <div className="reviews-comment">
-          <textarea
-            className="reviews-textarea"
-            placeholder="Escribe tu reseña"
-            rows="3"
-            cols="40"
-            maxLength="200"
-            value={userReviews.text}
-            onChange={(e) =>
-              setUserReviews({ ...userReviews, text: e.target.value })
-            }
+      {token && (
+        <div className="form-reviews">
+          <h4>Deja tu opinión sobre el producto</h4>
+          <Stars
+            rating={userReviews.rating}
+            editable={true}
+            setUserReviews={setUserReviews}
+            userReviews={userReviews}
           />
-          <button className="reviews-button" onClick={handleAddReview}>
-            Enviar
-          </button>
+          <div className="reviews-comment">
+            <textarea
+              className="reviews-textarea"
+              placeholder="Escribe tu reseña"
+              rows="3"
+              cols="40"
+              maxLength="200"
+              value={userReviews.text}
+              onChange={(e) => setUserReviews({ ...userReviews, text: e.target.value })}
+            />
+            <button className="reviews-button" onClick={handleAddReview}>
+              Enviar
+            </button>
+          </div>
         </div>
-      </div>
+      )}
       {reviews.length > 0 && (
         <div className="product-reviews">
           <h4>Opiniones del producto</h4>
           {reviews.slice(0, numReviewsToShow).map((review) => (
             <div className="product-review" key={review.id}>
               <div className="review-user-data">
-                {review.User.image && (
-                  <img src={review.User.image} alt={review.User.name} />
-                )}
+                {review.User.image && <img src={review.User.image} alt={review.User.name} />}
                 <h5>
                   {review.User.name} {review.User.lastName}
                 </h5>
@@ -98,9 +96,7 @@ const Reviews = ({ userId, productId }) => {
           {reviews.length > numReviewsToShow && !showAllReviews && (
             <button onClick={handleShowMoreReviews}>Mostrar más</button>
           )}
-          {reviews.length > 5 && showAllReviews && (
-            <button onClick={handleShowLessReviews}>Mostrar menos</button>
-          )}
+          {reviews.length > 5 && showAllReviews && <button onClick={handleShowLessReviews}>Mostrar menos</button>}
         </div>
       )}
     </div>
