@@ -21,11 +21,15 @@ const ManageUsers = () => {
   const [showAdmModal, setShowAdmModal] = useState(false);
   const [showUnAdmModal, setShowUnAdmModal] = useState(false);
 
-  //Para ver detalles del usuario seleccionado
+  //Seleccionar usuario y modificarlo
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const sortedUsers = [...users].sort((a, b) => a.id - b.id);
+  //Buscar usuarios
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showDisabledUsers, setShowDisabledUsers] = useState(false);
+  const [showAdminUsers, setShowAdminUsers] = useState(false);
 
+  //Abrir los modales
   const handleModalOpen = (user, modalType) => {
     setSelectedUser(user);
     switch (modalType) {
@@ -49,6 +53,7 @@ const ManageUsers = () => {
     }
   };
 
+  //Cerrar los modales
   const handleModalClose = () => {
     setShowDeleteModal(false);
     setShowBanModal(false);
@@ -58,6 +63,7 @@ const ManageUsers = () => {
     setSelectedUser(null);
   };
 
+  //Abrir detalles de un usuario
   const [showDetailsForUserId, setShowDetailsForUserId] = useState(null);
 
   const handleShowDetails = (userId) => {
@@ -68,6 +74,44 @@ const ManageUsers = () => {
     setShowDetailsForUserId(null);
   };
 
+  //Buscar usuarios
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  //Borrar todos los filtros
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setShowDisabledUsers(false);
+    setShowAdminUsers(false);
+  };
+
+  //Mostrar usuarios baneados
+  const handleShowDisabledUsers = (event) => {
+    setShowDisabledUsers(event.target.checked);
+  };
+
+  //Mostrar usuarios administradores
+  const handleShowAdminUsers = (event) => {
+    setShowAdminUsers(event.target.checked);
+  };
+
+  //Filtrar usuarios
+  const filteredUsers = users
+    .filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((user) => (showDisabledUsers ? user.disabled : true))
+    .filter((user) => (showAdminUsers ? user.admin : true));
+
+  //Ordenar los filtros
+  const sortedUsers = filteredUsers.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+  //Peticiones a la API
   const showAllUsers = async () => {
     try {
       const response = await dispatch(getAllUsers());
@@ -77,10 +121,6 @@ const ManageUsers = () => {
       console.error("Error obteniendo usuarios:", error);
     }
   };
-
-  useEffect(() => {
-    showAllUsers();
-  }, []);
 
   const deleteUser = async (email) => {
     try {
@@ -156,12 +196,37 @@ const ManageUsers = () => {
     }
   };
 
+  useEffect(() => {
+    showAllUsers();
+  }, []);
+
   return (
     <div className="manage-users">
       <h2> Usuarios</h2>
+      <div className="filter-users">
+        <label htmlFor="showDisabledUsers">Ban:</label>
+        <input
+          type="checkbox"
+          id="showDisabledUsers"
+          onChange={handleShowDisabledUsers}
+          checked={showDisabledUsers}
+        />
+        <label htmlFor="showAdminUsers">Admin:</label>
+        <input
+          type="checkbox"
+          id="showAdminUsers"
+          onChange={handleShowAdminUsers}
+          checked={showAdminUsers}
+        />
+      </div>
       <div className="search-users">
-        <input type="text" />
-        <button>Buscar</button>
+        <input
+          type="text"
+          placeholder="Buscar usuarios"
+          onChange={handleSearch}
+          value={searchTerm}
+        />
+        <button onClick={handleClearSearch}>Borrar</button>
       </div>
       <ul>
         {sortedUsers.map((user) => (

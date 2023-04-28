@@ -5,10 +5,37 @@
   h2 {
     font-size: 24px;
   }
+  .filter-users{
+    display: flex;
+    gap: 10px;
+    label{
+      color: var(--dark-color);
+      font-size: 15px;
+      margin-left: 10px;
+    }
+  }
   .search-users {
     display: flex;
-    margin: 10px;
+    margin: 10px 0 10px 50px;
     gap: 20px;
+    input {
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding-left: 10px;
+    }
+    button {
+      font-size: 15px;
+      color: var(--steel-blue-matte);
+      border: none;
+      background-color: transparent;
+      &:hover {
+        color: var(--steel-blue-medium-matte);
+      }
+      &:active {
+        color: var(--steel-blue-matte);
+      }
+    }
   }
   ul {
     list-style-type: none;
