@@ -13,6 +13,7 @@ import Accepted from "./components/Payment/PaymentAccepted";
 import Rejected from "./components/Payment/Rejected";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 import ForgotPass from "./components/Pass/ForgotPass";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/password/reset" element={<ForgotPass />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
