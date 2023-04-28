@@ -7,6 +7,7 @@ import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
 import Pagination from "../Pagination/Pagination";
+import ChatBot from "../ChatBot/ChatBot";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const Home = () => {
             handlePagination={handlePagination}
             currentPage={currentPage}
           />
+          <ChatBot/>
         </div>
       </div>
     </div>
