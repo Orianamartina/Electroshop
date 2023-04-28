@@ -2,22 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 95vw;
   height: 54vw;
   .authForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 400px;
-    padding: 5px 10px;
     border: 2px solid var(--steel-blue-matte);
     border-radius: 10px;
     background-color: var(--light-color);
-  }
-
-  .authFormLogin {
-    margin-top: 4%;
+    margin-bottom: 90px;
   }
 
   .authForm h1 {
@@ -142,5 +136,11 @@
         margin-left: 20px;
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .authDiv {
+    min-height: 58vw;
   }
 }
