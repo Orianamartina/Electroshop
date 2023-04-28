@@ -5,6 +5,8 @@
   padding: 14px 0;
   width: 100%;
   color: var(--storm-gray-matte);
+  background-color: var(--white-color);
+  transition: all 0.3s ease;
   .navbar__logo {
     font-size: 24px;
     font-weight: bold;
@@ -18,7 +20,7 @@
     align-items: center;
     gap: 30px;
     .links {
-      border-bottom: 1px solid var(--bg-color);
+      border-bottom: 1px solid var(--white-color);
       &:hover {
         border-bottom: 1px solid var(--steel-blue-matte);
       }
@@ -57,7 +59,7 @@
 }
 
 .dark-mode {
-  background-color: var(--bg-color);
+  background-color: var(--white-color);
   color: var(--dark-color);
   border: none;
 
