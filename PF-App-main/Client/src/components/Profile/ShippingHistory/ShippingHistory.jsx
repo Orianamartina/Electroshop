@@ -43,7 +43,7 @@ const ShippingHistory = ({ id }) => {
 
   return (
     <div className="history">
-      <h2>Historial de Compras</h2>
+      <h2>Compras</h2>
       <ul>
         {shippingHistory.map((item, index) => (
           <li key={item.id} className="shipping-cards">
@@ -101,7 +101,10 @@ const ShippingHistory = ({ id }) => {
                 </div>
               ))
             )}
-            <button className="button-close" onClick={() => handleItemClick(index)}>
+            <button
+              className="button-close"
+              onClick={() => handleItemClick(index)}
+            >
               {selectedItem === index ? "Cerrar" : "Detalles"}
             </button>
           </li>
