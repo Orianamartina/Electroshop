@@ -7,12 +7,14 @@ import Order from "./Order/Order";
 import FilterBrand from "./FilterBrand/FilterBrand";
 import FilterCategories from "./FilterCategories/FilterCategories";
 
-const Filters = ({ setCurrentPage }) => {
+const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products);
   const brands = Array.from(new Set(products?.map((product) => product.brand)));
-  const category = Array.from(new Set(products?.map((product) => product.category)));
+  const category = Array.from(
+    new Set(products?.map((product) => product.category))
+  );
 
   const [filterState, setFilterState] = useState({
     search: "",
@@ -38,12 +40,23 @@ const Filters = ({ setCurrentPage }) => {
   }, [memoizedFilterState, dispatch]);
 
   return (
-    <div className="filters">
+    <div
+      className={`filters ${filterOpen ? "open" : "closed"}`}
+      onMouseLeave={() => setFilterOpen(false)}
+    >
       <h4>Buscar producto</h4>
-      <SearchBar filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <SearchBar
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <h4>Ordenar</h4>
-      <Order filterState={filterState} setFilterState={setFilterState} setCurrentPage={setCurrentPage} />
+      <Order
+        filterState={filterState}
+        setFilterState={setFilterState}
+        setCurrentPage={setCurrentPage}
+      />
 
       <h4>Marca:</h4>
       <FilterBrand
