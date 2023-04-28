@@ -36,7 +36,8 @@ const Profile = () => {
   return (
     <>
       <ToastContainer />
-      <div className="profile">
+      <div className={`profile ${sidebarOpen ? "sidebar-open" : ""}`}>
+        {" "}
         {currentComponent === "userData" && <UserData />}
         {currentComponent === "shippingHistory" && (
           <ShippingHistory id={user.id} />

@@ -82,8 +82,10 @@ const ShippingHistory = ({ id }) => {
                       {item.shippingAddress.number}
                     </p>
                     <p>Departamento: {item.shippingAddress.floor}</p>
+                    <hr /><hr />
                     <p>Ciudad: {item.shippingAddress.city}</p>
                     <p> Código postal : {item.shippingAddress.postCode}</p>
+                    <hr /><hr />
                     <p>Provincia: {item.shippingAddress.state}</p>
                     <p>País: {item.shippingAddress.country}</p>
                   </div>

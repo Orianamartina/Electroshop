@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px auto;
-  width: 55%;
-  border: 1px solid var(--silver-matte);
-  border-radius: 5px;
-  padding: 20px;
+  width: 75%;
+
+  h2 {
+    font-size: 24px;
+  }
 
   .favorite {
     display: grid;
@@ -15,12 +15,9 @@
     align-items: center;
     width: 100%;
     margin: 10px 0;
-    border-bottom: 1px solid var(--silver-matte);
     color: var(--steel-blue-matte);
-
-    &:last-child {
-      border-bottom: none;
-    }
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     img {
       width: 130px;
@@ -28,17 +25,14 @@
       object-fit: contain;
     }
 
-    a {
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
     div {
       &:hover {
         cursor: pointer;
       }
     }
+  }
+  .favorite-icon {
+    margin: 0 50%;
   }
 }
 

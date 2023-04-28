@@ -39,13 +39,20 @@ const Favorites = () => {
         </div>
       ) : (
         <div className="favorites">
-          <h2>Productos favoritos</h2>
+          <h2>Favoritos</h2>
           {favorites.map((favorite) => (
             <div className="favorite" key={favorite.Favorites.ProductId}>
               <img src={favorite.image} alt="" />
-              <Link to={`/detail/${favorite.Favorites.ProductId}`}>{favorite.name}</Link>
-              <div onClick={() => handleDeleteFavorite(favorite.Favorites.ProductId)}>
-                <MdFavorite size={30} color="#4a90e2" className="favorite" />
+              <Link to={`/detail/${favorite.Favorites.ProductId}`}>
+                {favorite.name}
+              </Link>
+
+              <div
+                onClick={() =>
+                  handleDeleteFavorite(favorite.Favorites.ProductId)
+                }
+              >
+                <MdFavorite size={30} color="#4a90e2" className="favorite-icon" />
               </div>
             </div>
           ))}
