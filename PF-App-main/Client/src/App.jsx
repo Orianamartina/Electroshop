@@ -35,7 +35,7 @@ function App() {
         <Route path="/password/reset" element={<ForgotPass />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
-      <Footer />
+      {location.pathname !== "/" && <Footer />}
     </div>
   );
 }
