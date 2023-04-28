@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import "./chatBot.scss";
 import "bootstrap";
 import { v4 as uuidv4 } from "uuid";
+import { RxCross1 } from "react-icons/rx";
+import { BsFillChatDotsFill } from "react-icons/bs";
 
 type Message = {
   id: string;
@@ -68,6 +70,7 @@ const ChatBot = () => {
 
   const [question, setQuestion] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [showChatBot, setShowChatBot] = useState<boolean>(false);
   const container = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -82,67 +85,87 @@ const ChatBot = () => {
 
     setQuestion("");
 
-    const { classifications } = await fetch("https://api.cohere.ai/v1/classify", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "large",
-        inputs: [question],
-        examples: EXAMPLES,
-      }),
-    }).then((res) => res.json());
+    const { classifications } = await fetch(
+      "https://api.cohere.ai/v1/classify",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "large",
+          inputs: [question],
+          examples: EXAMPLES,
+        }),
+      }
+    ).then((res) => res.json());
     setMessages((messages) =>
       messages.concat({
         id: String(Date.now()),
         type: "bot",
-        text: ANSWER[classifications[0].prediction as keyof typeof ANSWER] || ANSWER["Default"],
+        text:
+          ANSWER[classifications[0].prediction as keyof typeof ANSWER] ||
+          ANSWER["Default"],
       })
     );
     setLoading(false);
   };
+
   useEffect(() => {
     container.current?.scrollTo(0, container.current.scrollHeight);
   }, [messages]);
 
+  const toggleChatBot = () => setShowChatBot(!showChatBot);
+  const handleCloseChat = () => {
+    setShowChatBot(false);
+  };
+
   return (
     <div>
-      <div className="caja-chat">
-        <div ref={container} className="chat">
-          {messages.map((message) => (
-            <div
-              className={`chat-text ${
-                message.type === "bot"
-                  ? "bg-primary rounded-pill me-auto text-light"
-                  : "bg-info rounded-pill ms-auto"
-              } d-inline-block mb-3`}
-              key={message.id}
-            >
-              {message.text}
-            </div>
-          ))}
-        </div>
-        <form className="chat-form" onSubmit={handleSubmit}>
-          <input
-            value={question}
-            onChange={(event) => setQuestion(event.target.value)}
-            placeholder="Hace tu pregunta"
-            className="barra"
-            type="text"
-            name="question"
-          />
-          <button
-            disabled={loading}
-            className={'chat-btn ${loading ? "bg-primary":"bg-info"}'}
-            type="submit"
-          >
-            Send
+      <button className="button-chat" onClick={toggleChatBot}>
+        <BsFillChatDotsFill size={30}/>
+      </button>
+      {showChatBot && (
+        <div className="caja-chat">
+          <button className="close-button" onClick={handleCloseChat}>
+            <RxCross1 />
           </button>
-        </form>
-      </div>
+          <div ref={container} className="chat">
+            {messages.map((message) => (
+              <div
+                className={`chat-text ${
+                  message.type === "bot"
+                    ? "bg-primary rounded-pill me-auto text-light"
+                    : "bg-info rounded-pill ms-auto"
+                } d-inline-block mb-3`}
+                key={message.id}
+              >
+                {message.text}
+              </div>
+            ))}
+          </div>
+          <form className="chat-form" onSubmit={handleSubmit}>
+            <input
+              value={question}
+              onChange={(event) => setQuestion(event.target.value)}
+              placeholder="Hace tu pregunta"
+              className="barra"
+              type="text"
+              name="question"
+            />
+            <button
+              disabled={loading}
+              className={`chat-btn ${loading ? "bg-primary" : "bg-info"}`}
+              type="submit"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
+
 export default ChatBot;

@@ -14,6 +14,7 @@ import Rejected from "./components/Payment/Rejected";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
 import ForgotPass from "./components/Pass/ForgotPass";
 import Footer from "./components/Footer/Footer";
+import ChatBot from "./components/ChatBot/ChatBot";
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/password/reset" element={<ForgotPass />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
+      {location.pathname !== "/" && <ChatBot />}
       {location.pathname !== "/" && <Footer />}
     </div>
   );
