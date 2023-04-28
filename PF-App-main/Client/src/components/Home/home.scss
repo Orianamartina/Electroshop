@@ -6,10 +6,9 @@
 }
 
 .filtros_productos {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  column-gap: 5%;
-  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .divPagination {
@@ -17,6 +16,7 @@
   flex-direction: column;
   align-items: center;
   padding: 30px 0;
+  margin: 20px 100px;
 }
 
 .paginationAndCart {
@@ -44,4 +44,17 @@
   height: 625px;
   grid-column-start: span 3;
   color: var(--storm-gray-matte);
+}
+
+.open-filters {
+  position: absolute;
+  left: 60px;
+  top: 520px;
+  margin: 20px;
+
+  .button-open-filters {
+    border: none;
+    background-color: transparent;
+    color: var(--dark-color);
+  }
 }
