@@ -5,10 +5,10 @@
   h2 {
     font-size: 24px;
   }
-  .filter-users{
+  .filter-users {
     display: flex;
     gap: 10px;
-    label{
+    label {
       color: var(--dark-color);
       font-size: 15px;
       margin-left: 10px;
@@ -23,6 +23,9 @@
       border: none;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       padding-left: 10px;
+      &:focus {
+        outline: 1px solid var(--storm-gray-medium-matte);
+      }
     }
     button {
       font-size: 15px;
