@@ -1,0 +1,36 @@
+.caja-chat{
+    border:2px solid var(--dark-color);
+    padding:4px;
+    display: flex;
+    flex-direction: column;
+}
+.chat{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    height:400px;
+    overflow-y: auto;
+}
+.chat-text{
+    display: flex;
+    flex-direction: column;
+    padding:4px;
+    max-width:80%;
+    color:var(--dark-color);
+}
+.barra{
+    border:2px solid var(--dark-color);
+    padding:4px;
+    flex-grow:1;
+    color:var(--dark-color);
+    background-color:var(--bg-color);
+}
+.chat-form{
+    display: flex;
+    align-content: center;
+}
+.chat-btn{
+    padding: 4px;
+    color:var(--dark-color);
+    background-color:var(--bg-color);
+}
