@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "./forgotPass.scss";
 
@@ -56,48 +56,49 @@ export default function ForgotPass() {
   }
 
   return (
-    <div className="forgot-password">
-      <p>
-        Ingresa tu email y una nueva contraseña.<br></br> Luego recibiras un correo
-        electrónico para confirmar esta acción
-      </p>
-      <form className="forgot-password-form" onSubmit={handleSubmit}>
+    <>
+      <ToastContainer />
+      <div className="forgot-password">
+        <p>
+          Ingresa tu email y una nueva contraseña.<br></br> Luego recibiras un
+          correo electrónico para confirmar esta acción
+        </p>
+        <form className="forgot-password-form" onSubmit={handleSubmit}>
           <h2>Recuperar Contraseña</h2>
-        <div className="forgot-password-section">
-          <input
-            type="text"
-            value={input.email}
-            placeholder="Email"
-            name="email"
-            required
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="forgot-password-section">
-          <input
-            type="password"
-            value={input.password}
-            placeholder="Ingresa una nueva contraseña"
-            name="password"
-            required
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="forgot-password-section">
-          <input
-            type="password"
-            value={input.confirmPassword}
-            placeholder="Repite la nueva contraseña"
-            name="confirmPassword"
-            required
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <button type="submit" disabled={handleCheck()}>
-          {" "}
-          Enviar
-        </button>
-      </form>
-    </div>
+          <div className="forgot-password-section">
+            <input
+              type="text"
+              value={input.email}
+              placeholder="Email"
+              name="email"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="forgot-password-section">
+            <input
+              type="password"
+              value={input.password}
+              placeholder="Ingresa una nueva contraseña"
+              name="password"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="forgot-password-section">
+            <input
+              type="password"
+              value={input.confirmPassword}
+              placeholder="Repite la nueva contraseña"
+              name="confirmPassword"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <Link to="/login">Iniciar Sesión</Link>
+          <button type="submit" disabled={handleCheck()}>
+            {" "}
+            Enviar
+          </button>
+        </form>
+      </div>
+    </>
   );
 }

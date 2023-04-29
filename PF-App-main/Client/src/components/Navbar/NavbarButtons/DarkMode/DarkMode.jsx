@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import "./darkMode.scss";
 import darkIcon from "/assets/img/dark-mode.png";
 import lightIcon from "/assets/img/light-mode.png";
 

@@ -234,22 +234,27 @@ const ManageUsers = () => {
             <div className="user-data">
               <span>Nombre</span>
               <p>{user.name}</p>
+              <hr />
               <span>Apellido</span>
               <p>{user.lastName}</p>
+              <hr />
               {showDetailsForUserId === user.id && (
                 <>
                   <span>ID</span>
                   <p>{user.id}</p>
+                  <hr />
                   <span>Email</span>
                   <p>{user.email}</p>
+                  <hr />
                   <span>Nombre de usuario</span>
                   <p>{user.userName}</p>
+                  <hr />
                   <span>Admin</span>
                   <p>{user.admin ? "Si" : "No"}</p>
+                  <hr />
                   <span>Deshabilitado</span>
                   <p>{user.disabled ? "Si" : "No"}</p>
-                  <span>Historial de compras</span>
-                  <p>Historial</p>
+                  <hr />
                   <button onClick={handleHideDetails}>Ver menos</button>
                 </>
               )}

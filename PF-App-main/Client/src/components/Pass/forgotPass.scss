@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   min-height: 58vw;
-  p{
+  p {
     padding: 40px 0 20px 0;
   }
-  h2{
+  h2 {
     font-size: 30px;
     font-weight: 700;
     color: var(--steel-blue-matte);
@@ -36,13 +36,18 @@
       }
     }
   }
+  a {
+    color: var(--steel-blue-matte);
+    font-weight: bold;
+    font-size: 15px;
+  }
   button {
     margin-top: 20px;
     font-size: 22px;
     font-weight: 700;
     color: #fcfcfc;
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
-    padding: 5px 50px;
+    padding: 5px 35px;
     margin-bottom: 15px;
     border: 1px solid var(--steel-blue-matte);
     &:hover {
