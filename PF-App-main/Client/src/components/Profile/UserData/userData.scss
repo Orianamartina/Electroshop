@@ -60,10 +60,10 @@
       p {
         margin: 0;
         padding: 0 8px;
-        color: rgba(0, 0, 0, 0.45);
+        color: var(--storm-gray-light-matte);
       }
       .input-readOnly {
-        color: rgba(0, 0, 0, 0.45);
+        color: var(--storm-gray-light-matte);
         border: none;
       }
       input {

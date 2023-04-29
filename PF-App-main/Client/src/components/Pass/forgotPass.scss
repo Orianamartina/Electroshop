@@ -1,0 +1,52 @@
+.forgot-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 58vw;
+  p{
+    padding: 40px 0 20px 0;
+  }
+  h2{
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--steel-blue-matte);
+  }
+  .forgot-password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid var(--steel-blue-matte);
+    border-radius: 10px;
+    padding-top: 30px;
+    height: 400px;
+    width: 400px;
+    background-color: var(--light-color);
+
+    .forgot-password-section {
+      margin: 20px 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      input {
+        width: 300px;
+        height: 30px;
+        border: 1px solid var(--steel-blue-matte);
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+    }
+  }
+  button {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fcfcfc;
+    background-image: linear-gradient(to right, #3b719d, #37a0ab);
+    padding: 5px 50px;
+    margin-bottom: 15px;
+    border: 1px solid var(--steel-blue-matte);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

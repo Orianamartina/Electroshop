@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin-top: 5%;
+  min-height: 76vh;
 }
 .detail-container {
   display: grid;
@@ -10,6 +11,7 @@
   margin: auto;
   margin: 20px auto 50px auto;
   width: 65%;
+  min-height: 76vh;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
   background-color: var(--white-color);
@@ -229,7 +231,14 @@
     button {
       cursor: pointer;
       border: none;
-      color: var(--storm-gray-matte);
+      color: var(--steel-blue-matte);
+      background-color: transparent;
+      &:hover{
+        color: var(--steel-blue-medium-matte);
+      }
+      &:active{
+        color: var(--steel-blue-matte);
+      }
     }
   }
 }
