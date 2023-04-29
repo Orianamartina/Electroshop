@@ -30,11 +30,11 @@
 }
 .products {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
-  column-gap: 5%;
+  column-gap: 3%;
   height: 600px;
-  padding: 1% 2%;
+  padding: 1% 1%;
 }
 
 .noProducts {
