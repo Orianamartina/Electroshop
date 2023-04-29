@@ -51,10 +51,34 @@
   left: 60px;
   top: 520px;
   margin: 20px;
+  button{
+    font-size: 15px;
+    font-weight: bold;
+  }
 
   .button-open-filters {
     border: none;
     background-color: transparent;
     color: var(--dark-color);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .filtros_productos {
+    grid-template-columns: 1fr;
+    width: 100%;
+    column-gap: 0;
+    padding: 0 5px;
+  }
+  .products {
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+    margin: 20px 40px 20px 0;
+    height: auto;
+    width: 200px;
+  }
+  .open-filters {
+    left: 0;
+    top: 260px;
   }
 }
