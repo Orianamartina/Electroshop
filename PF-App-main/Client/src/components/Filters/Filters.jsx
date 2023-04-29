@@ -23,7 +23,7 @@ const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
     category: "",
   });
 
-  const memoizedFilterState = useMemo(() => filterState, [filterState]);
+  const memorizedFilterState = useMemo(() => filterState, [filterState]);
 
   const handleCleanFilters = () => {
     setFilterState({
@@ -36,29 +36,26 @@ const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
   };
 
   useEffect(() => {
-    dispatch(allFilters(memoizedFilterState));
-  }, [memoizedFilterState, dispatch]);
+    dispatch(allFilters(memorizedFilterState));
+  }, [memorizedFilterState, dispatch]);
 
   return (
     <div
       className={`filters ${filterOpen ? "open" : "closed"}`}
       onMouseLeave={() => setFilterOpen(false)}
     >
-      <h4>Buscar producto</h4>
       <SearchBar
         filterState={filterState}
         setFilterState={setFilterState}
         setCurrentPage={setCurrentPage}
       />
 
-      <h4>Ordenar</h4>
       <Order
         filterState={filterState}
         setFilterState={setFilterState}
         setCurrentPage={setCurrentPage}
       />
 
-      <h4>Marca:</h4>
       <FilterBrand
         filterState={filterState}
         setFilterState={setFilterState}
@@ -66,7 +63,6 @@ const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
         brands={brands}
       />
 
-      <h4>Categoría:</h4>
       <FilterCategories
         filterState={filterState}
         setFilterState={setFilterState}
