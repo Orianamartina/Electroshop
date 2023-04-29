@@ -5,6 +5,7 @@ import ShippingHistory from "./ShippingHistory/ShippingHistory";
 import AddProduct from "./AddProduct/AddProduct";
 import ManageUsers from "./ManageUsers/ManageUsers";
 import Favorites from "./Favorites/Favorites";
+import Billing from "./Billing/Billing";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -45,6 +46,7 @@ const Profile = () => {
         {currentComponent === "addProduct" && <AddProduct />}
         {currentComponent === "manageUsers" && <ManageUsers />}
         {currentComponent === "favorites" && <Favorites />}
+        {currentComponent === "billing" && <Billing />}
       </div>
       <button
         className="button-open-sidebar"
@@ -98,9 +100,9 @@ const Profile = () => {
               </button>
             </div>
             <div className="sidebar-content">
-              <button onClick={() => handleOptionClick("")}>
+              <button onClick={() => handleOptionClick("billing")}>
                 <RxFileText size={20} className="side-bar-icon" />
-                Enviar Cupones
+                Facturación
               </button>
             </div>
           </>
