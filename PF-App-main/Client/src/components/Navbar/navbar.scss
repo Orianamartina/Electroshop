@@ -73,3 +73,28 @@
 .cart {
   border: none !important;
 }
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    display: flex;
+    height: 85px;
+    .navbar__logo {
+      margin-left: 20px;
+      img {
+        width: 35px;
+      }
+    }
+    .navbar__links {
+      .links {
+        border-bottom: none;
+        &:nth-child(1),
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+}

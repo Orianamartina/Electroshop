@@ -1,7 +1,15 @@
 import "./carrousel.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import productsCarrousel from "./carrouselProducts.json";
+
+const INTERVAL_TIME = 5000;
+
+let carrouselInterval = null;
+
+const clearCarrouselInterval = () => {
+  clearInterval(carrouselInterval);
+};
 
 const Carrousel = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -21,6 +29,16 @@ const Carrousel = () => {
     const nextIndex = (currentProductIndex + 1) % productsCarrousel.length;
     setCurrentProductIndex(nextIndex);
   };
+
+  useEffect(() => {
+    carrouselInterval = setInterval(() => {
+      handleNext();
+    }, INTERVAL_TIME);
+
+    return () => {
+      clearCarrouselInterval();
+    };
+  }, [currentProductIndex]);
 
   const currentProduct = productsCarrousel[currentProductIndex];
 

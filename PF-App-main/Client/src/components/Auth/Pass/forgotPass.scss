@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   min-height: 58vw;
-  p {
-    padding: 40px 0 20px 0;
+  h3 {
+    font-size: 17px;
+    margin: 30px;
   }
   h2 {
     font-size: 30px;
@@ -18,12 +19,11 @@
     border: 2px solid var(--steel-blue-matte);
     border-radius: 10px;
     padding-top: 30px;
-    height: 400px;
     width: 400px;
     background-color: var(--light-color);
 
     .forgot-password-section {
-      margin: 20px 0 20px 0;
+      margin: 12px 0;
       display: flex;
       flex-direction: column;
       gap: 5px;
@@ -53,5 +53,11 @@
     &:hover {
       cursor: pointer;
     }
+  }
+  .error {
+    color: red;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 5px 0;
   }
 }

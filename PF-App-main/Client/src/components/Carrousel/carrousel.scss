@@ -15,11 +15,9 @@
     z-index: 1;
     color: #fcfcfc;
     font-weight: bold;
-    height: 50%;
     width: 4%;
     filter: brightness(0.9);
     transition: all 0.3s ease-in-out;
-
     &:first-child {
       left: 0;
     }
@@ -27,9 +25,7 @@
       right: 0;
     }
     &:hover {
-      cursor: pointer;
       width: 5%;
-      transition: all 0.5s ease-in-out;
     }
   }
 
@@ -59,6 +55,30 @@
       &:hover {
         color: var(--storm-gray-matte);
         background-color: var(--light-color);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carrousel {
+    height: 190px;
+    flex-direction: column;
+    justify-content: center;
+    .scrollCarrousel {
+      display: none;
+    }
+    img {
+      height: 70px;
+      margin: 0 100px 10px 0;
+    }
+    section {
+      h3 {
+        font-size: 16px;
+      }
+      button {
+        padding: 3px 6px;
+        font-size: 11px;
       }
     }
   }
