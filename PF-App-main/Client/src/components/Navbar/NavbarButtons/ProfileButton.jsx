@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import darkProfileIcon from "/assets/img/profile-dark.png";
-import lightProfileIcon from "/assets/img/profile-ligth.png";
+import { FaRegUser } from "react-icons/fa";
 
-const ProfileButton = ({ darkMode }) => {
+const ProfileButton = () => {
   return (
-    <Link to="/profile">
-      <img src={darkMode ? darkProfileIcon : lightProfileIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
+    <Link to="/profile" className="profile-logo">
+      <FaRegUser size={20} className="me-2 mb-1" />
+      Mi Cuenta
     </Link>
   );
 };

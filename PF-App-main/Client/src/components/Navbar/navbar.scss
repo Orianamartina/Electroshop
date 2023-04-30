@@ -1,37 +1,33 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  width: 100%;
-  position: relative;
-  color: var(--storm-gray-matte);
-  background-color: var(--white-color);
+  color: var(--storm-gray-matte) !important;
+  background-color: var(--white-color) !important;
   transition: all 0.3s ease;
+  width: 100% !important;
   .navbar__logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-left: 50px;
-    img {
-      width: 50px;
+    margin-left: 25px;
+    color: var(--dark-color);
+    a:hover {
+      color: var(--dark-color);
+    }
+  }
+  .container-fluid {
+    .navbar-collapse {
+      flex-grow: 0;
     }
   }
   .navbar__links {
     display: flex;
     align-items: center;
-    gap: 30px;
-    .links {
-      border-bottom: 2px solid transparent;
-      &:hover {
-        border-bottom: 2px solid var(--steel-blue-matte);
-      }
+    gap: 40px;
+    .nav-item {
+      display: flex;
+      align-items: center;
     }
+
     a {
       color: var(--storm-gray-matte);
       text-decoration: none;
       font-size: 15px;
-      font-weight: bold;
-      transition: all 0.3s ease;
     }
     .ingresar {
       background-image: linear-gradient(to right, #3b719d, #37a0ab);
@@ -46,10 +42,6 @@
       padding: 7px 10px;
       border-radius: 5px;
     }
-
-    &:last-child {
-      margin-right: 50px;
-    }
   }
 
   .token_true {
@@ -57,44 +49,38 @@
     align-items: center;
     gap: 30px;
   }
-}
 
-.dark-mode {
-  background-color: var(--white-color);
-  color: var(--dark-color);
-  border: none;
-
-  img {
-    width: 20px;
-    cursor: pointer;
-  }
-}
-
-.cart {
-  border: none !important;
-}
-
-@media screen and (max-width: 480px) {
-  .navbar {
-    display: flex;
-    height: 85px;
-    .navbar__logo {
-      margin-left: 20px;
-      img {
-        width: 35px;
-      }
+  .dark-mode {
+    background-color: var(--white-color);
+    color: var(--dark-color);
+    border: none;
+    margin-left: 40px;
+    margin-right: 25px;
+    img {
+      width: 20px;
+      cursor: pointer;
     }
+  }
+
+  .cart {
+    border: none;
+    font-weight: 400;
+    font-size: 15px;
+    img {
+      width: 22px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
     .navbar__links {
-      .links {
-        border-bottom: none;
-        &:nth-child(1),
-        &:nth-child(2) {
-          display: none;
-        }
-      }
-      a {
-        font-size: 12px;
-      }
+      gap: 5px;
+    }
+    .dark-mode {
+      margin: 0;
+      margin-top: 15px;
+    }
+    .token_true {
+      flex-direction: column;
     }
   }
 }

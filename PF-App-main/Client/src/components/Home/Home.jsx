@@ -37,21 +37,22 @@ const Home = () => {
   return (
     <div className="home">
       <Carrousel />
-      <div className="open-filters">
-        <button
-          className="button-open-filters"
-          onClick={() => setFilterOpen(!filterOpen)}
-          onMouseEnter={() => setFilterOpen(true)}
-        >
-          <BsFilterLeft size={25} /> Filtrar
-        </button>
-      </div>
+
       <div className="filtros_productos">
         <Filters
           setCurrentPage={setCurrentPage}
           filterOpen={filterOpen}
           setFilterOpen={setFilterOpen}
         />
+        <div className="open-filters">
+          <button
+            className="button-open-filters"
+            onClick={() => setFilterOpen(!filterOpen)}
+            onMouseEnter={() => setFilterOpen(true)}
+          >
+            <BsFilterLeft size={25} /> Filtrar
+          </button>
+        </div>
         <div className="divPagination">
           <div className="paginationAndCart">
             <Pagination

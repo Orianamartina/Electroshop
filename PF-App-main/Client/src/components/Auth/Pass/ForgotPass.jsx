@@ -73,10 +73,6 @@ export default function ForgotPass() {
     <>
       <ToastContainer />
       <div className="forgot-password">
-        <h3>
-          Ingresa tu email y una nueva contraseña.<br></br> Luego recibiras un
-          correo electrónico para confirmar esta acción
-        </h3>
         <form className="forgot-password-form" onSubmit={handleSubmit}>
           <h2>Recuperar Contraseña</h2>
           <div className="forgot-password-section">
