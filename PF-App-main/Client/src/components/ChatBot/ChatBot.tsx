@@ -44,6 +44,7 @@ const EXAMPLES = [
   { text: "Buenas Noches", label: "Intro" },
   { text: "Saludos", label: "Intro" },
   {text:"Que es Electroshop",label:"Info"},
+  {text:"Para que sirve la pagina",label:"Info"},
   { text: "Cual es tu funcion ?", label: "Info" },
   { text: "Necesito ayuda", label: "Info" },
   { text: "Como puedo comprar?", label: "Compra" },
