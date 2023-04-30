@@ -84,3 +84,37 @@ export function validateRegisterData(dataRegister) {
 
   return { errors, isValid };
 }
+
+export function validateResetPassword(input) {
+  let errors = {};
+  let isValid = true;
+
+  // Validar correo electrónico
+  if (!input.email) {
+    errors.email = "Debes ingresar un correo electrónico";
+    isValid = false;
+  } else if (!/\S+@\S+\.\S+/.test(input.email)) {
+    errors.email = "⚠ El correo electrónico no es válido";
+    isValid = false;
+  }
+
+  // Validar contraseña
+  if (!input.password) {
+    errors.password = "⚠ Debes ingresar una contraseña";
+    isValid = false;
+  } else if (input.password.length < 6) {
+    errors.password = "⚠ La contraseña debe tener al menos 6 caracteres";
+    isValid = false;
+  }
+
+  // Validar confirmación de contraseña
+  if (!input.confirmPassword) {
+    errors.confirmPassword = "⚠ Debes confirmar la contraseña";
+    isValid = false;
+  } else if (input.confirmPassword !== input.password) {
+    errors.confirmPassword = "⚠ Las contraseñas no coinciden";
+    isValid = false;
+  }
+
+  return { errors, isValid };
+}

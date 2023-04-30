@@ -37,7 +37,7 @@
     font-weight: 700;
     color: #fcfcfc;
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
-    padding: 5px 50px;
+    padding: 5px 25px;
     margin-bottom: 15px;
     border: 1px solid var(--steel-blue-matte);
     &:hover {
@@ -107,7 +107,7 @@
       justify-content: center;
       border: 1px solid var(--steel-blue-matte) !important;
       border-radius: 5px !important;
-      width: 200px;
+      width: 150px;
       padding: 2px 10px !important;
       transition: all 0.3s ease-in-out;
       margin-bottom: 10px;
@@ -130,7 +130,7 @@
         font-size: 18px;
         padding: 0 !important;
       }
-      .loading {
+      .loadingGoogle{
         margin-left: 20px;
       }
     }

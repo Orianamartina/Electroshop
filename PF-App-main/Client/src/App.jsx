@@ -12,7 +12,7 @@ import Error404 from "./components/Error404/Error404";
 import Accepted from "./components/Payment/PaymentAccepted";
 import Rejected from "./components/Payment/Rejected";
 import ShippingAddress from "./components/ShippingAddress/ShippingAddress";
-import ForgotPass from "./components/Pass/ForgotPass";
+import ForgotPass from "./components/Auth/Pass/ForgotPass";
 import Footer from "./components/Footer/Footer";
 import ChatBot from "./components/ChatBot/ChatBot";
 
