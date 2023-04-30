@@ -16,22 +16,21 @@ type AnswerType = {
 };
 
 const ANSWER: AnswerType = {
-  Intro: <p>Hola soy un bot que trabaja para ElectroShop</p>,
+  Intro: <p>Soy el bot de ElectroShop, aquí para ayudarte en todo lo que necesites en nuestra tienda en línea de electrónica y tecnología. Desde la búsqueda hasta el envío, facilito tu experiencia de compra. Si tienes alguna pregunta, no dudes en preguntarme. ¡Estoy aquí para ayudarte a tener una experiencia de compra excepcional en ElectroShop!
+</p>,
   Info: (
     <p>
-      Esta es una página de venta de productos relacionados con la computación
+      Bienvenido/a a nuestra tienda en línea de tecnología. Ofrecemos una amplia variedad de productos de alta calidad relacionados con la computación. Todos nuestros productos cuentan con garantía. ¡Explora nuestro catálogo y encuentra todo lo que necesitas para mejorar tu experiencia tecnológica!
     </p>
   ),
   Compra: (
     <p>
-      ¿Deseas realizar una compra? Por favor, agregue su producto al carrito, y
-      puede comprarlo a través de mercado pago.
+      ¿Deseas realizar una compra? Agrega el producto que deseas al carrito y podrás comprarlo fácilmente a través de MercadoPago, una plataforma de pago segura y confiable.
     </p>
   ),
   Usuario: (
     <p>
-      Como usuario puedes loguearte a través del register, o el login de Google.
-      Además, puedes ver y comprar los productos con los que cuenta la página
+      Como usuario registrado en la página, tienes dos opciones para iniciar sesión: puedes hacerlo a través de un registro básico en la página o utilizando tu cuenta de Google. Una vez que hayas iniciado sesión, tendrás acceso completo a la tienda virtual y podrás ver todos los productos disponibles para la compra. Además, tendrás la capacidad de agregar productos a tu carrito de compras, realizar transacciones de pago seguras y hacer seguimiento al estado de tus pedidos. 
     </p>
   ),
   Default: <p>Lo lamento, no tengo respuesta ante esto</p>,
@@ -44,15 +43,16 @@ const EXAMPLES = [
   { text: "Buenas Tardes", label: "Intro" },
   { text: "Buenas Noches", label: "Intro" },
   { text: "Saludos", label: "Intro" },
-  { text: "Quien sos?", label: "Info" },
-  { text: "Que haces ?", label: "Info" },
+  {text:"Que es Electroshop",label:"Info"},
+  {text:"Para que sirve la pagina",label:"Info"},
   { text: "Cual es tu funcion ?", label: "Info" },
   { text: "Necesito ayuda", label: "Info" },
   { text: "Como puedo comprar?", label: "Compra" },
   { text: "Con que puedo comprar", label: "Compra" },
+  { text: "Como pago?", label: "Compra" },
   { text: "que puedo hacer como usuario", label: "Usuario" },
   { text: "que puedo hacer en la pagina", label: "Usuario" },
-  { text: "Cuanto el gramo ?", label: "Default" },
+  { text: "No se", label: "Default" },
   { text: "No entiendo", label: "Default" },
   { text: "Por favor, explique más", label: "Default" },
 ];
@@ -64,7 +64,7 @@ const ChatBot = () => {
     {
       id: uuidv4(),
       type: "bot",
-      text: "Hola, soy un bot que trabaja para ElectroShop",
+      text: "Hola en que puedo ayudarte",
     },
   ]);
 
@@ -136,8 +136,8 @@ const ChatBot = () => {
               <div
                 className={`chat-text ${
                   message.type === "bot"
-                    ? "bg-primary rounded-pill me-auto text-light"
-                    : "bg-info rounded-pill ms-auto"
+                    ? "bg-dark  me-auto text-light"
+                    : "bg-secondary rounded-pill ms-auto"
                 } d-inline-block mb-3`}
                 key={message.id}
               >
@@ -156,7 +156,7 @@ const ChatBot = () => {
             />
             <button
               disabled={loading}
-              className={`chat-btn ${loading ? "bg-primary" : "bg-info"}`}
+              className={`chat-btn ${loading ? "bg-secondary" : "bg-dark"}`}
               type="submit"
             >
               Send
