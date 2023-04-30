@@ -63,7 +63,7 @@ const ShippingAddress = () => {
             <input type="text" id="country" name="country" value={shippingData.country} onChange={handleChange} />
           </div>
         </form>
-        <PurchaseOrderButton products={cartProducts} user={id} shippingData={shippingData} />
+        <PurchaseOrderButton products={cartProducts} user={id} shippingData={shippingData} discount={cartDetail.discountPrice - cartDetail.totalPrice} />
       </div>
       <div className="purchaseSummary">
         <section>
