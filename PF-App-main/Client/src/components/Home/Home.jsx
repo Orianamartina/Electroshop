@@ -38,13 +38,12 @@ const Home = () => {
     <div className="home">
       <Carrousel />
       <div className="open-filters">
-        <BsFilterLeft size={25}/>
         <button
           className="button-open-filters"
           onClick={() => setFilterOpen(!filterOpen)}
           onMouseEnter={() => setFilterOpen(true)}
         >
-          Filtrar
+          <BsFilterLeft size={25} /> Filtrar
         </button>
       </div>
       <div className="filtros_productos">

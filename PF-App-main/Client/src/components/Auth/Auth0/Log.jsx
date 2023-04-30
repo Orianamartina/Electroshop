@@ -25,12 +25,14 @@ function log() {
       email: response.profileObj.email,
       verified: true,
       admin: false,
-      image: response.profileObj.imageUrl
+      image: response.profileObj.imageUrl,
     };
     const startSession = async () => {
       try {
         dispatch(loginUser(loginData, "google"));
-        const response = await axios("http://localhost:3001/user/" + loginData.email);
+        const response = await axios(
+          "http://localhost:3001/user/" + loginData.email
+        );
         const user = response.data;
         if (user.disabled === false) {
           setUser(user);
@@ -38,7 +40,7 @@ function log() {
             navigate("/home");
           }, 1000);
         }
-        if(user.disabled === true) {
+        if (user.disabled === true) {
           setUser({});
           setLoading(false);
           toast.error("Usuario bloqueado, no se permitió el inicio de sesión");
@@ -49,14 +51,13 @@ function log() {
       }
     };
     document.getElementsByClassName("btn").hidden = true;
-    
+
     startSession();
     setTimeout(() => {
       navigate("/home");
     }, 2000);
-
   };
-  
+
   const onFailure = () => {
     console.log("Something went wrong");
   };
@@ -81,7 +82,7 @@ function log() {
         disabled={isLoading}
       >
         {isLoading ? (
-          <DotLoader className="loading" color={"#4a90e2"} size={7} />
+          <DotLoader className="loadingGoogle" color={"#4a90e2"} size={7} />
         ) : (
           "Google"
         )}
