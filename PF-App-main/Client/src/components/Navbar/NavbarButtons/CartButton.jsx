@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCart } from "../../../redux/actions/actions";
-
-import darkCartIcon from "/assets/img/cart-dark.png";
-import lightCartIcon from "/assets/img/cart-ligth.png";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 const CartButton = ({ darkMode, userId }) => {
   const dispatch = useDispatch();
@@ -18,7 +16,8 @@ const CartButton = ({ darkMode, userId }) => {
     <Link to="/cart" className="perfil">
       <div className="cart">
         {totalQuantity}
-        <img src={darkMode ? darkCartIcon : lightCartIcon} alt={darkMode ? "Light Mode" : "Dark Mode"} />
+        <AiOutlineShoppingCart size={25} className="me-2 mb-1" />
+        Carrito
       </div>
     </Link>
   );

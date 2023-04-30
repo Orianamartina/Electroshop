@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 54vw;
+  margin: auto;
+
   .authForm {
     display: flex;
     flex-direction: column;
@@ -11,15 +12,12 @@
     border: 2px solid var(--steel-blue-matte);
     border-radius: 10px;
     background-color: var(--light-color);
-    margin-bottom: 90px;
   }
-  .authFormLogin {
-    margin-top: 4%;
-  }
+
   .authForm h1 {
     font-size: 30px;
     padding: 10px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--steel-blue-matte);
     margin-bottom: 10px;
   }
@@ -130,15 +128,85 @@
         font-size: 18px;
         padding: 0 !important;
       }
-      .loadingGoogle{
+      .loadingGoogle {
         margin-left: 20px;
       }
     }
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .authDiv {
-    min-height: 58vw;
+    .authForm {
+      width: 300px;
+      height: 90%;
+    }
+    .authForm h1 {
+      font-size: 25px;
+    }
+    .authForm input {
+      width: 250px;
+    }
+    .authButton {
+      font-size: 20px;
+    }
+    .authForm p {
+      font-size: 12px;
+    }
+    .authForm a {
+      font-size: 12px;
+    }
+    .pAuth::before {
+      width: 50px;
+    }
+    .pAuth::after {
+      width: 50px;
+    }
+    .loginAuth0 {
+      button {
+        width: 100px;
+        span {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .authDiv {
+    .authForm {
+      width: 300px;
+      height: auto;
+    }
+    .authForm h1 {
+      font-size: 20px;
+    }
+    .authForm input {
+      width: 250px;
+    }
+    .authButton {
+      font-size: 20px;
+    }
+    .authForm p {
+      font-size: 12px;
+    }
+    .authForm a {
+      font-size: 12px;
+    }
+    .pAuth::before {
+      width: 50px;
+    }
+    .pAuth::after {
+      width: 50px;
+    }
+    .loginAuth0 {
+      button {
+        width: 150px;
+        span {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
