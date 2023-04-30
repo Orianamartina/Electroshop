@@ -1,0 +1,48 @@
+.favorites,
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .favorite {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+    color: var(--steel-blue-matte);
+    background-color: var(--white-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    img {
+      width: 130px;
+      height: 130px;
+      margin: 10px;
+      object-fit: contain;
+    }
+
+    div {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .favorite-icon {
+    margin: 0 50%;
+  }
+}
+
+.empty {
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  a {
+    color: var(--steel-blue-matte);
+  }
+}

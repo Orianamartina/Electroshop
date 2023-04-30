@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       primarykey: true,
-      validate: { 
+      validate: {
         isEmail: {
           msg: "Debe ser un email válido",
         },
@@ -26,9 +26,9 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-		code: {
-			type: DataTypes.STRING,
-		},
+    code: {
+      type: DataTypes.STRING,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userName: { 
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -51,6 +51,11 @@ module.exports = (sequelize) => {
     disabled: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-    }
+    },
+    image: {
+      type: DataTypes.STRING,
+      defaultValue:
+        "https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png",
+    },
   });
 };

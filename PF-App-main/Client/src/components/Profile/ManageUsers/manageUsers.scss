@@ -1,51 +1,110 @@
-.manageUsers {
-  padding: 20px;
-  .admin-users {
+.manage-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 24px;
+  }
+  .filter-users {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    ul {
-      list-style-type: none;
-      .user-card {
-        padding: 10px;
-        border: 1px solid var(--storm-gray-light-matte);
-        border-radius: 10px;
-        margin-bottom: 10px;
-        .user-data {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          justify-self: center;
-          margin: 10px 0;
-          span {
-            font-weight: bold;
-            margin-left: 10px;
-            width: 100px;
+    gap: 10px;
+    label {
+      color: var(--dark-color);
+      font-size: 15px;
+      margin-left: 10px;
+    }
+  }
+  .search-users {
+    display: flex;
+    margin: 10px 0 10px 50px;
+    gap: 20px;
+    input {
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding-left: 10px;
+      &:focus {
+        outline: 1px solid var(--storm-gray-medium-matte);
+      }
+    }
+    button {
+      font-size: 15px;
+      color: var(--steel-blue-matte);
+      border: none;
+      background-color: transparent;
+      &:hover {
+        color: var(--steel-blue-medium-matte);
+      }
+      &:active {
+        color: var(--steel-blue-matte);
+      }
+    }
+  }
+  ul {
+    list-style-type: none;
+    gap: 20px;
+    .user-card {
+      background-color: var(--white-color);
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      width: 800px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      .user-data {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        margin: 10px 0;
+        hr {
+          grid-column: span 3;
+          margin: 0 0 15px;
+        }
+        button {
+          border: none;
+          background-color: transparent;
+          color: var(--steel-blue-matte);
+          font-size: 12px;
+          &:active {
+            color: var(--steel-blue-medium-matte);
           }
         }
-        .button-section {
-          display: flex;
-          justify-content: space-around;
-          grid-column: span 3;
-          .delete-button {
-            &:hover {
-              color: var(--bg-color);
-              background-color: var(--modal-red-button);
-            }
+        span {
+          color: var(--dark-color);
+          font-weight: bold;
+          margin-left: 10px;
+          font-size: 15px;
+        }
+        p {
+          font-size: 15px;
+          color: var(--dark-color);
+        }
+      }
+      .button-section {
+        display: flex;
+        justify-content: space-around;
+        .delete-button {
+          &:hover {
+            color: var(--bg-color);
+            background-color: var(--modal-red-button);
           }
-          button {
-            margin-top: 10px;
-            padding: 5px 10px;
-            border: 1px solid var(--storm-gray-light-matte);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            &:hover {
-              background-color: var(--steel-blue-medium-matte);
-              color: var(--bg-color);
-            }
+        }
+        button {
+          margin-top: 10px;
+          padding: 2px 5px;
+          font-size: 15px;
+          background-color: var(--light-color);
+          color: var(--dark-color);
+          border: none;
+          transition: all 0.3s ease;
+          &:hover {
+            background-color: var(--modal-red-button);
+            color: var(--bg-color);
           }
-          button:nth-child(2):hover {
-            background-color: var(--modal-yellow-button); 
-          }
+        }
+        button:nth-child(2):hover {
+          background-color: var(--modal-yellow-button);
+        }
+        button:nth-child(3):hover {
+          background-color: var(--steel-blue-medium-matte);
         }
       }
     }

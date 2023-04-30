@@ -9,7 +9,7 @@ router.use(express.json());
 router.post("/", async (req, res) => {
   try {
     const {
-      orderId,
+      userId,
       street,
       number,
       postCode,
@@ -19,8 +19,9 @@ router.post("/", async (req, res) => {
       state,
       country,
     } = req.body;
+    
     const addShippingAddress = await createShippingAddress(
-      orderId,
+      userId,
       street,
       number,
       postCode,
@@ -37,6 +38,7 @@ router.post("/", async (req, res) => {
       .json("there was a problem adding the shipping address");
   }
 });
+
 router.get("/:orderId", async (req, res) => {
   const { orderId } = req.params;
   try {

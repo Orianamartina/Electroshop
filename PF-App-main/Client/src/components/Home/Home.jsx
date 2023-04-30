@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getAllProducts } from "../../redux/actions/actions";
 import "./home.scss";
 
@@ -8,6 +7,7 @@ import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
 import Pagination from "../Pagination/Pagination";
+import { BsFilterLeft } from "react-icons/bs";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,11 +15,16 @@ const Home = () => {
   const allProducts = useSelector((state) => state.allProducts);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(6);
+  const [productsPerPage] = useState(8);
 
   const numOfLastProduct = currentPage * productsPerPage;
   const numOfFirstProduct = numOfLastProduct - productsPerPage;
-  const currentProducts = allProducts.slice(numOfFirstProduct, numOfLastProduct);
+  const currentProducts = allProducts.slice(
+    numOfFirstProduct,
+    numOfLastProduct
+  );
+
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const handlePagination = (page) => {
     setCurrentPage(page);
@@ -32,8 +37,21 @@ const Home = () => {
   return (
     <div className="home">
       <Carrousel />
+      <div className="open-filters">
+        <button
+          className="button-open-filters"
+          onClick={() => setFilterOpen(!filterOpen)}
+          onMouseEnter={() => setFilterOpen(true)}
+        >
+          <BsFilterLeft size={25} /> Filtrar
+        </button>
+      </div>
       <div className="filtros_productos">
-        <Filters setCurrentPage={setCurrentPage} />
+        <Filters
+          setCurrentPage={setCurrentPage}
+          filterOpen={filterOpen}
+          setFilterOpen={setFilterOpen}
+        />
         <div className="divPagination">
           <div className="paginationAndCart">
             <Pagination

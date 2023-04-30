@@ -1,206 +1,113 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./profile.scss";
-import { useState } from "react";
+import UserData from "./UserData/UserData";
+import ShippingHistory from "./ShippingHistory/ShippingHistory";
 import AddProduct from "./AddProduct/AddProduct";
 import ManageUsers from "./ManageUsers/ManageUsers";
-import { Modal } from "react-bootstrap";
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { ClipLoader } from "react-spinners";
+import Favorites from "./Favorites/Favorites";
+import Billing from "./Billing/Billing";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  RxCross1,
+  RxHamburgerMenu,
+  RxHeart,
+  RxFileText,
+  RxArchive,
+} from "react-icons/rx";
+import { AiOutlineShopping } from "react-icons/ai";
+import { HiOutlineUsers } from "react-icons/hi";
+import { FaRegUser } from "react-icons/fa";
 
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem("userData"));
-  const { userName, name, lastName, email } = user;
   const { admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState("userData");
 
-  const [editMode, setEditMode] = useState(false);
-  const [showProductModal, setshowProductModal] = useState(false);
-  const [showUsersModal, setshowUsersModal] = useState(false);
+  const closeSideBar = () => {
+    setSidebarOpen(false);
+  };
 
-  const [editedName, setEditedName] = useState(name);
-  const [editedLastName, setEditedLastName] = useState(lastName);
-
-  const [isLoading, setLoading] = useState(false);
-  // Local
-  //const URL = "http://localhost:3001/user/update"
-  // Deploy
-  const URL = "https://electroshop-production.up.railway.app/user/update"
-
-  const saveChanges = async () => {
-    const updatedUserData = {
-      email: email,
-      name: editedName,
-      lastName: editedLastName,
-      password: "",
-    };
-    setLoading(true);
-    try {
-      await axios.put(URL, updatedUserData);
-      setTimeout(() => {
-        setEditMode(false);
-        setEditedName(editedName);
-        setEditedLastName(editedLastName);
-        const user = JSON.parse(localStorage.getItem("userData"));
-        user.name = editedName;
-        user.lastName = editedLastName;
-        localStorage.setItem("userData", JSON.stringify(user));
-        toast.success("Datos actualizados correctamente");
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      console.error("Error al realizar la solicitud PUT:", error);
-      toast.error("Error al actualizar los datos");
-    }
+  const handleOptionClick = (option) => {
+    setCurrentComponent(option);
+    setSidebarOpen(false);
   };
 
   return (
     <>
       <ToastContainer />
-      {isLoading ? (
-        <div className="loading">
-          <ClipLoader color={"#4a90e2"} size={50} />
-        </div>
-      ) : (
-        <div className="profile">
-          <div className="data">
-            <h2>{userName}</h2>
-            <h3>Mis datos</h3>
-            {editMode ? (
-              <>
-                <div className="cards">
-                  <h4>Nombre de usuario</h4>
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={userName}
-                    readOnly
-                  />
-                </div>
-                <div className="cards">
-                  <h4>E-mail</h4>
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={email}
-                    readOnly
-                  />
-                </div>
-                <div className="cards">
-                  <h4>Nombre</h4>
-                  <input
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                  />
-                </div>
-                <div className="cards">
-                  <h4>Apellido</h4>
-                  <input
-                    type="text"
-                    value={editedLastName}
-                    onChange={(e) => setEditedLastName(e.target.value)}
-                  />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="cards">
-                  <h4>Nombre de usuario</h4>
-                  <p>{userName}</p>
-                </div>
-                <div className="cards">
-                  <h4>E-mail</h4>
-                  <p>{email}</p>
-                </div>
-                <div className="cards">
-                  <h4>Nombre</h4>
-                  <p>{name}</p>
-                </div>
-                <div className="cards">
-                  <h4>Apellido</h4>
-                  <p>{lastName}</p>
-                </div>
-              </>
-            )}
-            {editMode ? (
-              <div className="hidden-buttons">
-                <button onClick={() => saveChanges()} disabled={isLoading}>
-                  Guardar
-                </button>
-                <button onClick={() => setEditMode(false)}>Cancelar</button>
-              </div>
-            ) : (
-              <button onClick={() => setEditMode(true)}>Modificar datos</button>
-            )}
-          </div>
-          {admin ? null : (
-            <div className="purchases">
-              <h2>Historial de compras</h2>
-              <h3>
-                Aún no has realizado ninguna compra. ¡Visita nuestra tienda y
-                compra!
-              </h3>
-            </div>
-          )}
+      <div className={`profile ${sidebarOpen ? "sidebar-open" : ""}`}>
+        {" "}
+        {currentComponent === "userData" && <UserData />}
+        {currentComponent === "shippingHistory" && (
+          <ShippingHistory id={user.id} />
+        )}
+        {currentComponent === "addProduct" && <AddProduct />}
+        {currentComponent === "manageUsers" && <ManageUsers />}
+        {currentComponent === "favorites" && <Favorites />}
+        {currentComponent === "billing" && <Billing />}
+      </div>
+      <button
+        className="button-open-sidebar"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        onMouseEnter={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <RxHamburgerMenu size={30} />
+      </button>
 
-          {admin ? (
-            <div className="panel-admin">
-              <h2>Panel de Administrador</h2>
-              <div className="options-container">
-                <button
-                  className="optionButton"
-                  onClick={() => {
-                    setshowProductModal(true);
-                  }}
-                >
-                  Agregar Productos
-                </button>
-                <button
-                  className="optionButton"
-                  onClick={() => {
-                    setshowUsersModal(true);
-                  }}
-                >
-                  Administrar Usuarios
-                </button>
-                <button className="optionButton">Enviar Cupones</button>
-
-                {showProductModal && (
-                  <div className="option-title">
-                    <Modal
-                      show={showProductModal}
-                      onHide={() => setshowProductModal(false)}
-                      size="lg"
-                    >
-                      <Modal.Header closeButton>
-                        <div className="option-title">
-                          <Modal.Title>Agregar Producto</Modal.Title>
-                        </div>
-                      </Modal.Header>
-                      <AddProduct />
-                    </Modal>
-                  </div>
-                )}
-                {showUsersModal && (
-                  <Modal
-                    show={showUsersModal}
-                    onHide={() => setshowUsersModal(false)}
-                    size="lg"
-                  >
-                    <Modal.Header closeButton>
-                      <div className="option-title">
-                        <Modal.Title>Administrar Usuarios</Modal.Title>
-                      </div>
-                    </Modal.Header>
-                    <ManageUsers />
-                  </Modal>
-                )}
-              </div>
-            </div>
-          ) : null}
+      <div
+        className={`sidebar ${sidebarOpen ? "open" : "closed"}`}
+        onMouseLeave={() => setSidebarOpen(false)}
+      >
+        <div className="close-side-bar">
+          <button onClick={closeSideBar}>
+            {" "}
+            <RxCross1 size={20} />
+          </button>
         </div>
-      )}
+        <div className="sidebar-content">
+          <button onClick={() => handleOptionClick("userData")}>
+            <FaRegUser size={20} className="side-bar-icon" />
+            Mi Perfil
+          </button>
+        </div>
+        <div className="sidebar-content">
+          <button onClick={() => handleOptionClick("shippingHistory")}>
+            <AiOutlineShopping size={20} className="side-bar-icon" />
+            Mis Compras
+          </button>
+        </div>
+        <div className="sidebar-content">
+          <button onClick={() => handleOptionClick("favorites")}>
+            <RxHeart size={20} className="side-bar-icon" />
+            Favoritos
+          </button>
+        </div>
+
+        {admin ? (
+          <>
+            <div className="sidebar-content">
+              <button onClick={() => handleOptionClick("addProduct")}>
+                <RxArchive size={20} className="side-bar-icon" />
+                Agregar Producto
+              </button>
+            </div>
+            <div className="sidebar-content">
+              <button onClick={() => handleOptionClick("manageUsers")}>
+                <HiOutlineUsers size={20} className="side-bar-icon" />
+                Administrar Usuarios
+              </button>
+            </div>
+            <div className="sidebar-content">
+              <button onClick={() => handleOptionClick("billing")}>
+                <RxFileText size={20} className="side-bar-icon" />
+                Facturación
+              </button>
+            </div>
+          </>
+        ) : null}
+      </div>
     </>
   );
 };

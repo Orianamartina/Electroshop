@@ -1,99 +1,79 @@
 .profile {
-  display: grid;
-  grid-template-columns: 4fr 6fr;
-  padding: 10px;
-  margin-top: 20px;
-  color: var(--dark-color);
-  .data {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    h3 {
-      font-size: 22px;
-      margin-top: 20px;
-    }
-    .cards {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid var(--light-gray-matte);
-      border-radius: 5px;
-      input {
-        margin-bottom: 15px;
-        border: none;
-        border-bottom: 1px solid var(--light-gray-matte);
-        width: 65%;
-        &:focus {
-          outline: none;
-        }
-      }
-      .input-readOnly {
-        color: rgba(0, 0, 0, 0.45);
-        border: none;
-      }
-    }
-    h2,
-    h3 {
-      text-align: center;
-    }
-    h4 {
-      color: rgba(0, 0, 0, 0.8);
-    }
-    p {
-      padding: 0;
-      color: rgba(0, 0, 0, 0.45);
-    }
-    .hidden-buttons {
-      display: flex;
-      justify-content: space-around;
-    }
-    button {
-      margin-top: 15px;
-      border: none;
-      font-size: 14px;
-      color: var(--steel-blue-matte);
-      &:hover {
-        color: var(--steel-blue-medium-matte);
-      }
-      &:active {
-        color: var(--steel-blue-matte);
-      }
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  min-height: 80vh;
+  padding-top: 30px;
+}
+.sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 0;
+  bottom: 0;
+  padding-left: 20px;
+  left: -300px;
+  width: 220px;
+  background-color: rgb(245, 245, 245);
+  transition: left 0.3s ease-in-out;
+  button {
+    border: none;
+    padding: 10px 0;
+    background-color: transparent;
+    font-size: 14px;
+    color: var(--storm-gray-medium-matte);
   }
-  .purchases {
+  .sidebar-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 30px;
-    h3 {
-      font-size: 22px;
-      margin-top: 20px;
+    margin-top: 30px;
+    width: 100%;
+    transition: 0.1s ease-in-out;
+    &:hover {
+      border-right: 5px solid var(--steel-blue-medium-matte);
     }
-  }
-
-  .panel-admin {
-    display: flex;
-    flex-direction: column;
-
-    h2,
-    a {
-      text-align: center;
-    }
-    .options-container {
-      margin: 55px 55px;
-      display: flex;
-      flex-direction: column;
-      .optionButton {
-        height: 50px;
-        margin-bottom: 20px;
-        border: 1px solid var(--light-gray-matte);
-        border-radius: 5px;
-        &:hover {
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-      }
+    .side-bar-icon {
+      margin: 0 5px 3px 0;
+      color: var(--storm-gray-medium-matte);
     }
   }
 }
-.option-title {
-  margin-left: 36%;
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar.closed {
+  left: -300px;
+}
+
+.button-open-sidebar {
+  position: fixed;
+  border: none;
+  top: 100px;
+  left: 10px;
+  color: var(--steel-blue-medium-matte);
+  background-color: transparent;
+}
+
+.close-side-bar {
+  margin-top: 20px;
+  button {
+    color: var(--steel-blue-medium-matte);
+    &:hover {
+      rotate: 90deg;
+    }
+  }
+}
+
+.profile.sidebar-open {
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: brightness(0.5);
+}
+
+@media screen and (min-width: 720px) {
+  .profile {
+    min-height: 84vh;
+  }
 }

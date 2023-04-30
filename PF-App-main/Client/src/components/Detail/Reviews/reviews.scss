@@ -1,0 +1,108 @@
+.reviews {
+  display: flex;
+  flex-direction: column;
+  color: var(--dark-color);
+
+  .form-reviews {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    margin: 10px 0;
+    padding-bottom: 25px;
+
+    .reviews-comment {
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+
+      textarea {
+        width: 100%;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        background-color: var(--white-color);
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        background-color: var(--steel-blue-medium-matte);
+        color: #fcfcfc;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 15px;
+        align-self: center;
+        transition: all 0.5s ease;
+        &:hover {
+          background-color: var(--steel-blue-matte);
+        }
+      }
+    }
+  }
+
+  .product-reviews {
+    display: flex;
+    flex-direction: column;
+
+    .product-review {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 0;
+      border-bottom: 1px solid #ccc;
+      width: 100%;
+
+      .review-user-data {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        h5 {
+          margin: 0;
+          margin-left: 5px;
+          font-size: 16px;
+        }
+      }
+      .reviews-stars {
+        padding: 2px;
+        margin-left: 3%;
+
+        label {
+          &:hover {
+            cursor: default;
+          }
+        }
+      }
+
+      .product-review-comment {
+        margin: 0;
+        margin-left: 4%;
+        padding: 2px;
+        border-left: 2px solid #ccc;
+        padding-left: 10px;
+        font-size: 14px;
+        color: var(--dark-color);
+      }
+    }
+
+    button {
+      border: none;
+      margin-right: auto;
+      padding: 25px 5px;
+      color: var(--steel-blue-medium-matte);
+      background-color: unset;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--steel-blue-matte);
+        text-decoration: underline;
+      }
+    }
+  }
+}

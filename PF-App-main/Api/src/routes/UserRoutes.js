@@ -12,13 +12,18 @@ const {
   updateUser,
   deleteUser,
   loginGoogle,
-  confirmPasswordChange
+  confirmPasswordChange,
+  getUserByEmail,
+  addToFavorite,
+  getUserFavorites,
+  deleteUserFavorites
 } = require("../controlers/Users");
 const router = express.Router();
 router.use(express.json());
 
 router.post("/", registerUser);
 router.get("/", getUsers);
+router.get("/:email", getUserByEmail)
 router.put("/setadmin", setAdminRightsToUser);
 router.put("/removeadmin", removeAdminRightsToUser);
 router.post("/createadmin", createAdmin);
@@ -31,4 +36,7 @@ router.put("/update", updateUser);
 router.delete("/del", deleteUser);
 router.get("/confirmchange/:token", confirmPasswordChange)
 
+router.post("/fav", addToFavorite)
+router.delete("/fav",  deleteUserFavorites)
+router.get("/fav/:userId", getUserFavorites)
 module.exports = router;

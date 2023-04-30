@@ -50,10 +50,13 @@ let sequelize =
         keepAlive: true,
       },
       ssl: true,
+      timestamps: false
     })
     : new Sequelize(
       `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-      { logging: false, native: false }
+
+      { logging: false, native: false, define: { timestamps: false } }
+
     );
 
 const basename = path.basename(__filename);
@@ -112,6 +115,8 @@ Product.belongsToMany(PurchaseOrder, {through: "Order_Products"})
 PurchaseOrder.belongsTo(ShippingAddress)
 ShippingAddress.hasMany(PurchaseOrder)
 
+Product.belongsToMany(User, {through: "Favorites"})
+User.belongsToMany(Product, {through: "Favorites"})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

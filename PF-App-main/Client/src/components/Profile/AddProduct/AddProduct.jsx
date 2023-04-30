@@ -3,6 +3,8 @@ import "./addProduct.scss";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
 import axios from "axios";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -17,10 +19,7 @@ const AddProduct = () => {
 
   const [isLoading, setLoading] = useState(false);
 
-  // Local
-  //const URL = "http://localhost:3001/products"
-  // Deploy
-  const URL = "https://electroshop-production.up.railway.app/products"
+  const API_URL = "products";
 
   // Cloudinary
   var uploadedImage = "";
@@ -55,10 +54,7 @@ const AddProduct = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        URL,
-        formData
-      );
+      const response = await axios.post(API_URL, formData);
       if (response) {
         toast.success("Producto agregado exitosamente");
       }
@@ -74,6 +70,7 @@ const AddProduct = () => {
 
   return (
     <div className="add-product">
+      <h2>Agregar Productos</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Nombre:</label>
@@ -102,6 +99,7 @@ const AddProduct = () => {
             type="file"
             name="image"
             id="image"
+            placeholder=""
             value={uploadedImage}
             onChange={uploadImage}
           />
@@ -145,7 +143,7 @@ const AddProduct = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="preview">
           <img src={formData.image} alt="" width={"100px"} />
           Preview
         </div>

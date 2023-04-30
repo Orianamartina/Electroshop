@@ -1,24 +1,19 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "./discountCodeInput.scss";
 import { BeatLoader } from "react-spinners";
-
 import axios from "axios";
-
 import discountIcon from "/assets/img/discount.png";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 function DiscountCodeInput({ userId, handleCart }) {
   const [string, setString] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setLoading] = useState(false);
-
   const [errorDiscount, setErrorDiscount] = useState(false);
-  
-  // Local
-  //const URL = "http://localhost:3001/cart/desc"
-  
-  // Depeloy
-  const URL = "https://electroshop-production.up.railway.app/cart/desc"
+
+  const API_URL = "cart/desc";
 
   function handleInputChange(e) {
     setString(e.target.value);
@@ -33,7 +28,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         setLoading(false);
         return;
       }
-      const response = await axios.post(URL, {
+      const response = await axios.post(API_URL, {
         string,
         userId,
       });
@@ -86,7 +81,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         </Modal.Body>
         <Modal.Footer>
           <button className="applyDiscount" type="submit" onClick={applyDiscountCode} disabled={isLoading}>
-            {isLoading ? <BeatLoader color={"#ffffff"} size={7} /> : "Aplicar descuento"}
+            {isLoading ? <BeatLoader color={"#fcfcfc"} size={7} /> : "Aplicar descuento"}
           </button>
         </Modal.Footer>
       </Modal>

@@ -1,0 +1,103 @@
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 24px;
+  }
+  .shipping-cards {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-color);
+    padding: 20px;
+    margin: 20px;
+    width: 1000px;
+    border-radius: 10px;
+    h5 {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    hr {
+      margin: 0;
+    }
+    .products-card {
+      display: flex;
+      margin: 10px 0;
+      padding: 10px 0;
+      img {
+        height: 80px;
+        width: 100px;
+        object-fit: contain;
+        border: 1px solid var(--light-gray-matte);
+        border-radius: 5px;
+      }
+      p {
+        margin: 20px;
+        width: 80%;
+        font-size: 13px;
+      }
+    }
+    .button-close {
+      padding: 5px;
+      width: 150px;
+      font-size: 15px;
+      align-self: center;
+      border-radius: 5px;
+      border: none;
+      background-color: var(--steel-blue-medium-matte);
+      color: var(--white-color);
+      &:active {
+        background-color: var(--steel-blue-matte);
+      }
+    }
+  }
+  .shipping-detail {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding: 10px;
+    img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+      border: 1px solid var(--light-gray-matte);
+      border-radius: 50%;
+    }
+    h4 {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+    hr {
+      margin: 10px 0;
+    }
+    p {
+      font-size: 14px;
+    }
+    .shipping-price {
+      margin-top: 20px;
+    }
+    .total-price {
+      font-size: 18px;
+      margin-top: 10;
+    }
+    .shipping-adress {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px 20px;
+      padding: 10px 0;
+      height: 100%;
+      background-color: var(--bg-color);
+      border-radius: 0 0 10px 10px;
+      .shipping-adress-text {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        border-radius: 10px;
+        margin: 5%;
+        padding: 10px 0;
+        height: 250px;
+      }
+    }
+  }
+}

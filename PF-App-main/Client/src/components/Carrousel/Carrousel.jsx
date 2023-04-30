@@ -3,6 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import productsCarrousel from "./carrouselProducts.json";
 
+const INTERVAL_TIME = 5000;
+
+let carrouselInterval = null;
+
+const clearCarrouselInterval = () => {
+  clearInterval(carrouselInterval);
+};
+
 const Carrousel = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const navigate = useNavigate();
@@ -13,9 +21,7 @@ const Carrousel = () => {
   };
 
   const handlePrev = () => {
-    const prevIndex =
-      (currentProductIndex - 1 + productsCarrousel.length) %
-      productsCarrousel.length;
+    const prevIndex = (currentProductIndex - 1 + productsCarrousel.length) % productsCarrousel.length;
     setCurrentProductIndex(prevIndex);
   };
 
@@ -24,14 +30,21 @@ const Carrousel = () => {
     setCurrentProductIndex(nextIndex);
   };
 
+  useEffect(() => {
+    carrouselInterval = setInterval(() => {
+      handleNext();
+    }, INTERVAL_TIME);
+
+    return () => {
+      clearCarrouselInterval();
+    };
+  }, [currentProductIndex]);
+
   const currentProduct = productsCarrousel[currentProductIndex];
 
   return (
     <div className="carrousel">
-      <img
-        src={currentProduct.image}
-        alt={currentProduct.name}
-      />
+      <img src={currentProduct.image} alt={currentProduct.name} />
       <section>
         <h3>{currentProduct.name}</h3>
         <button className="button" onClick={handleDetail}>

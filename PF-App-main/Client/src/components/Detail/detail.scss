@@ -2,14 +2,19 @@
   display: flex;
   justify-content: center;
   margin-top: 5%;
+  min-height: 76vh;
 }
 .detail-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
-  margin: 20px 50px;
+  margin: auto;
+  margin: 20px auto 50px auto;
+  width: 65%;
+  min-height: 76vh;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
+  background-color: var(--white-color);
   .detail-image {
     button {
       font-size: 13px;
@@ -36,6 +41,13 @@
     h3 {
       font-size: 22px;
     }
+    .reviews-stars {
+      label {
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
     h2 {
       margin-top: 10px;
     }
@@ -46,18 +58,34 @@
     margin: 20px 40px;
     flex-direction: column;
     gap: 10px;
-    .p-shipping {
-      img {
-        height: 22px;
-        padding-right: 6px;
-        padding-bottom: 5px;
-      }
+
+    div {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      color: var(--success-color);
-      font-size: 12px;
-      font-weight: 600;
+
+      .p-shipping {
+        display: flex;
+        align-items: center;
+        color: var(--success-color);
+        font-size: 12px;
+        font-weight: 600;
+        margin: 10px 0;
+
+        img {
+          height: 22px;
+          padding-right: 6px;
+          padding-bottom: 5px;
+        }
+      }
+
+      .favorite {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+
     button {
       cursor: pointer;
       width: 100%;
@@ -76,23 +104,58 @@
     }
 
     .button-cart {
-      background-color: var(--bg-color);
-      color: var(--steel-blue-medium-matte);
+      background-color: var(--steel-blue-medium-matte);
+      color: var(--light-color);
+      color: #fcfcfc;
       &:hover {
-        background-color: var(--light-sky-blue-matte);
+        background-color: var(--steel-blue-matte);
       }
     }
-    .p-return {
-      color: var(--steel-blue-medium-matte);
-      font-size: 12px;
+
+    .share {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      h4 {
+        font-size: 17px;
+      }
+
+      .share-icons {
+        display: flex;
+        margin: 15px 0;
+        gap: 30px;
+      }
+
+      .share-icons > * {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .share-tooltip {
+          font-size: 12px;
+        }
+      }
+    }
+    .return-protected {
+      display: flex;
+      justify-content: flex-start;
+      margin: 2px;
+      gap: 10px;
+      p {
+        font-size: 14px;
+        margin: 0;
+        color: var(--steel-blue-medium-matte);
+      }
     }
   }
 
   .detail-description {
     display: flex;
+    flex-direction: column;
+    row-gap: 25px;
     padding: 20px;
     grid-column: span 2;
-    flex-direction: column;
+
     h2 {
       margin-bottom: 10px;
       font-size: 24px;
@@ -104,7 +167,7 @@
       margin-top: 15px;
     }
     p {
-      color: var(--storm-gray-medium-matte);
+      color: var(--dark-color);
     }
   }
 
@@ -168,7 +231,21 @@
     button {
       cursor: pointer;
       border: none;
-      color: var(--storm-gray-matte);
+      color: var(--steel-blue-matte);
+      background-color: transparent;
+      &:hover {
+        color: var(--steel-blue-medium-matte);
+      }
+      &:active {
+        color: var(--steel-blue-matte);
+      }
     }
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .detail-container {
+    width: 90%;
+    padding: 10px;
   }
 }

@@ -2,23 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  height: 54vw;
   .authForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 400px;
-    padding: 5px 10px;
     border: 2px solid var(--steel-blue-matte);
     border-radius: 10px;
     background-color: var(--light-color);
+    margin-bottom: 90px;
   }
-
   .authFormLogin {
     margin-top: 4%;
   }
-
   .authForm h1 {
     font-size: 30px;
     padding: 10px;
@@ -40,14 +37,13 @@
     font-weight: 700;
     color: #fcfcfc;
     background-image: linear-gradient(to right, #3b719d, #37a0ab);
-    padding: 5px 50px;
+    padding: 5px 25px;
     margin-bottom: 15px;
     border: 1px solid var(--steel-blue-matte);
     &:hover {
       cursor: pointer;
     }
   }
-
   .authForm p {
     display: flex;
     align-items: flex-start;
@@ -58,7 +54,6 @@
     display: flex;
     align-items: center;
   }
-
   .authForm a {
     font-size: 15px;
     font-weight: 700;
@@ -105,7 +100,6 @@
     justify-content: center;
     align-items: center;
     margin: 5px 0 5px 0;
-
     button {
       display: flex;
       justify-content: space-between;
@@ -113,11 +107,10 @@
       justify-content: center;
       border: 1px solid var(--steel-blue-matte) !important;
       border-radius: 5px !important;
-      width: 200px;
+      width: 150px;
       padding: 2px 10px !important;
       transition: all 0.3s ease-in-out;
       margin-bottom: 10px;
-
       &:hover {
         cursor: pointer;
       }
@@ -137,9 +130,15 @@
         font-size: 18px;
         padding: 0 !important;
       }
-      .loading {
+      .loadingGoogle{
         margin-left: 20px;
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .authDiv {
+    min-height: 58vw;
   }
 }

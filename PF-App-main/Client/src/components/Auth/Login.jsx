@@ -1,5 +1,5 @@
 import "./auth.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,7 @@ import Log from "./Auth0/Log";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { token } = JSON.parse(localStorage.getItem("userData")) ?? {};
 
   const [dataLogin, setDataLogin] = useState({
     email: "",
@@ -55,19 +56,18 @@ const Login = () => {
     setErrors(errors);
   };
 
+  if (token) {
+    useEffect(() => {
+      navigate("/home");
+    }, []);
+  }
   return (
     <>
       <ToastContainer />
       <div className="authDiv">
         <form className="authForm authFormLogin" onSubmit={handleSubmit}>
           <h1>Iniciar sesion</h1>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={dataLogin.email}
-          />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
           {dataLogin.email !== "" && errors.email ? (
             <p className="error">{errors.email}</p>
           ) : (
@@ -94,6 +94,9 @@ const Login = () => {
           </button>
           <p>
             ¿No tienes cuenta? <Link to="/register">Registrate</Link>
+          </p>
+          <p>
+            <Link to="/password/reset">¿Olvidaste tu contraseña? </Link>
           </p>
           <p className="pAuth"> O ingresa con: </p>
           <Log />
