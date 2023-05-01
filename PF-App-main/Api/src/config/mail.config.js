@@ -5,8 +5,11 @@ dotenv.config();
 
 const EMAIL = process.env.EMAIL;
 const EMAIL_PSSWRD = process.env.EMAIL_PSSWRD;
-const SERVER = process.env.SERVER
-const CLIENT_HOST = process.env.CLIENT_HOST
+const SERVER = "https://electroshop-production.up.railway.app/"
+const CLIENT_HOST = "https://electroshop-delta.vercel.app/"
+//const SERVER = process.env.SERVER
+//const CLIENT_HOST = process.env.CLIENT_HOST
+
 
 const mail = {
   user: EMAIL,
