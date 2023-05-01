@@ -610,9 +610,9 @@ module.exports = {
         attributes: ["name", "image", "price"],
       });
 
-      res.status(200).json(products);
+     return res.status(200).json(products);
     } catch (error) {
-      res.status(400).send("failed to get user's favorites");
+     return res.status(400).send("failed to get user's favorites");
     }
   },
   deleteUserFavorites: async function (req, res) {
@@ -633,11 +633,11 @@ module.exports = {
           },
         });
       } else {
-        res.status(400).send("product not in favorites");
+      return  res.status(400).send("product not in favorites");
       }
-      res.status(200).send("product deleted from favorites");
+     return res.status(200).send("product deleted from favorites");
     } catch (error) {
-      res.status(400).send("failed to delete product from favorites");
+    return  res.status(400).send("failed to delete product from favorites");
     }
   },
 };
