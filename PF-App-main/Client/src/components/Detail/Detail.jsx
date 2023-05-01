@@ -112,7 +112,14 @@ const Detail = () => {
                   )}
                 </div>
                 <p>
-                  Stock: <b>{productDetail.stock} unidades</b>
+                  Stock:{" "}
+                  <b>
+                    {productDetail.stock < 0
+                      ? "0 unidades"
+                      : productDetail.stock === 1
+                      ? "1 unidad"
+                      : `${productDetail.stock} unidades`}
+                  </b>
                 </p>
 
                 {token ? (
