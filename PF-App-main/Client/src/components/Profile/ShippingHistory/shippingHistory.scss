@@ -5,13 +5,19 @@
   h2 {
     font-size: 24px;
   }
+
+  .empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .shipping-cards {
     display: flex;
     flex-direction: column;
     background-color: var(--white-color);
     padding: 20px;
     margin: 20px;
-    width: 1000px;
     border-radius: 10px;
     h5 {
       font-size: 14px;
@@ -32,14 +38,12 @@
         border-radius: 5px;
       }
       p {
-        margin: 20px;
-        width: 80%;
+        margin: 20px 10px;
         font-size: 13px;
       }
     }
     .button-close {
-      padding: 5px;
-      width: 150px;
+      padding: 5px 40px;
       font-size: 15px;
       align-self: center;
       border-radius: 5px;
@@ -52,8 +56,6 @@
     }
   }
   .shipping-detail {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
     padding: 10px;
     img {
       height: 50px;
@@ -77,26 +79,61 @@
     }
     .total-price {
       font-size: 18px;
-      margin-top: 10;
+      margin: 20px 0;
     }
     .shipping-adress {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 10px 20px;
-      padding: 10px 0;
-      height: 100%;
+      margin: 20px;
+      padding: 20px;
       background-color: var(--bg-color);
-      border-radius: 0 0 10px 10px;
+      border-radius: 5px;
       .shipping-adress-text {
         display: grid;
+        margin-top: 10px;
         gap: 10px;
         grid-template-columns: 1fr 1fr;
-        justify-content: center;
-        border-radius: 10px;
-        margin: 5%;
-        padding: 10px 0;
-        height: 250px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .history {
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    .shipping-cards {
+      margin: 25px 0;
+      .products-card {
+        img {
+          height: 80px;
+          width: 80px;
+        }
+        p {
+          font-size: 0.8em;
+        }
+      }
+    }
+    .shipping-detail {
+      h4 {
+        font-size: 0.8em;
+      }
+    }
+    .shipping-detail {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      h5 {
+        font-size: 0.9em;
+      }
+      p {
+        font-size: 0.8em;
+      }
+      .shipping-adress {
+        margin: 0;
       }
     }
   }

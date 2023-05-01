@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 0;
-  margin: 20px 100px;
+  margin: 0 100px;
+  padding-bottom: 20px;
 }
 
 .paginationAndCart {
@@ -28,57 +28,45 @@
   right: 0;
   margin-right: 35px;
 }
+
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
   column-gap: 3%;
+  row-gap: 5%;
   height: 600px;
   padding: 1% 1%;
 }
 
 .noProducts {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 625px;
-  grid-column-start: span 3;
+  width: auto;
   color: var(--storm-gray-matte);
 }
 
-.open-filters {
-  position: absolute;
-  left: 60px;
-  top: 520px;
-  margin: 20px;
-  button{
-    font-size: 15px;
-    font-weight: bold;
-  }
-
-  .button-open-filters {
-    border: none;
-    background-color: transparent;
-    color: var(--dark-color);
-  }
-}
-
 @media screen and (max-width: 480px) {
-  .filtros_productos {
-    grid-template-columns: 1fr;
-    width: 100%;
-    column-gap: 0;
-    padding: 0 5px;
-  }
-  .products {
-    grid-template-columns: 1fr;
-    grid-gap: 50px;
-    margin: 20px 40px 20px 0;
-    height: auto;
-    width: 200px;
-  }
-  .open-filters {
-    left: 0;
-    top: 260px;
+  .home {
+    .filtros_productos {
+      .divPagination {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .products {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 25px;
+      margin: 10px auto;
+      height: 100%;
+    }
+
+    .divPagination {
+      padding: 25px 0;
+    }
   }
 }

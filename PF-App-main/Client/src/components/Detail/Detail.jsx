@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 // Componentes
 import AdminOptions from "./AdminOptions/AdminOptions";
@@ -99,22 +100,37 @@ const Detail = () => {
                 <h2>$ {productDetail.price.toLocaleString()}</h2>{" "}
               </div>
               <div className="detail-buy">
-                <div>
+                <div className="shipping-favorite">
                   <p className="p-shipping">
                     <img src={shipping} alt="shipping" />
                     Envío gratis a todo el país
                   </p>
                   {token && (
-                    <Favorite userId={userId} productId={productDetail.id} />
+                    <div className="p-favorite">
+                      <Favorite userId={userId} productId={productDetail.id} />
+                    </div>
                   )}
                 </div>
                 <p>
-                  Stock: <b>{productDetail.stock} unidades</b>
+                  Stock:{" "}
+                  <b>
+                    {productDetail.stock < 0
+                      ? "0 unidades"
+                      : productDetail.stock === 1
+                      ? "1 unidad"
+                      : `${productDetail.stock} unidades`}
+                  </b>
                 </p>
 
-                <button className="button-cart" onClick={handleAddToCart}>
-                  Agregar al carrito
-                </button>
+                {token ? (
+                  <button className="button-cart" onClick={handleAddToCart}>
+                    Agregar al carrito
+                  </button>
+                ) : (
+                  <button className="button-cart">
+                    <Link to="/login">Agregar al carrito</Link>
+                  </button>
+                )}
                 <div className="return-protected">
                   <BsShieldCheck />
                   <p>Compra protegida</p>
@@ -132,8 +148,14 @@ const Detail = () => {
               </div>
               <div className="detail-description">
                 <h2>Características del producto</h2>
-                <h3>Categoría: {productDetail.category}</h3>
-                <h3>Marca: {productDetail.brand}</h3>
+                <div className="detail-description__div">
+                  <h3>Categoría: </h3>
+                  <p>{productDetail.category}</p>
+                </div>
+                <div className="detail-description__div">
+                  <h3>Marca: </h3>
+                  <p>{productDetail.brand}</p>
+                </div>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
                 <RelatedProducts

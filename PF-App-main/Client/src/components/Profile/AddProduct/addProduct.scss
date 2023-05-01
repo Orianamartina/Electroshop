@@ -30,6 +30,7 @@
         border: 1px solid var(--silver-matte);
         font-size: 15px;
         color: var(--dark-color);
+        background-color: var(--white-color);
       }
 
       textarea {
@@ -65,6 +66,15 @@
     }
     .form-group-description {
       grid-column-start: span 2;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .add-product {
+    form {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

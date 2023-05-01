@@ -3,8 +3,8 @@
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease;
-  min-height: 80vh;
   padding-top: 30px;
+  min-height: 79.5vh;
 }
 .sidebar {
   position: fixed;
@@ -49,12 +49,12 @@
 }
 
 .button-open-sidebar {
-  position: fixed;
-  border: none;
-  top: 100px;
-  left: 10px;
-  color: var(--steel-blue-medium-matte);
-  background-color: transparent;
+    position: fixed;
+    border: none;
+    top: 80px;
+    left: 10px;
+    color: var(--steel-blue-medium-matte);
+    background-color: transparent;
 }
 
 .close-side-bar {
@@ -72,8 +72,21 @@
   filter: brightness(0.5);
 }
 
-@media screen and (min-width: 720px) {
-  .profile {
-    min-height: 84vh;
+@media screen and (max-width: 480px) {
+  .button-open-sidebar{
+    position: relative;
+    align-self: flex-start;
+    top: 20px;
+    left: 10px;
+  }
+  .sidebar {
+    width: 500px;
+    left: -500px;
+    .sidebar-content:hover{
+      border-right: none;
+    }
+  }
+  .sidebar.closed {
+    left: -500px;
   }
 }

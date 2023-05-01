@@ -43,75 +43,78 @@ const ShippingHistory = ({ id }) => {
 
   return (
     <div className="history">
-      <h2>Compras</h2>
-      <ul>
-        {shippingHistory.map((item, index) => (
-          <li key={item.id} className="shipping-cards">
-            <h5>{formatDate(item.date)}</h5>
-            <hr />
-            {selectedItem === index ? (
-              <div className="shipping-detail">
-                <div>
-                  {item.products.map((product) => (
-                    <div key={product.id}>
-                      <div className="shipping-name">
-                        <img src={product.image} alt="Producto" />
-                        <h4>{product.name}</h4>
+      {shippingHistory.length === 0 ? (
+        <div className="empty">
+          <h2>Aún no has realizado ninguna compra</h2>
+          <Link to="/home">Ir a la tienda</Link>
+        </div>
+      ) : (
+        <>
+          <h2>Compras</h2>
+          <ul>
+            {shippingHistory.map((item, index) => (
+              <li key={item.id} className="shipping-cards">
+                <h5>{formatDate(item.date)}</h5>
+                <hr />
+                {selectedItem === index ? (
+                  <div className="shipping-detail">
+                    <div>
+                      {item.products.map((product) => (
+                        <div key={product.id}>
+                          <div className="shipping-name">
+                            <img src={product.image} alt="Producto" />
+                            <h4>{product.name}</h4>
+                          </div>
+                          <hr />
+                          <div className="shipping-price">
+                            <p>Precio unitario: $ {product.price.toLocaleString()}</p>
+                            <p>Cantidad: {product.quantitySold}</p>
+                            <hr />
+                          </div>
+                        </div>
+                      ))}
+                      <h3 className="total-price">Total de la compra: $ {item.totalPrice.toLocaleString()}</h3>
+                    </div>
+                    <div className="shipping-adress">
+                      <div>
+                        <h5>Detalles del envío</h5>
                       </div>
-                      <hr />
-                      <div className="shipping-price">
+                      <div className="shipping-adress-text">
                         <p>
-                          Precio unitario: $ {product.price.toLocaleString()}
+                          Dirección: {item.shippingAddress.street} {item.shippingAddress.number}
                         </p>
-                        <p>Cantidad: {product.quantitySold}</p>
+                        <p>Departamento: {item.shippingAddress.floor}</p>
                         <hr />
+                        <hr />
+                        <p>Ciudad: {item.shippingAddress.city}</p>
+                        <p> Código postal : {item.shippingAddress.postCode}</p>
+                        <hr />
+                        <hr />
+                        <p>Provincia: {item.shippingAddress.state}</p>
+                        <p>País: {item.shippingAddress.country}</p>
                       </div>
                     </div>
-                  ))}
-                  <h3 className="total-price">
-                    Total de la compra: $ {item.totalPrice.toLocaleString()}
-                  </h3>
-                </div>
-                <div className="shipping-adress">
-                  <div className="shipping-adress-title">
-                    <h5>Detalles del envío</h5>
                   </div>
-                  <div className="shipping-adress-text">
-                    <p>
-                      Dirección: {item.shippingAddress.street}{" "}
-                      {item.shippingAddress.number}
-                    </p>
-                    <p>Departamento: {item.shippingAddress.floor}</p>
-                    <hr /><hr />
-                    <p>Ciudad: {item.shippingAddress.city}</p>
-                    <p> Código postal : {item.shippingAddress.postCode}</p>
-                    <hr /><hr />
-                    <p>Provincia: {item.shippingAddress.state}</p>
-                    <p>País: {item.shippingAddress.country}</p>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              item.products.map((product) => (
-                <div key={product.id}>
-                  <Link to={`/detail/${product.id}`}>
-                    <div className="products-card">
-                      <img src={product.image} alt="Producto" />
-                      <p>{product.name}</p>
+                ) : (
+                  item.products.map((product) => (
+                    <div key={product.id}>
+                      <Link to={`/detail/${product.id}`}>
+                        <div className="products-card">
+                          <img src={product.image} alt="Producto" />
+                          <p>{product.name}</p>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                </div>
-              ))
-            )}
-            <button
-              className="button-close"
-              onClick={() => handleItemClick(index)}
-            >
-              {selectedItem === index ? "Cerrar" : "Detalles"}
-            </button>
-          </li>
-        ))}
-      </ul>
+                  ))
+                )}
+                <button className="button-close" onClick={() => handleItemClick(index)}>
+                  {selectedItem === index ? "Cerrar" : "Detalles"}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };

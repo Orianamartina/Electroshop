@@ -12,13 +12,17 @@ const RelatedProducts = ({ category, productId }) => {
     dispatch(getAllProducts());
   }, []);
 
-  const filteredProducts = allProducts.filter((product) => product.category === category && product.id !== productId);
+  const filteredProducts = allProducts.filter(
+    (product) => product.category === category && product.id !== productId
+  );
 
-  const randomProducts = filteredProducts.sort(() => 0.5 - Math.random()).slice(0, 3);
+  const randomProducts = filteredProducts
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
 
   return (
     <div className="relatedProducts" id="products">
-      <h2>Comprá productos similares</h2>
+      <h2>Productos similares</h2>
       <div>
         {randomProducts.map((product, index) => (
           <Product product={product} key={index} />

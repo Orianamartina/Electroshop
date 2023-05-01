@@ -5,28 +5,28 @@
   h2 {
     font-size: 24px;
   }
-  .billing-filters{
+  .billing-filters {
     display: flex;
     margin-top: 20px;
     gap: 20px;
-    input{
+    input {
       border: none;
       padding-left: 10px;
       border-radius: 5px;
       font-size: 15px;
-      &:focus{
+      &:focus {
         outline: 1px solid var(--light-gray-matte);
       }
     }
-    button{
+    button {
       border: none;
       background-color: transparent;
       color: var(--steel-blue-matte);
       font-size: 14px;
-      &:hover{
+      &:hover {
         color: var(--steel-blue-medium-matte);
       }
-      &:active{
+      &:active {
         color: var(--steel-blue-matte);
       }
     }
@@ -78,9 +78,17 @@
           padding: 5px;
           border-radius: 5px;
           background-color: var(--steel-blue-medium-matte);
-          color: var(--light-color);
+          color: #fcfcfc;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .billing {
+    .billing-cards {
+      width: 100%;
     }
   }
 }

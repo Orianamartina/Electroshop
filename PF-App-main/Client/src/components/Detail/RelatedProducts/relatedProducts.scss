@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
   border-top: 1px solid var(--light-gray-matte);
-  border-bottom: 1px solid var(--light-gray-matte);
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   padding-top: 35px;
 
   h2 {
@@ -28,8 +28,11 @@
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (max-width: 480px) {
   .relatedProducts {
-    margin-left: 200px;
+    div {
+      flex-direction: column;
+      row-gap: 25px;
+    }
   }
 }

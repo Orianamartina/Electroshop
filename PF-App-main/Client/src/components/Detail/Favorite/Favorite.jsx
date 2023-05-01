@@ -24,7 +24,8 @@ const Favorite = ({ userId, productId }) => {
       try {
         const response = await axios.get(`user/fav/${userId}`);
         const isProductFavorite = response.data.some(
-          (product) => product.Favorites && product.Favorites.ProductId === productId
+          (product) =>
+            product.Favorites && product.Favorites.ProductId === productId
         );
         setIsFavorite(isProductFavorite);
       } catch (error) {
@@ -37,9 +38,25 @@ const Favorite = ({ userId, productId }) => {
   return (
     <div>
       {isFavorite ? (
-        <MdFavorite size={30} color="#4a90e2" className="favorite" onClick={handleFavoriteClick} />
+        <div>
+          <MdFavorite
+            size={30}
+            color="#4a90e2"
+            className="favorite"
+            onClick={handleFavoriteClick}
+          />
+          <p>Quitar de favoritos</p>
+        </div>
       ) : (
-        <MdOutlineFavoriteBorder size={30} color="#4a90e2" className="favorite" onClick={handleFavoriteClick} />
+        <div>
+        <MdOutlineFavoriteBorder
+          size={30}
+          color="#4a90e2"
+          className="favorite"
+          onClick={handleFavoriteClick}
+        />
+        <p>Agregar a favoritos</p>
+        </div>
       )}
     </div>
   );
