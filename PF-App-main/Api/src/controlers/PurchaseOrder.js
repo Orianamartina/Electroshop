@@ -14,12 +14,17 @@ module.exports = {
 
       const cart = await user.getShoppingCart();
       const cartProducts = await cart.getProducts();
-      let productsData = cartProducts.map((product) => {
+      let productsData = await cartProducts.map((product) => {
         product.Order_Products = {
           quantity: product.ShoppingCart_Products.quantity,
         };
         product.quantitySold = product.quantitySold + product.ShoppingCart_Products.quantity
-         product.save()
+        if (product.stock > 0){
+          product.stock = product.stock - 1
+         
+        }
+        
+        product.save()
         return product;
       });
       
