@@ -120,7 +120,7 @@ module.exports = {
     } catch (error) {
       return res.json({
         success: false,
-        msg: "Error al confirmar usuario",
+        msg: error.message
       });
     }
   },
