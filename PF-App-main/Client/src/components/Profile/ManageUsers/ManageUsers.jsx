@@ -103,7 +103,9 @@ const ManageUsers = () => {
         (user.name + " " + user.lastName)
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.id.toString().includes(searchTerm)
     )
     .filter((user) => (showDisabledUsers ? user.disabled : true))
     .filter((user) => (showAdminUsers ? user.admin : true));
