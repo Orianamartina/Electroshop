@@ -39,7 +39,7 @@
       font-size: 22px;
     }
     .reviews-stars {
-      .star{
+      .star {
         margin-bottom: 5px;
       }
       label {
@@ -109,6 +109,14 @@
       &:hover {
         background-color: var(--steel-blue-matte);
       }
+
+      a {
+        color: var(--light-color);
+
+        &:hover {
+          color: var(--light-color);
+        }
+      }
     }
 
     .share {
@@ -156,17 +164,34 @@
     grid-column: span 2;
 
     h2 {
-      margin-bottom: 10px;
       font-size: 24px;
+      font-weight: bold;
     }
-    h3 {
-      font-size: 20px;
+
+    .detail-description__div {
+      display: grid;
+      grid-template-columns: 1fr 6fr;
+
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+      }
     }
     h4 {
-      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
     }
+
     p {
       color: var(--dark-color);
+      font-size: 14px;
+      line-height: 1.5;
     }
   }
 
