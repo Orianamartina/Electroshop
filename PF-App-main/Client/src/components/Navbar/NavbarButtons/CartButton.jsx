@@ -16,7 +16,7 @@ const CartButton = ({ darkMode, userId }) => {
     <Link to="/cart" className="perfil">
       <div className="cart">
         {totalQuantity}
-        <AiOutlineShoppingCart size={25} className="me-2 mb-1" />
+        <AiOutlineShoppingCart size={25} className="me-1 mb-1" />
         Carrito
       </div>
     </Link>

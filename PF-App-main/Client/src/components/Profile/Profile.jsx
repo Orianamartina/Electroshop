@@ -37,6 +37,13 @@ const Profile = () => {
   return (
     <>
       <ToastContainer />
+      <button
+        className="button-open-sidebar"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        onMouseEnter={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <RxHamburgerMenu size={30} />
+      </button>
       <div className={`profile ${sidebarOpen ? "sidebar-open" : ""}`}>
         {" "}
         {currentComponent === "userData" && <UserData />}
@@ -48,13 +55,6 @@ const Profile = () => {
         {currentComponent === "favorites" && <Favorites />}
         {currentComponent === "billing" && <Billing />}
       </div>
-      <button
-        className="button-open-sidebar"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        onMouseEnter={() => setSidebarOpen(!sidebarOpen)}
-      >
-        <RxHamburgerMenu size={30} />
-      </button>
 
       <div
         className={`sidebar ${sidebarOpen ? "open" : "closed"}`}

@@ -28,8 +28,11 @@
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (max-width: 480px) {
   .relatedProducts {
-    margin-left: 200px;
+    div {
+      flex-direction: column;
+      row-gap: 25px;
+    }
   }
 }

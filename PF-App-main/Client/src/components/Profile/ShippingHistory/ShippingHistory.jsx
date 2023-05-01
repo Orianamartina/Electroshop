@@ -73,7 +73,7 @@ const ShippingHistory = ({ id }) => {
                   </h3>
                 </div>
                 <div className="shipping-adress">
-                  <div className="shipping-adress-title">
+                  <div>
                     <h5>Detalles del envío</h5>
                   </div>
                   <div className="shipping-adress-text">

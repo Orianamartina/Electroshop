@@ -42,7 +42,7 @@ const CustomNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 navbar__links">
             <li className="nav-item">
-              <Link to="/" className="nav-link links">
+              <Link to="/" className="nav-link links home-link">
                 <AiOutlineHome size={25} className="me-2 mb-2" />
                 Inicio
               </Link>
@@ -61,11 +61,8 @@ const CustomNavbar = () => {
             <div className="navbar-nav">
               {token ? (
                 <div className="token_true">
-                  <ProfileButton
-                    darkMode={darkMode}
-                    setDarkMode={setDarkMode}
-                  />
-                  <CartButton darkMode={darkMode} userId={userId} />
+                  <ProfileButton />
+                  <CartButton userId={userId} />
                   <LogoutButton />
                 </div>
               ) : (
