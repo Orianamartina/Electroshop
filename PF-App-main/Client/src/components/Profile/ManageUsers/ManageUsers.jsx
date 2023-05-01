@@ -100,17 +100,16 @@ const ManageUsers = () => {
   const filteredUsers = users
     .filter(
       (user) =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (user.name + " " + user.lastName)
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .filter((user) => (showDisabledUsers ? user.disabled : true))
     .filter((user) => (showAdminUsers ? user.admin : true));
 
   //Ordenar los filtros
-  const sortedUsers = filteredUsers.sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
+  const sortedUsers = filteredUsers.sort((a, b) => a.id - b.id);
   //Peticiones a la API
   const showAllUsers = async () => {
     try {
