@@ -38,11 +38,6 @@ export default function ForgotPass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Validar los datos antes de hacer la petición
-    if (!isValid) {
-      return;
-    }
-
     await axios.post("password/reset", payload);
     toast.info("Revisa tu email para confirmar el cambio");
 

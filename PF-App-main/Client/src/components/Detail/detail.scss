@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
-  margin: 70px auto;
+  margin: 70px 70px;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
   background-color: var(--white-color);
@@ -180,7 +180,6 @@
         font-size: 18px;
         font-weight: bold;
         margin: 0;
-
       }
 
       p {
@@ -275,6 +274,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .loading {
+    min-height: 100vh;
+  }
   .detail-container {
     display: flex;
     flex-direction: column;
@@ -353,7 +355,7 @@
       h4 {
         margin: 0;
       }
-      p{
+      p {
         border: 1px solid transparent;
       }
 
@@ -369,6 +371,9 @@
       h2 {
         font-size: 20px;
       }
+    }
+    .product404 {
+      min-height: 81vh;
     }
   }
 }

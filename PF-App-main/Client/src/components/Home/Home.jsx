@@ -7,7 +7,6 @@ import Carrousel from "../Carrousel/Carrousel";
 import Filters from "../Filters/Filters";
 import Product from "../Product/Product";
 import Pagination from "../Pagination/Pagination";
-import { BsFilterLeft } from "react-icons/bs";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,8 +23,6 @@ const Home = () => {
     numOfLastProduct
   );
 
-  const [filterOpen, setFilterOpen] = useState(false);
-
   const handlePagination = (page) => {
     setCurrentPage(page);
   };
@@ -39,20 +36,7 @@ const Home = () => {
       <Carrousel />
 
       <div className="filtros_productos">
-        <Filters
-          setCurrentPage={setCurrentPage}
-          filterOpen={filterOpen}
-          setFilterOpen={setFilterOpen}
-        />
-        <div className="open-filters">
-          <button
-            className="button-open-filters"
-            onClick={() => setFilterOpen(!filterOpen)}
-            onMouseEnter={() => setFilterOpen(true)}
-          >
-            <BsFilterLeft size={25} /> Filtrar
-          </button>
-        </div>
+        <Filters setCurrentPage={setCurrentPage} />
         <div className="divPagination">
           <div className="paginationAndCart">
             <Pagination

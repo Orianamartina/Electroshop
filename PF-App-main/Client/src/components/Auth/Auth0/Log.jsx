@@ -5,7 +5,7 @@ import GoogleLogin from "react-google-login";
 import { loginUser } from "../../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { DotLoader } from "react-spinners";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 function log() {
@@ -73,7 +73,6 @@ function log() {
 
   return (
     <div className="loginAuth0">
-      <ToastContainer />
       <GoogleLogin
         clientId={clientID}
         onSuccess={onSuccess}
