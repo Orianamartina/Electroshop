@@ -2,13 +2,13 @@
   display: flex;
   justify-content: center;
   margin-top: 5%;
+  min-height: 70vh;
 }
 .detail-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
   margin: 70px auto;
-  min-height: 76vh;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
   background-color: var(--white-color);
@@ -39,6 +39,9 @@
       font-size: 22px;
     }
     .reviews-stars {
+      .star{
+        margin-bottom: 4px;
+      }
       label {
         &:hover {
           cursor: default;
@@ -52,11 +55,9 @@
 
   .detail-buy {
     display: flex;
-    margin: 20px 40px;
     flex-direction: column;
-    width: 50%;
+    margin: 20px 40px;
     gap: 10px;
-
     div {
       display: flex;
       justify-content: space-between;
@@ -223,6 +224,7 @@
     flex-direction: column;
     align-items: center;
     grid-column: span 3;
+    min-height: 53vh;
     h1 {
       font-size: 20px;
     }
@@ -241,9 +243,76 @@
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (max-width: 480px) {
   .detail-container {
-    width: 90%;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+
+    .detail-image {
+      button {
+        display: none;
+      }
+      img {
+        height: 300px;
+        width: 250px;
+      }
+    }
+    .detail-info {
+      width: 350px;
+      h3 {
+        font-size: 15px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+    }
+    .detail-buy {
+      width: 350px;
+      margin: 0;
+
+      p {
+        font-size: 14px;
+      }
+      button {
+        font-size: 14px;
+      }
+      .return-protected {
+        p {
+          font-size: 12px;
+        }
+      }
+      div {
+        .favorite {
+          position: absolute;
+          top: 80px;
+          right: 35px;
+        }
+      }
+    }
+    .detail-description {
+      width: 375px;
+      p {
+        font-size: 14px;
+      }
+      .reviews {
+        h4 {
+          font-size: 18px;
+        }
+        .reviews-comment {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    }
+    .adminOptions {
+      width: 350px;
+      h2 {
+        font-size: 20px;
+      }
+    }
   }
 }

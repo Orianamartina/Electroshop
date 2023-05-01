@@ -73,7 +73,11 @@
 
   @media screen and (max-width: 480px) {
     .navbar__links {
-      gap: 5px;
+      width: 100%;
+      gap: 25px;
+      .home-link {
+        margin-right: 32px;
+      }
     }
     .dark-mode {
       margin: 0;
@@ -81,6 +85,9 @@
     }
     .token_true {
       flex-direction: column;
+      .cart {
+        margin-right: 28px;
+      }
     }
   }
 }

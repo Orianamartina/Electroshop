@@ -1,7 +1,7 @@
 .filters.open {
   position: absolute;
   left: 25px;
-  top: 610px;
+  top: 575px;
 }
 .filters.closed {
   display: none;
@@ -84,7 +84,7 @@
 @media screen and (max-width: 480px) {
   .filters.open {
     left: 25px;
-    top: 360px;
+    top: 320px;
     height: 330px;
   }
 }

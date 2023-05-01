@@ -10,6 +10,9 @@
     margin: 10px 0;
     padding-bottom: 25px;
 
+    .star{
+      margin-bottom: 4px;
+    }
     .reviews-comment {
       display: flex;
       align-items: center;
@@ -72,7 +75,9 @@
       .reviews-stars {
         padding: 2px;
         margin-left: 3%;
-
+        .star {
+          margin-bottom: 4px;
+        }
         label {
           &:hover {
             cursor: default;

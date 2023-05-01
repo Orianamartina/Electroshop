@@ -84,7 +84,7 @@
   .hidden-buttons {
     display: flex;
     justify-content: center;
-    gap: 150px;
+    gap: 200%;
   }
   button {
     margin-top: 15px;
@@ -98,5 +98,42 @@
     &:active {
       color: var(--steel-blue-matte);
     }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .data {
+    .data-img-text {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .data-img {
+        img {
+          height: 50px;
+          width: 50px;
+        }
+      }
+      .data-text {
+        h2 {
+          font-size: 18px;
+        }
+      }
+    }
+    .cards {
+      flex-direction: column;
+      gap: 10px;
+      .cards-textField {
+        h4 {
+          font-size: 16px;
+        }
+      }
+      .cards-inputField {
+        width: 300px;
+      }
+    }
+  }
+  .hidden-buttons {
+    flex-direction: column;
+    gap: 0;
   }
 }
