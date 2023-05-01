@@ -2,16 +2,13 @@
   display: flex;
   justify-content: center;
   margin-top: 5%;
-  min-height: 76vh;
+  min-height: 70vh;
 }
 .detail-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 10px;
-  margin: auto;
-  margin: 20px auto 50px auto;
-  width: 65%;
-  min-height: 76vh;
+  margin: 70px auto;
   border: 1px solid var(--light-gray-matte);
   border-radius: 5px;
   background-color: var(--white-color);
@@ -42,6 +39,9 @@
       font-size: 22px;
     }
     .reviews-stars {
+      .star {
+        margin-bottom: 5px;
+      }
       label {
         &:hover {
           cursor: default;
@@ -55,10 +55,9 @@
 
   .detail-buy {
     display: flex;
-    margin: 20px 40px;
     flex-direction: column;
+    margin: 20px 40px;
     gap: 10px;
-
     div {
       display: flex;
       justify-content: space-between;
@@ -110,6 +109,14 @@
       &:hover {
         background-color: var(--steel-blue-matte);
       }
+
+      a {
+        color: var(--light-color);
+
+        &:hover {
+          color: var(--light-color);
+        }
+      }
     }
 
     .share {
@@ -157,17 +164,34 @@
     grid-column: span 2;
 
     h2 {
-      margin-bottom: 10px;
       font-size: 24px;
+      font-weight: bold;
     }
-    h3 {
-      font-size: 20px;
+
+    .detail-description__div {
+      display: grid;
+      grid-template-columns: 1fr 6fr;
+
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p {
+        margin: 0;
+      }
     }
     h4 {
-      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
     }
+
     p {
       color: var(--dark-color);
+      font-size: 14px;
+      line-height: 1.5;
     }
   }
 
@@ -225,6 +249,7 @@
     flex-direction: column;
     align-items: center;
     grid-column: span 3;
+    min-height: 53vh;
     h1 {
       font-size: 20px;
     }
@@ -243,9 +268,76 @@
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (max-width: 480px) {
   .detail-container {
-    width: 90%;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+
+    .detail-image {
+      button {
+        display: none;
+      }
+      img {
+        height: 300px;
+        width: 250px;
+      }
+    }
+    .detail-info {
+      width: 350px;
+      h3 {
+        font-size: 15px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+    }
+    .detail-buy {
+      width: 350px;
+      margin: 0;
+
+      p {
+        font-size: 14px;
+      }
+      button {
+        font-size: 14px;
+      }
+      .return-protected {
+        p {
+          font-size: 12px;
+        }
+      }
+      div {
+        .favorite {
+          position: absolute;
+          top: 80px;
+          right: 35px;
+        }
+      }
+    }
+    .detail-description {
+      width: 375px;
+      p {
+        font-size: 14px;
+      }
+      .reviews {
+        h4 {
+          font-size: 18px;
+        }
+        .reviews-comment {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    }
+    .adminOptions {
+      width: 350px;
+      h2 {
+        font-size: 20px;
+      }
+    }
   }
 }

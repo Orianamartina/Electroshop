@@ -20,9 +20,20 @@
   --modal-yellow-button: #dbb657;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
+  height: 100vh;
   background-color: var(--bg-color);
   color: var(--dark-color);
   font-family: Roboto, Arial, sans-serif;
@@ -50,7 +61,7 @@ button {
 
 a {
   text-decoration: none;
- color: var(----dark-color);
+  color: var(----dark-color);
 }
 
 /* ------------------------------ MODAL ------------------------------ */

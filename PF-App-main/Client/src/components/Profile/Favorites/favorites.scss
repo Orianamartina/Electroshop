@@ -14,7 +14,7 @@
     grid-template-columns: 1fr 4fr 1fr;
     align-items: center;
     width: 100%;
-    margin: 10px 0;
+    margin: 20px 0;
     color: var(--steel-blue-matte);
     background-color: var(--white-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -44,5 +44,24 @@
 
   a {
     color: var(--steel-blue-matte);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .favorites,
+  .empty {
+    width: 100%;
+    div {
+      padding: 0 20px;
+    }
+    .favorite {
+      img {
+        height: 100px;
+        margin: 10px 0;
+      }
+      a{
+        font-size: 12px;
+      }
+    }
   }
 }
