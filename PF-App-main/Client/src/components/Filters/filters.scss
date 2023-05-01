@@ -2,6 +2,8 @@
   position: absolute;
   left: 25px;
   top: 575px;
+  height: auto;
+  width: 600px;
 }
 .filters.closed {
   display: none;
@@ -83,8 +85,10 @@
 
 @media screen and (max-width: 480px) {
   .filters.open {
+    gap: 40px;
     left: 25px;
     top: 320px;
-    height: 330px;
+    height: auto;
+    width: 365px;
   }
 }
