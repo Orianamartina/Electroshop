@@ -81,23 +81,25 @@
       .button-section {
         display: flex;
         justify-content: space-around;
+        color: var(--dark-color);
+
         .delete-button {
           &:hover {
-            color: var(--bg-color);
+            color: var(--dark-color);
             background-color: var(--modal-red-button);
           }
         }
         button {
           margin-top: 10px;
-          padding: 2px 5px;
+          padding: 5px 15px;
           font-size: 15px;
+          border-radius: 3px;
           background-color: var(--light-color);
           color: var(--dark-color);
           border: none;
           transition: all 0.3s ease;
           &:hover {
             background-color: var(--modal-red-button);
-            color: var(--bg-color);
           }
         }
         button:nth-child(2):hover {
@@ -115,10 +117,13 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 5px;
+  margin: 20px;
   button {
     width: 100px;
     border: none;
+    padding: 5px 15px;
+    font-size: 15px;
+    border-radius: 3px;
   }
   .delete-button {
     background-color: var(--ligth-color);
