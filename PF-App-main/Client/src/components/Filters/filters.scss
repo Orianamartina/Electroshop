@@ -1,94 +1,72 @@
-.filters.open {
-  position: absolute;
-  left: 25px;
-  top: 575px;
-  height: auto;
-  width: 600px;
-}
-.filters.closed {
-  display: none;
+.button-open-filters {
+  margin: 20px;
+  border: none;
+  border-radius: 5px;
+  color: var(--dark-color);
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  &:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  svg {
+    margin-right: 10px;
+  }
 }
 
-.filters {
-  position: relative;
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+}
+// Estilo para el input y los selectores
+.modal-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
-  padding: 25px 0px;
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
-  height: 500px;
-  background-color: var(--dark-color);
-  border-radius: 5px;
-  width: 250px;
-  h4 {
-    margin-top: 10px;
-    font-size: 14px;
-    color: var(--light-color);
-  }
-
-  .cleanFilters {
-    padding: 5px 10px;
-    font-size: 14px;
-    margin-top: auto;
-    border: none;
-    color: var(--light-color);
-    background-color: transparent;
-  }
-
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 85%;
-    select,
-    section,
-    input {
-      margin: 10px 0;
-      font-size: 13px;
-      padding: 2px;
-      width: 100%;
-      border-radius: 3px;
-      border: none;
-      background-color: transparent;
-      color: var(--light-color);
+  gap: 1rem;
+  input {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--storm-gray-matte);
+    padding: 0 10px;
+    font-size: 1rem;
+    &:focus {
+      outline: none;
+      border: 1px solid var(--steel-blue-matte);
     }
+  }
+  select {
+    width: 300px;
+    height: 30px;
+  }
+}
 
-    input::placeholder {
-      color: var(--light-color);
-    }
-
-    select {
-      transition: all 0.3s ease;
-      &:focus {
-        outline: none;
+// Estilo para los botones
+.modal-footer {
+  display: flex;
+  justify-content: center; // Centrar los botones
+  button {
+    &:first-child {
+      color: white;
+      background-color: var(--steel-blue-medium-matte);
+      &:hover {
+        color: white;
+        background-color: var(--steel-blue-matte);
       }
     }
-  }
-}
-
-.searchBar-input {
-  background-color: var(--bg-color);
-  color: var(--dark-color);
-}
-
-.filters::before {
-  content: "";
-  position: absolute;
-  top: -7px;
-  left: 45px;
-  rotate: 45deg;
-  border-width: 15px 15px 0 0;
-  border-style: solid;
-  border-color: var(--dark-color) transparent transparent transparent;
-}
-
-@media screen and (max-width: 480px) {
-  .filters.open {
-    gap: 40px;
-    left: 25px;
-    top: 320px;
-    height: auto;
-    width: 365px;
+    &:last-child {
+      background-color: var(--storm-gray-light-matte);
+      color: white;
+      &:hover {
+        color: white;
+        background-color: var(--storm-gray-matte);
+      }
+    }
+    width: 300px;
   }
 }

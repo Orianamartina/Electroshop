@@ -1,4 +1,3 @@
-import "./filters.scss";
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allFilters } from "../../redux/actions/actions";
@@ -6,8 +5,11 @@ import SearchBar from "./SearchBar/SearchBar";
 import Order from "./Order/Order";
 import FilterBrand from "./FilterBrand/FilterBrand";
 import FilterCategories from "./FilterCategories/FilterCategories";
+import { Modal, Button } from "react-bootstrap";
+import { BsFilterLeft } from "react-icons/bs";
+import "./filters.scss";
 
-const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
+const Filters = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products);
@@ -25,6 +27,11 @@ const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
 
   const memorizedFilterState = useMemo(() => filterState, [filterState]);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleCleanFilters = () => {
     setFilterState({
       search: "",
@@ -40,40 +47,53 @@ const Filters = ({ setCurrentPage, filterOpen, setFilterOpen }) => {
   }, [memorizedFilterState, dispatch]);
 
   return (
-    <div
-      className={`filters ${filterOpen ? "open" : "closed"}`}
-      onMouseLeave={() => setFilterOpen(false)}
-    >
-      <SearchBar
-        filterState={filterState}
-        setFilterState={setFilterState}
-        setCurrentPage={setCurrentPage}
-      />
-
-      <Order
-        filterState={filterState}
-        setFilterState={setFilterState}
-        setCurrentPage={setCurrentPage}
-      />
-
-      <FilterBrand
-        filterState={filterState}
-        setFilterState={setFilterState}
-        setCurrentPage={setCurrentPage}
-        brands={brands}
-      />
-
-      <FilterCategories
-        filterState={filterState}
-        setFilterState={setFilterState}
-        setCurrentPage={setCurrentPage}
-        categories={category}
-      />
-
-      <button className="button cleanFilters" onClick={handleCleanFilters}>
-        Limpiar filtros
+    <>
+      <button className="button-open-filters" onClick={handleShow}>
+        <BsFilterLeft size={25} />
+        Filtrar
       </button>
-    </div>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Filtrar</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <SearchBar
+            filterState={filterState}
+            setFilterState={setFilterState}
+            setCurrentPage={setCurrentPage}
+          />
+
+          <Order
+            filterState={filterState}
+            setFilterState={setFilterState}
+            setCurrentPage={setCurrentPage}
+          />
+
+          <FilterBrand
+            filterState={filterState}
+            setFilterState={setFilterState}
+            setCurrentPage={setCurrentPage}
+            brands={brands}
+          />
+
+          <FilterCategories
+            filterState={filterState}
+            setFilterState={setFilterState}
+            setCurrentPage={setCurrentPage}
+            categories={category}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCleanFilters}>
+            Limpiar filtros
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

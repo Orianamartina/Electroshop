@@ -9,22 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .open-filters {
-    align-self: flex-start;
-    margin-top: 20px;
-    margin-left: 20px;
-    button {
-      font-size: 15px;
-      font-weight: bold;
-    }
-
-    .button-open-filters {
-      border: none;
-      background-color: transparent;
-      color: var(--dark-color);
-    }
-  }
 }
 
 .divPagination {
@@ -57,10 +41,10 @@
 
 .noProducts {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 625px;
-  grid-column-start: span 3;
+  width: auto;
   color: var(--storm-gray-matte);
 }
 
@@ -68,14 +52,6 @@
   .home {
     .filtros_productos {
       width: 100%;
-
-      .open-filters {
-        align-self: flex-start;
-        left: 0;
-        top: 0;
-        position: relative;
-      }
-
       .divPagination {
         margin: 0;
         padding: 0;
@@ -85,6 +61,7 @@
     .products {
       display: flex;
       flex-direction: column;
+
       grid-gap: 25px;
       margin: 10px auto;
       height: auto;
