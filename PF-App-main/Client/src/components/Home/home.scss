@@ -51,21 +51,18 @@
 @media screen and (max-width: 480px) {
   .home {
     .filtros_productos {
-      width: 100%;
       .divPagination {
+        width: 100%;
         margin: 0;
         padding: 0;
-        padding-bottom: 20px;
       }
     }
     .products {
       display: flex;
       flex-direction: column;
-
       grid-gap: 25px;
       margin: 10px auto;
-      height: auto;
-      width: 250px;
+      height: 100%;
     }
 
     .divPagination {

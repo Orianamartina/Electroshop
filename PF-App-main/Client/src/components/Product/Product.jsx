@@ -17,6 +17,7 @@ const Product = ({ product }) => {
           {product.category} - {product.brand}
         </p>
         <p className="pPrice">$ {product.price.toLocaleString()}</p>
+        <hr />
       </section>
     </a>
   );
