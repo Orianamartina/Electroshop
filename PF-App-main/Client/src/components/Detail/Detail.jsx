@@ -33,7 +33,11 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { id: userId, admin, token } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const {
+    id: userId,
+    admin,
+    token,
+  } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const productDetail = useSelector((state) => state.productDetail);
 
   const API_URL = "cart/add";
@@ -96,12 +100,16 @@ const Detail = () => {
                 <h2>$ {productDetail.price.toLocaleString()}</h2>{" "}
               </div>
               <div className="detail-buy">
-                <div>
+                <div className="shipping-favorite">
                   <p className="p-shipping">
                     <img src={shipping} alt="shipping" />
                     Envío gratis a todo el país
                   </p>
-                  {token && <Favorite userId={userId} productId={productDetail.id} />}
+                  {token && (
+                    <div className="p-favorite">
+                      <Favorite userId={userId} productId={productDetail.id} />
+                    </div>
+                  )}
                 </div>
                 <p>
                   Stock: <b>{productDetail.stock} unidades</b>
@@ -125,7 +133,11 @@ const Detail = () => {
                   <p>Devolución gratis</p>
                 </div>
 
-                <ShareProduct id={productDetail.id} name={productDetail.name} image={productDetail.image} />
+                <ShareProduct
+                  id={productDetail.id}
+                  name={productDetail.name}
+                  image={productDetail.image}
+                />
               </div>
               <div className="detail-description">
                 <h2>Características del producto</h2>
@@ -139,8 +151,15 @@ const Detail = () => {
                 </div>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>
-                <RelatedProducts category={productDetail.category} productId={productDetail.id} />
-                <Reviews productId={productDetail.id} userId={userId} token={token} />
+                <RelatedProducts
+                  category={productDetail.category}
+                  productId={productDetail.id}
+                />
+                <Reviews
+                  productId={productDetail.id}
+                  userId={userId}
+                  token={token}
+                />
               </div>
               {admin && <AdminOptions productDetail={productDetail} />}
             </>

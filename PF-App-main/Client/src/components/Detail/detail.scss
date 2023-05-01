@@ -77,6 +77,11 @@
           padding-bottom: 5px;
         }
       }
+      .p-favorite {
+        p {
+          display: none;
+        }
+      }
 
       .favorite {
         &:hover {
@@ -171,15 +176,16 @@
     .detail-description__div {
       display: grid;
       grid-template-columns: 1fr 6fr;
-
       h3 {
         font-size: 18px;
         font-weight: bold;
         margin: 0;
+
       }
 
       p {
         margin: 0;
+        border-bottom: 1px solid transparent;
       }
     }
     h4 {
@@ -287,7 +293,7 @@
       }
     }
     .detail-info {
-      width: 350px;
+      width: 95%;
       h3 {
         font-size: 15px;
       }
@@ -296,7 +302,7 @@
       }
     }
     .detail-buy {
-      width: 350px;
+      width: 95%;
       margin: 0;
 
       p {
@@ -310,31 +316,56 @@
           font-size: 12px;
         }
       }
-      div {
+      .shipping-favorite {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .p-favorite {
+          display: flex;
+          align-items: flex-start;
+          p {
+            display: flex;
+            margin: 1px 0 0 5px;
+            color: var(--steel-blue-medium-matte);
+            font-weight: bold;
+          }
+        }
         .favorite {
-          position: absolute;
-          top: 80px;
-          right: 35px;
+          width: 22px;
         }
       }
     }
-    .detail-description {
-      width: 375px;
-      p {
-        font-size: 14px;
+    .share {
+      h4 {
+        align-self: center;
       }
+      flex-direction: column;
+      align-items: flex-start;
+      .share-icons {
+        flex-direction: row;
+        width: 100%;
+      }
+    }
+    .detail-description {
+      width: 95%;
+      row-gap: 15px;
+      h2,
+      h4 {
+        margin: 0;
+      }
+      p{
+        border: 1px solid transparent;
+      }
+
       .reviews {
-        h4 {
-          font-size: 18px;
-        }
         .reviews-comment {
           flex-direction: column;
-          gap: 20px;
+          gap: 10px;
         }
       }
     }
     .adminOptions {
-      width: 350px;
+      width: 95%;
       h2 {
         font-size: 20px;
       }
