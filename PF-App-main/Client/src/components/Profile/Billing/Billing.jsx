@@ -60,15 +60,16 @@ const Billing = () => {
     if (searchTerm === "") {
       return order;
     } else if (
-      user.name
+      user &&
+      (user.name
         .toLowerCase()
         .concat(" ", user.lastName.toLowerCase())
         .includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.products.some((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) ||
-      formatDate(order.date).toLowerCase().includes(searchTerm.toLowerCase())
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.products.some((product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ) ||
+        formatDate(order.date).toLowerCase().includes(searchTerm.toLowerCase()))
     ) {
       return order;
     }
@@ -95,11 +96,15 @@ const Billing = () => {
             </div>
             <hr />
             <div className="billing-user">
-              <h4>
-                {user.name} {user.lastName}
-              </h4>
-              <p>Email: {user.email}</p>
-              <p>Teléfono: {user.cellphone}</p>
+              {user && (
+                <>
+                  <h4>
+                    {user.name} {user.lastName}
+                  </h4>
+                  <p>Email: {user.email}</p>
+                  <p>Teléfono: {user.cellphone}</p>
+                </>
+              )}
             </div>
             <hr />
             <div className="billing-detail">
