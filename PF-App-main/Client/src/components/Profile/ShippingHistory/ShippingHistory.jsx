@@ -35,7 +35,7 @@ const ShippingHistory = ({ id }) => {
 
   const formatDate = (date) => {
     const dateObj = new Date(date);
-    const day = dateObj.getDate();
+    const day = dateObj.getDate() + 1;
     const monthName = dateObj.toLocaleString("es", { month: "long" });
     const year = dateObj.getFullYear();
     return `${day} de ${monthName} de ${year}`;
@@ -67,13 +67,18 @@ const ShippingHistory = ({ id }) => {
                           </div>
                           <hr />
                           <div className="shipping-price">
-                            <p>Precio unitario: $ {product.price.toLocaleString()}</p>
+                            <p>
+                              Precio unitario: ${" "}
+                              {product.price.toLocaleString()}
+                            </p>
                             <p>Cantidad: {product.quantitySold}</p>
                             <hr />
                           </div>
                         </div>
                       ))}
-                      <h3 className="total-price">Total de la compra: $ {item.totalPrice.toLocaleString()}</h3>
+                      <h3 className="total-price">
+                        Total de la compra: $ {item.totalPrice.toLocaleString()}
+                      </h3>
                     </div>
                     <div className="shipping-adress">
                       <div>
@@ -81,7 +86,8 @@ const ShippingHistory = ({ id }) => {
                       </div>
                       <div className="shipping-adress-text">
                         <p>
-                          Dirección: {item.shippingAddress.street} {item.shippingAddress.number}
+                          Dirección: {item.shippingAddress.street}{" "}
+                          {item.shippingAddress.number}
                         </p>
                         <p>Departamento: {item.shippingAddress.floor}</p>
                         <hr />
@@ -107,7 +113,10 @@ const ShippingHistory = ({ id }) => {
                     </div>
                   ))
                 )}
-                <button className="button-close" onClick={() => handleItemClick(index)}>
+                <button
+                  className="button-close"
+                  onClick={() => handleItemClick(index)}
+                >
                   {selectedItem === index ? "Cerrar" : "Detalles"}
                 </button>
               </li>
