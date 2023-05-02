@@ -175,6 +175,9 @@
 
 @media screen and (max-width: 480px) {
   .authDiv {
+    .error {
+      display: none !important;
+    }
     .authForm {
       width: 300px;
       height: auto;
@@ -183,10 +186,13 @@
       font-size: 20px;
     }
     .authForm input {
+      font-size: 12px;
       width: 250px;
+      margin: 10px 0;
     }
     .authButton {
       font-size: 20px;
+      margin-top: 5px;
     }
     .authForm p {
       font-size: 12px;

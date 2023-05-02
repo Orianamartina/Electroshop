@@ -65,11 +65,15 @@
     h2 {
       font-size: 25px;
     }
+    .error {
+      display: none !important;
+    }
     .forgot-password-form {
       width: 300px;
       .forgot-password-section {
         input {
           width: 200px;
+          font-size: 12px;
         }
       }
     }
