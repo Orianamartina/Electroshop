@@ -15,6 +15,7 @@ const UserData = () => {
   const [editedLastName, setEditedLastName] = useState(lastName);
   const [editedImage, setEditedImage] = useState(image);
   const [editedCellphone, setEditedCellphone] = useState(cellphone);
+  const [editedPassword, setEditedPassword] = useState("");
   const [isLoading, setLoading] = useState(false);
 
   // Cloudinary
@@ -41,6 +42,7 @@ const UserData = () => {
       password: "",
       image: editedImage,
       cellphone: editedCellphone,
+      password: editedPassword,
     };
     setLoading(true);
     try {
@@ -51,11 +53,13 @@ const UserData = () => {
         setEditedLastName(editedLastName);
         setEditedImage(editedImage);
         setEditedCellphone(editedCellphone);
+        setEditedPassword(editedPassword);
         const user = JSON.parse(localStorage.getItem("userData"));
         user.name = editedName;
         user.lastName = editedLastName;
         user.image = editedImage;
         user.cellphone = editedCellphone;
+        user.password = editedPassword;
         localStorage.setItem("userData", JSON.stringify(user));
         toast.success("Datos actualizados correctamente");
         setLoading(false);
@@ -163,6 +167,19 @@ const UserData = () => {
                     type="text"
                     value={editedCellphone}
                     onChange={(e) => setEditedCellphone(e.target.value)}
+                  />
+                </div>
+              </div>
+              {/* Modo edicion */}
+              <div className="cards">
+                <div className="cards-textField">
+                  <h4>Contraseña</h4>
+                </div>
+                <div className="cards-inputField">
+                  <input
+                    type="password"
+                    value={editedPassword}
+                    onChange={(e) => setEditedPassword(e.target.value)}
                   />
                 </div>
               </div>

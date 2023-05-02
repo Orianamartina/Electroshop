@@ -18,6 +18,11 @@
         outline: 1px solid var(--light-gray-matte);
       }
     }
+    select{
+      border: none;
+      border-radius: 5px;
+      font-size: 15px;
+    }
     button {
       border: none;
       background-color: transparent;
@@ -87,6 +92,9 @@
 
 @media screen and (max-width: 480px) {
   .billing {
+    .billing-filters {
+      flex-direction: column;
+    }
     .billing-cards {
       width: 100%;
     }

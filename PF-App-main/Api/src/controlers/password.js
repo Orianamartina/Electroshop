@@ -1,13 +1,18 @@
-const { User } = require("../db");;
+const { User } = require("../db");
 const bcrypt = require("bcrypt");
-const { sendEmail, templateChangePassword } = require("../config/mail.config")
+const { sendEmail, templateChangePassword } = require("../config/mail.config");
 const { generateToken } = require("../config/jwt.config");
 const SALT = 10;
 
 module.exports = {
-  
   resetPassword: async (req, res) => {
     const { email, password } = req.body;
+    if (!email || !password) {
+      return res
+        .status(400)
+        .send({ message: "Por favor, proporciona el email y la contraseña" });
+    }
+
     try {
       let user = await User.findOne({
         where: {
@@ -29,5 +34,4 @@ module.exports = {
       res.send(error);
     }
   },
-
 };

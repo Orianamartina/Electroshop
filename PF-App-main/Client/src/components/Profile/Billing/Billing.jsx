@@ -10,10 +10,13 @@ const Billing = () => {
   //Datos de la orden y usuarios
   const [orders, setOrders] = useState([]);
   const [usersList, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOptionDate, setSortOptionDate] = useState("dateAsc");
+  const [sortOptionPrice, setSortOptionPrice] = useState("totalPriceAsc");
+
   const dispatch = useDispatch();
 
   //Filtros
-  const [searchTerm, setSearchTerm] = useState("");
 
   const getOrders = async () => {
     try {
@@ -36,7 +39,7 @@ const Billing = () => {
 
   const formatDate = (date) => {
     const dateObj = new Date(date);
-    const day = dateObj.getDate();
+    const day = dateObj.getDate() + 1;
     const monthName = dateObj.toLocaleString("es", { month: "long" });
     const year = dateObj.getFullYear();
     return `${day} de ${monthName} de ${year}`;
@@ -53,6 +56,16 @@ const Billing = () => {
 
   const handleClearSearch = () => {
     setSearchTerm("");
+    setSortOptionPrice("totalPriceAsc");
+    setSortOptionDate("dateAsc");
+  };
+
+  const handleSortOptionDateChange = (event) => {
+    setSortOptionDate(event.target.value);
+  };
+
+  const handleSortOptionPriceChange = (event) => {
+    setSortOptionPrice(event.target.value);
   };
 
   const filteredOrders = orders.filter((order) => {
@@ -75,6 +88,29 @@ const Billing = () => {
     }
   });
 
+  let sortedOrders;
+  switch (sortOptionDate) {
+    case "dateAsc":
+      sortedOrders = filteredOrders.sort((a, b) => (a.date > b.date ? 1 : -1));
+      break;
+    case "dateDesc":
+      sortedOrders = filteredOrders.sort((a, b) => (a.date < b.date ? 1 : -1));
+      break;
+    default:
+      sortedOrders = filteredOrders;
+  }
+
+  switch (sortOptionPrice) {
+    case "totalPriceDesc":
+      sortedOrders = sortedOrders.sort((a, b) => a.totalPrice - b.totalPrice);
+      break;
+    case "totalPriceAsc":
+      sortedOrders = sortedOrders.sort((a, b) => b.totalPrice - a.totalPrice);
+      break;
+    default:
+      sortedOrders = sortedOrders;
+  }
+
   return (
     <div className="billing">
       <h2>Facturación</h2>
@@ -85,6 +121,14 @@ const Billing = () => {
           value={searchTerm}
           onChange={handleSearch}
         />
+        <select value={sortOptionDate} onChange={handleSortOptionDateChange}>
+          <option value="dateAsc">Más recientes</option>
+          <option value="dateDesc">Menos recientes</option>
+        </select>
+        <select value={sortOptionPrice} onChange={handleSortOptionPriceChange}>
+          <option value="totalPriceAsc">Mayor precio</option>
+          <option value="totalPriceDesc">Menor precio</option>
+        </select>
         <button onClick={handleClearSearch}>Limpiar</button>
       </div>
       {filteredOrders.map((order) => {
