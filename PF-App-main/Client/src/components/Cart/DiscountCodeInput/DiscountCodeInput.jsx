@@ -23,6 +23,7 @@ function DiscountCodeInput({ userId, handleCart }) {
     e.preventDefault();
     setLoading(true);
     setErrorDiscount(false);
+
     try {
       if (!string) {
         setLoading(false);
@@ -32,6 +33,7 @@ function DiscountCodeInput({ userId, handleCart }) {
         string,
         userId,
       });
+
       if (response.status === 200) {
         setTimeout(() => {
           handleCart();

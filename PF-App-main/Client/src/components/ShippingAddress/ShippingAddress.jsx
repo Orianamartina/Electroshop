@@ -8,6 +8,8 @@ const ShippingAddress = () => {
   const cartProducts = useSelector((state) => state.cartProducts.sort((a, b) => a.id - b.id));
   const cartDetail = useSelector((state) => state.cartDetail);
 
+  const discount = localStorage.getItem("hasDiscount") ? true : false;
+
   const [shippingData, setShippingData] = useState({
     userId: id,
     street: "",
@@ -63,7 +65,16 @@ const ShippingAddress = () => {
             <input type="text" id="country" name="country" value={shippingData.country} onChange={handleChange} />
           </div>
         </form>
-        <PurchaseOrderButton products={cartProducts} user={id} shippingData={shippingData} discount={cartDetail.discountPrice - cartDetail.totalPrice} />
+        {discount ? (
+          <PurchaseOrderButton
+            products={cartProducts}
+            user={id}
+            shippingData={shippingData}
+            discount={cartDetail.discountPrice - cartDetail.totalPrice}
+          />
+        ) : (
+          <PurchaseOrderButton products={cartProducts} user={id} shippingData={shippingData} discount={0} />
+        )}
       </div>
       <div className="purchaseSummary">
         <section>
@@ -74,10 +85,17 @@ const ShippingAddress = () => {
             <h5>Productos ({cartProducts.length})</h5>
             <p>$ {cartDetail.totalPrice?.toLocaleString()}</p>
           </div>
-          <div>
-            <h5>Total</h5>
-            <p>$ {cartDetail.discountPrice?.toLocaleString()}</p>
-          </div>
+          {discount ? (
+            <div>
+              <h5>Total</h5>
+              <p>$ {cartDetail.discountPrice?.toLocaleString()}</p>
+            </div>
+          ) : (
+            <div>
+              <h5>Total</h5>
+              <p>$ {cartDetail.totalPrice?.toLocaleString()}</p>
+            </div>
+          )}
         </section>
       </div>
     </div>
