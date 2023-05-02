@@ -75,6 +75,9 @@
   }
 
   @media screen and (max-width: 480px) {
+    .navbar__logo {
+      margin-left: 5px;
+    }
     .navbar__links {
       width: 100%;
       gap: 25px;
@@ -91,6 +94,11 @@
     }
     .token_true {
       flex-direction: column;
+    }
+    .container-fluid{
+      .navbar-toggler {
+        margin-right: 5px;
+      }
     }
   }
 }
