@@ -54,7 +54,27 @@ const ANSWER: AnswerType = {
       estado de tu pedido y el número de seguimiento del mismo.
     </p>
   ),
-
+  Registro: (
+    <p>
+      Para registrarte en la página, debes hacer clic en el botón "Iniciar
+      Sesión" en la parte superior derecha de la página. Luego en el botón
+      "Regístrate" de esa sección. Una vez que hayas hecho clic en el botón, se
+      te pedirá que ingreses tu nombre, apellido, correo electrónico y
+      contraseña. Una vez que hayas ingresado toda la información solicitada,
+      haz clic en el botón "Registrarse", se te enviara un link de verificación
+      a tu correo electrónico, una vez que confirmes tus datos, habrás
+      completado el proceso de registro.
+    </p>
+  ),
+  Login: (
+    <p>
+      Para iniciar sesión en la página, debes hacer clic en el botón "Iniciar
+      Sesión" en la parte superior derecha de la página. Se te pedirá que
+      ingreses tu correo electrónico y contraseña. Una vez que hayas ingresado
+      toda la información solicitada, haz clic en el botón "Ingresar" y habrás
+      iniciado sesión en la página.
+    </p>
+  ),
   Usuario: (
     <p>
       Como usuario registrado en la página, tienes dos opciones para iniciar
@@ -64,6 +84,15 @@ const ANSWER: AnswerType = {
       disponibles para la compra. Además, tendrás la capacidad de agregar
       productos a tu carrito de compras, realizar transacciones de pago seguras
       y hacer seguimiento al estado de tus pedidos.
+    </p>
+  ),
+  Perfil: (
+    <p>
+      Para acceder a tu perfil de usuario, debes hacer click en el botón "Mi
+      Cuenta" ubicado en la esquina superior derecha de la pantalla. En dicha
+      sección podrás realizar un seguimiento de todas tus compras y tus
+      productos favoritos. Además podrás editar tu información personal y
+      cambiar tu contraseña.
     </p>
   ),
   Default: <p>Lo lamento, no tengo respuesta ante esto</p>,
@@ -93,6 +122,12 @@ const EXAMPLES = [
   { text: "Seguimiento", label: "Seguimiento" },
   { text: "que puedo hacer como usuario", label: "Usuario" },
   { text: "que puedo hacer en la pagina", label: "Usuario" },
+  { text: "Como puedo iniciar sesion", label: "Usuario" },
+  { text: "Como puedo registrarme", label: "Registro" },
+  { text: "Registrarme", label: "Registro" },
+  { text: "Registro", label: "Registro" },
+  { text: "Iniciar Sesion", label: "Login" },
+  { text: "Login", label: "Login" },
   { text: "No se", label: "Default" },
   { text: "No entiendo", label: "Default" },
   { text: "Por favor, explique más", label: "Default" },
@@ -105,7 +140,7 @@ const ChatBot = () => {
     {
       id: uuidv4(),
       type: "bot",
-      text: "Hola, en qué puedo ayudarte?",
+      text: "Hola, ¿En qué puedo ayudarte?",
     },
   ]);
 
