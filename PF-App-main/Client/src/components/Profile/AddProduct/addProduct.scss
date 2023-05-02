@@ -80,6 +80,9 @@
       padding: 0;
       display: flex;
       flex-direction: column;
+      input{
+        padding: 5px !important;
+      }
     }
   }
 }
