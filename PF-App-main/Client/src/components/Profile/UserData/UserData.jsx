@@ -1,13 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import "./userData.scss";
+import { useNavigate } from "react-router-dom";
 
 const UserData = () => {
-  const user = JSON.parse(localStorage.getItem("userData"));
-  const { userName, name, lastName, email, image, cellphone } = user;
+  const navigate = useNavigate();
+  const { userName, name, lastName, email, image, cellphone, token } =
+    JSON.parse(localStorage.getItem("userData")) ?? {};
+
+  if (!token) {
+    useEffect(() => {
+      navigate("/home");
+    }, []);
+  }
 
   //Para modificar datos del perfil
   const [editMode, setEditMode] = useState(false);
@@ -26,12 +33,10 @@ const UserData = () => {
     data.append("file", e.target.files[0]);
     data.append("upload_preset", "uq7hpsv9");
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data)
-      .then((response) => {
-        uploadedImage = response.data.secure_url;
-        setEditedImage(uploadedImage);
-      });
+    axios.post("https://api.cloudinary.com/v1_1/dlzp43wz9/image/upload", data).then((response) => {
+      uploadedImage = response.data.secure_url;
+      setEditedImage(uploadedImage);
+    });
   };
 
   const saveChanges = async () => {
@@ -90,12 +95,7 @@ const UserData = () => {
                 <div>
                   <label htmlFor="uploadInput">
                     Cambiar foto de perfil
-                    <input
-                      id="uploadInput"
-                      type="file"
-                      onChange={uploadImage}
-                      style={{ display: "none" }}
-                    />
+                    <input id="uploadInput" type="file" onChange={uploadImage} style={{ display: "none" }} />
                   </label>
                 </div>
               ) : null}
@@ -109,12 +109,7 @@ const UserData = () => {
                   <h4>Nombre de usuario</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={userName}
-                    readOnly
-                  />
+                  <input className="input-readOnly" type="text" value={userName} readOnly />
                 </div>
               </div>
               {/* Modo edicion */}
@@ -123,12 +118,7 @@ const UserData = () => {
                   <h4>E-mail</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    className="input-readOnly"
-                    type="text"
-                    value={email}
-                    readOnly
-                  />
+                  <input className="input-readOnly" type="text" value={email} readOnly />
                 </div>
               </div>
               {/* Modo edicion */}
@@ -137,11 +127,7 @@ const UserData = () => {
                   <h4>Nombre</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                  />
+                  <input type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)} />
                 </div>
               </div>
               {/* Modo edicion */}
@@ -150,11 +136,7 @@ const UserData = () => {
                   <h4>Apellido</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    type="text"
-                    value={editedLastName}
-                    onChange={(e) => setEditedLastName(e.target.value)}
-                  />
+                  <input type="text" value={editedLastName} onChange={(e) => setEditedLastName(e.target.value)} />
                 </div>
               </div>
               {/* Modo edicion */}
@@ -163,11 +145,7 @@ const UserData = () => {
                   <h4>Teléfono</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    type="text"
-                    value={editedCellphone}
-                    onChange={(e) => setEditedCellphone(e.target.value)}
-                  />
+                  <input type="text" value={editedCellphone} onChange={(e) => setEditedCellphone(e.target.value)} />
                 </div>
               </div>
               {/* Modo edicion */}
@@ -176,11 +154,7 @@ const UserData = () => {
                   <h4>Contraseña</h4>
                 </div>
                 <div className="cards-inputField">
-                  <input
-                    type="password"
-                    value={editedPassword}
-                    onChange={(e) => setEditedPassword(e.target.value)}
-                  />
+                  <input type="password" value={editedPassword} onChange={(e) => setEditedPassword(e.target.value)} />
                 </div>
               </div>
             </>

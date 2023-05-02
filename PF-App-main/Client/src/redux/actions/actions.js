@@ -41,6 +41,7 @@ export const createUser = async (user) => {
 export const getCart = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(`cart/user/${userId}`);
+    // console.log(response.data)
     dispatch({ type: GET_CART, payload: response.data });
   } catch (error) {
     console.error("Error al obtener el carrito del usuario:", error);

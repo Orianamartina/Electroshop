@@ -61,6 +61,7 @@ export default function ForgotPass() {
       return false;
     }
   };
+  
   if (id) {
     useEffect(() => {
       navigate("/home");

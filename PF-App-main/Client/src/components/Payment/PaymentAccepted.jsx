@@ -15,7 +15,11 @@ const Accepted = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartProducts = useSelector((state) => state.cartProducts);
+  const shippingData = JSON.parse(localStorage.getItem("shippingData"));
+
   useEffect(() => {
+    if (!shippingData) navigate("/home");
+
     const handleAccepted = async () => {
       try {
         // Actualizar stock
@@ -23,7 +27,7 @@ const Accepted = () => {
           cartProducts.map(async (p) => {
             let productEdit = {
               name: p.name,
-              brand: p.brand, 
+              brand: p.brand,
               price: p.price,
               image: p.image,
               description: p.description,
@@ -35,19 +39,7 @@ const Accepted = () => {
           })
         );
 
-        const shippingData = JSON.parse(localStorage.getItem("shippingData"));
-
-        const {
-          userId,
-          street,
-          number,
-          postCode,
-          apartment,
-          floor,
-          city,
-          state,
-          country,
-        } = shippingData;
+        const { userId, street, number, postCode, apartment, floor, city, state, country } = shippingData;
 
         await axios.post("order/create/", {
           userId,
@@ -68,7 +60,7 @@ const Accepted = () => {
 
         // Obtener carrito actualizado
         dispatch(getCart(id));
-  
+
         // Redireccionar a home
 
         setTimeout(() => {
@@ -78,9 +70,9 @@ const Accepted = () => {
         console.error(error);
       }
     };
-  
+
     handleAccepted();
-  }, [cartProducts]); 
+  }, [cartProducts]);
 
   return (
     <div className="payment-status">
