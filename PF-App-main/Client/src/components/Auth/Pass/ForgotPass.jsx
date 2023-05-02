@@ -38,19 +38,22 @@ export default function ForgotPass() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await axios.post("password/reset", payload);
-    toast.info("Revisa tu email para confirmar el cambio");
-
-    setInput({
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-
     setTimeout(() => {
       setLoading(false);
     }, 1500);
+    try {
+      await axios.post("password/reset", payload);
+      setInput({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      toast.info("Revisa tu email para confirmar el cambio");
+    } catch (error) {
+      toast.error("Revisa el email y la contraseña");
+    }
   };
+
   const handleCheck = () => {
     if (input.password !== input.confirmPassword) {
       return true;
@@ -58,6 +61,7 @@ export default function ForgotPass() {
       return false;
     }
   };
+  
   if (id) {
     useEffect(() => {
       navigate("/home");

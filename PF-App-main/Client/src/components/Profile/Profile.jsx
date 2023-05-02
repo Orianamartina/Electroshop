@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./profile.scss";
 import UserData from "./UserData/UserData";
 import ShippingHistory from "./ShippingHistory/ShippingHistory";
@@ -8,20 +8,16 @@ import Favorites from "./Favorites/Favorites";
 import Billing from "./Billing/Billing";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  RxCross1,
-  RxHamburgerMenu,
-  RxHeart,
-  RxFileText,
-  RxArchive,
-} from "react-icons/rx";
+import { RxCross1, RxHamburgerMenu, RxHeart, RxFileText, RxArchive } from "react-icons/rx";
 import { AiOutlineShopping } from "react-icons/ai";
 import { HiOutlineUsers } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userData"));
-  const { admin } = JSON.parse(localStorage.getItem("userData")) ?? {};
+  const { admin, token } = JSON.parse(localStorage.getItem("userData")) ?? {};
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("userData");
 
@@ -33,6 +29,12 @@ const Profile = () => {
     setCurrentComponent(option);
     setSidebarOpen(false);
   };
+
+  if (!token) {
+    useEffect(() => {
+      navigate("/home");
+    }, []);
+  }
 
   return (
     <>
@@ -47,19 +49,14 @@ const Profile = () => {
       <div className={`profile ${sidebarOpen ? "sidebar-open" : ""}`}>
         {" "}
         {currentComponent === "userData" && <UserData />}
-        {currentComponent === "shippingHistory" && (
-          <ShippingHistory id={user.id} />
-        )}
+        {currentComponent === "shippingHistory" && <ShippingHistory id={user.id} />}
         {currentComponent === "addProduct" && <AddProduct />}
         {currentComponent === "manageUsers" && <ManageUsers />}
         {currentComponent === "favorites" && <Favorites />}
         {currentComponent === "billing" && <Billing />}
       </div>
 
-      <div
-        className={`sidebar ${sidebarOpen ? "open" : "closed"}`}
-        onMouseLeave={() => setSidebarOpen(false)}
-      >
+      <div className={`sidebar ${sidebarOpen ? "open" : "closed"}`} onMouseLeave={() => setSidebarOpen(false)}>
         <div className="close-side-bar">
           <button onClick={closeSideBar}>
             {" "}

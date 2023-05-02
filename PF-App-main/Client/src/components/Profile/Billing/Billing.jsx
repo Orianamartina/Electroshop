@@ -10,10 +10,13 @@ const Billing = () => {
   //Datos de la orden y usuarios
   const [orders, setOrders] = useState([]);
   const [usersList, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOptionDate, setSortOptionDate] = useState("dateAsc");
+  const [sortOptionPrice, setSortOptionPrice] = useState("totalPriceAsc");
+
   const dispatch = useDispatch();
 
   //Filtros
-  const [searchTerm, setSearchTerm] = useState("");
 
   const getOrders = async () => {
     try {
@@ -53,6 +56,16 @@ const Billing = () => {
 
   const handleClearSearch = () => {
     setSearchTerm("");
+    setSortOptionPrice("totalPriceAsc");
+    setSortOptionDate("dateAsc");
+  };
+
+  const handleSortOptionDateChange = (event) => {
+    setSortOptionDate(event.target.value);
+  };
+
+  const handleSortOptionPriceChange = (event) => {
+    setSortOptionPrice(event.target.value);
   };
 
   const filteredOrders = orders.filter((order) => {
@@ -60,19 +73,43 @@ const Billing = () => {
     if (searchTerm === "") {
       return order;
     } else if (
-      user.name
+      user &&
+      (user.name
         .toLowerCase()
         .concat(" ", user.lastName.toLowerCase())
         .includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.products.some((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) ||
-      formatDate(order.date).toLowerCase().includes(searchTerm.toLowerCase())
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.products.some((product) =>
+          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        ) ||
+        formatDate(order.date).toLowerCase().includes(searchTerm.toLowerCase()))
     ) {
       return order;
     }
   });
+
+  let sortedOrders;
+  switch (sortOptionDate) {
+    case "dateAsc":
+      sortedOrders = filteredOrders.sort((a, b) => (a.date > b.date ? 1 : -1));
+      break;
+    case "dateDesc":
+      sortedOrders = filteredOrders.sort((a, b) => (a.date < b.date ? 1 : -1));
+      break;
+    default:
+      sortedOrders = filteredOrders;
+  }
+
+  switch (sortOptionPrice) {
+    case "totalPriceDesc":
+      sortedOrders = sortedOrders.sort((a, b) => a.totalPrice - b.totalPrice);
+      break;
+    case "totalPriceAsc":
+      sortedOrders = sortedOrders.sort((a, b) => b.totalPrice - a.totalPrice);
+      break;
+    default:
+      sortedOrders = sortedOrders;
+  }
 
   return (
     <div className="billing">
@@ -84,6 +121,14 @@ const Billing = () => {
           value={searchTerm}
           onChange={handleSearch}
         />
+        <select value={sortOptionDate} onChange={handleSortOptionDateChange}>
+          <option value="dateAsc">Más recientes</option>
+          <option value="dateDesc">Menos recientes</option>
+        </select>
+        <select value={sortOptionPrice} onChange={handleSortOptionPriceChange}>
+          <option value="totalPriceAsc">Mayor precio</option>
+          <option value="totalPriceDesc">Menor precio</option>
+        </select>
         <button onClick={handleClearSearch}>Limpiar</button>
       </div>
       {filteredOrders.map((order) => {
@@ -95,11 +140,15 @@ const Billing = () => {
             </div>
             <hr />
             <div className="billing-user">
-              <h4>
-                {user.name} {user.lastName}
-              </h4>
-              <p>Email: {user.email}</p>
-              <p>Teléfono: {user.cellphone}</p>
+              {user && (
+                <>
+                  <h4>
+                    {user.name} {user.lastName}
+                  </h4>
+                  <p>Email: {user.email}</p>
+                  <p>Teléfono: {user.cellphone}</p>
+                </>
+              )}
             </div>
             <hr />
             <div className="billing-detail">

@@ -105,3 +105,59 @@
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  .shipping {
+    grid-template-columns: 1fr;
+    margin: 0;
+
+    .shippingAddress {
+      width: 100%;
+      padding: 10px;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+
+        .form-group {
+          width: 100%;
+          margin: 5px;
+
+          label {
+            font-size: 14px;
+          }
+
+          input {
+            font-size: 14px;
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        font-size: 14px;
+      }
+    }
+
+    .purchaseSummary {
+      width: 100%;
+      padding: 10px;
+
+      div {
+        margin: 20px 0;
+        font-size: 14px;
+
+        h4 {
+          font-size: 16px;
+        }
+
+        h5 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
