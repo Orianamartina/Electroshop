@@ -8,7 +8,7 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 // Syncing all the models at once.
 
-conn.sync({ force: true }).then(() => { 
+conn.sync({ force: false }).then(() => { 
   server.listen(PORT, () => {
     serverAdmin();
     addProducts();
