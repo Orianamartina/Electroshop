@@ -83,18 +83,18 @@
 }
 
 .edit {
-  background-color: #dbb657;
-  color: var(--light-color);
+  background-color: #dbb657 !important;
+  color: #fcfcfc !important;
   &:hover {
-    background-color: #c7a04f;
+    background-color: #c7a04f !important;
   }
 }
 
 .delete {
-  background-color: var(--ligth-color);
-  color: #d9534f;
+  background-color: var(--ligth-color) !important;
+  color: #d9534f !important;
   &:hover {
-    color: var(--bg-color);
-    background-color: #d9534f;
+    color: #fcfcfc !important;
+    background-color: #d9534f !important;
   }
 }
