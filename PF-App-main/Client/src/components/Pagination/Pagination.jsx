@@ -18,7 +18,7 @@ const Pagination = ({
     pages.push(i + 1);
   }
 
-  const pageRange = 2;
+  const pageRange = 1;
   const minPage = Math.max(1, currentPage - pageRange);
   const maxPage = Math.min(pages.length, currentPage + pageRange);
 

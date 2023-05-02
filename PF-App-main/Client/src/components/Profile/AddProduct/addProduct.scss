@@ -72,9 +72,17 @@
 
 @media screen and (max-width: 480px) {
   .add-product {
+    width: 100%;
+
     form {
+      text-align: center;
+      width: 90%;
+      padding: 0;
       display: flex;
       flex-direction: column;
+      input{
+        padding: 5px !important;
+      }
     }
   }
 }
