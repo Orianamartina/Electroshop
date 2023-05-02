@@ -40,6 +40,21 @@ const ANSWER: AnswerType = {
       pago segura y confiable.
     </p>
   ),
+  Devoluciones: (
+    <p>
+      Si deseas realizar una devolución, puedes hacerlo dentro de los 30 días
+      posteriores a la compra. Para ello, debes ponerte en contacto con nuestro
+      equipo de soporte a través de nuestro correo electrónico
+    </p>
+  ),
+  Seguimiento: (
+    <p>
+      Si deseas realizar un seguimiento de tu pedido, puedes hacerlo a través de
+      la sección "Mis Pedidos" en tu perfil de usuario. Allí podrás ver el
+      estado de tu pedido y el número de seguimiento del mismo.
+    </p>
+  ),
+
   Usuario: (
     <p>
       Como usuario registrado en la página, tienes dos opciones para iniciar
@@ -65,9 +80,17 @@ const EXAMPLES = [
   { text: "Para que sirve la pagina", label: "Info" },
   { text: "Cual es tu funcion ?", label: "Info" },
   { text: "Necesito ayuda", label: "Info" },
+  { text: "Compra", label: "Compra" },
   { text: "Como puedo comprar?", label: "Compra" },
   { text: "Con que puedo comprar", label: "Compra" },
   { text: "Como pago?", label: "Compra" },
+  { text: "Devoluciones", label: "Devoluciones" },
+  { text: "Como puedo devolver un producto", label: "Devoluciones" },
+  {
+    text: "Como puedo hacer un seguimiento de mi pedido?",
+    label: "Seguimiento",
+  },
+  { text: "Seguimiento", label: "Seguimiento" },
   { text: "que puedo hacer como usuario", label: "Usuario" },
   { text: "que puedo hacer en la pagina", label: "Usuario" },
   { text: "No se", label: "Default" },
@@ -82,7 +105,7 @@ const ChatBot = () => {
     {
       id: uuidv4(),
       type: "bot",
-      text: "Hola en que puedo ayudarte",
+      text: "Hola, en qué puedo ayudarte?",
     },
   ]);
 

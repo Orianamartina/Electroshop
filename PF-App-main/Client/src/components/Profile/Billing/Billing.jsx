@@ -36,7 +36,7 @@ const Billing = () => {
 
   const formatDate = (date) => {
     const dateObj = new Date(date);
-    const day = dateObj.getDate() + 1;
+    const day = dateObj.getDate();
     const monthName = dateObj.toLocaleString("es", { month: "long" });
     const year = dateObj.getFullYear();
     return `${day} de ${monthName} de ${year}`;

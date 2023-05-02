@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 // Componentes
@@ -48,11 +48,16 @@ const Detail = () => {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post(API_URL, {
+      const response = await axios.post(API_URL, {
         productId: productDetail.id,
         userId,
       });
-      dispatch(getCart(userId));
+      if (response.data === "Product added") {
+        toast.success("Producto agregado al carrito");
+        dispatch(getCart(userId));
+      } else {
+        toast.error("No hay unidades disponibles");
+      }
     } catch (error) {
       throw new Error(error);
     }

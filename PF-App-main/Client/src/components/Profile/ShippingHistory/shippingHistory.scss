@@ -101,6 +101,10 @@
 
 @media screen and (max-width: 480px) {
   .history {
+    .empty {
+      margin: 10px 20px;
+      text-align: center;
+    }
     ul {
       margin: 0;
       padding: 0;
