@@ -70,7 +70,10 @@
     }
   }
 }
-
+.admin-buttons-container {
+  display: flex;
+  margin: auto;
+}
 .adminButtons {
   cursor: pointer;
   border: none;
@@ -96,5 +99,11 @@
   &:hover {
     color: #fcfcfc !important;
     background-color: #d9534f !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .admin-buttons-container {
+    flex-direction: column-reverse;
   }
 }

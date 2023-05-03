@@ -351,14 +351,21 @@
     .detail-description {
       width: 95%;
       row-gap: 15px;
+      padding: 0;
       h2,
       h4 {
         margin: 0;
       }
-      p {
-        border: 1px solid transparent;
-      }
 
+      .detail-description__div {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+        .brand-detail {
+          margin-left: 32px;
+        }
+      }
       .reviews {
         .reviews-comment {
           flex-direction: column;
