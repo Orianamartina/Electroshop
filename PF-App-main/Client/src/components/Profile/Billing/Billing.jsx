@@ -89,30 +89,32 @@ const Billing = () => {
   });
 
   let sortedOrders = filteredOrders.sort((a, b) => {
-    let result;
+    let dateResult = new Date(b.date) - new Date(a.date);
+    let priceResult = a.totalPrice - b.totalPrice;
     switch (sortOptionDate) {
-      case "dateAsc":
-        result = new Date(b.date) - new Date(a.date);
-        break;
       case "dateDesc":
-        result = new Date(a.date) - new Date(b.date);
+        dateResult = -dateResult;
+        break;
+      case "dateAsc":
         break;
       default:
-        result = 0;
         break;
     }
-    return result;
+    switch (sortOptionPrice) {
+      case "totalPriceAsc":
+        priceResult = -priceResult;
+        break;
+      case "totalPriceDesc":
+        break;
+      default:
+        break;
+    }
+    if (dateResult !== 0) {
+      return dateResult;
+    } else {
+      return priceResult;
+    }
   });
-
-  switch (sortOptionPrice) {
-    case "totalPriceDesc":
-      sortedOrders = sortedOrders.reverse();
-      break;
-    case "totalPriceAsc":
-      break;
-    default:
-      break;
-  }
 
   return (
     <div className="billing">
