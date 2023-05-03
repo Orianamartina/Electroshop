@@ -130,12 +130,17 @@ const AdminOptions = ({ productDetail }) => {
           </form>
         </Modal.Body>
         <Modal.Footer style={{ justifyContent: "space-between" }}>
-          <button className="adminButtons edit" onClick={handleEditProduct}>
-            Guardar Cambios
-          </button>
-          <button className="adminButtons delete" onClick={handleDeleteProduct}>
-            Eliminar producto
-          </button>
+          <div className="admin-buttons-container">
+            <button
+              className="adminButtons delete"
+              onClick={handleDeleteProduct}
+            >
+              Eliminar producto
+            </button>
+            <button className="adminButtons edit" onClick={handleEditProduct}>
+              Guardar Cambios
+            </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </section>
