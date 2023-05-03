@@ -165,7 +165,7 @@ const Register = () => {
           )}
         </button>
         <p>
-          ¿Ya tienes cuenta? <Link to="/login">Iniciar sesion</Link>
+          ¿Ya tienes cuenta? <Link to="/login">Iniciar sesión</Link>
         </p>
       </form>
     </div>
