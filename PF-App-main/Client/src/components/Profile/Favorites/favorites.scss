@@ -57,10 +57,11 @@
     }
     .favorite {
       img {
-        height: 100px;
+        height: 80px !important;
+        width: 80px !important;
         margin: 10px 0;
       }
-      a{
+      a {
         font-size: 12px;
       }
     }

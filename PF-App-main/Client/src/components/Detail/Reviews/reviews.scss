@@ -66,7 +66,6 @@
       .review-user-data {
         display: flex;
         align-items: center;
-
         img {
           width: 30px;
           height: 30px;
@@ -77,6 +76,9 @@
           margin: 0;
           margin-left: 5px;
           font-size: 16px;
+        }
+        .deleted-user{
+          opacity: 0.8;
         }
       }
       .reviews-stars {

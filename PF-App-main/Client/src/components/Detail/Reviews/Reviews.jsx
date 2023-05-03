@@ -20,7 +20,8 @@ const Reviews = ({ userId, productId, token }) => {
   };
 
   const handleAddReview = async () => {
-    if (!userReviews.rating) return toast.info("Debes seleccionar una calificación");
+    if (!userReviews.rating)
+      return toast.info("Debes seleccionar una calificación");
     if (!userReviews.text) return toast.info("Debes escribir una reseña");
 
     try {
@@ -70,7 +71,9 @@ const Reviews = ({ userId, productId, token }) => {
               cols="40"
               maxLength="200"
               value={userReviews.text}
-              onChange={(e) => setUserReviews({ ...userReviews, text: e.target.value })}
+              onChange={(e) =>
+                setUserReviews({ ...userReviews, text: e.target.value })
+              }
             />
             <button className="reviews-button" onClick={handleAddReview}>
               Enviar
@@ -81,22 +84,28 @@ const Reviews = ({ userId, productId, token }) => {
       {reviews.length > 0 && (
         <div className="product-reviews">
           <h4>Opiniones del producto</h4>
-          {reviews.slice(0, numReviewsToShow).map((review) => (
-            <div className="product-review" key={review.id}>
-              <div className="review-user-data">
-                {review.User.image && <img src={review.User.image} alt={review.User.name} />}
-                <h5>
-                  {review.User.name} {review.User.lastName}
-                </h5>
+          {reviews.slice(0, numReviewsToShow).map((review) =>
+            review.User ? (
+              <div className="product-review" key={review.id}>
+                <div className="review-user-data">
+                  {review.User.image && (
+                    <img src={review.User.image} alt={review.User.name} />
+                  )}
+                  <h5>
+                    {review.User.name} {review.User.lastName}
+                  </h5>
+                </div>
+                <Stars rating={review.rating} editable={false} />
+                <p className="product-review-comment">{review.text}</p>
               </div>
-              <Stars rating={review.rating} editable={false} />
-              <p className="product-review-comment">{review.text}</p>
-            </div>
-          ))}
+            ) : null
+          )}
           {reviews.length > numReviewsToShow && !showAllReviews && (
             <button onClick={handleShowMoreReviews}>Mostrar más</button>
           )}
-          {reviews.length > 5 && showAllReviews && <button onClick={handleShowLessReviews}>Mostrar menos</button>}
+          {reviews.length > 5 && showAllReviews && (
+            <button onClick={handleShowLessReviews}>Mostrar menos</button>
+          )}
         </div>
       )}
     </div>
