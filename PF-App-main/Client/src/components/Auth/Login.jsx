@@ -67,7 +67,7 @@ const Login = () => {
       <ToastContainer />
       <div className="authDiv">
         <form className="authForm authFormLogin" onSubmit={handleSubmit}>
-          <h1>Iniciar sesion</h1>
+          <h1>Iniciar sesión</h1>
           <input type="email" name="email" placeholder="Email" onChange={handleChange} value={dataLogin.email} />
           {dataLogin.email !== "" && errors.email ? (
             <p className="error">{errors.email}</p>
