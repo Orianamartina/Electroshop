@@ -84,22 +84,34 @@ const Reviews = ({ userId, productId, token }) => {
       {reviews.length > 0 && (
         <div className="product-reviews">
           <h4>Opiniones del producto</h4>
-          {reviews.slice(0, numReviewsToShow).map((review) =>
-            review.User ? (
-              <div className="product-review" key={review.id}>
-                <div className="review-user-data">
-                  {review.User.image && (
-                    <img src={review.User.image} alt={review.User.name} />
-                  )}
-                  <h5>
-                    {review.User.name} {review.User.lastName}
-                  </h5>
-                </div>
-                <Stars rating={review.rating} editable={false} />
-                <p className="product-review-comment">{review.text}</p>
+          {reviews.slice(0, numReviewsToShow).map((review) => (
+            <div className="product-review" key={review.id}>
+              <div className="review-user-data">
+                {review.User ? (
+                  <>
+                    {review.User.image && (
+                      <img src={review.User.image} alt={review.User.name} />
+                    )}
+                    <h5>
+                      <b>
+                        {review.User.name} {review.User.lastName}
+                      </b>
+                    </h5>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src="https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png"
+                      alt="user"
+                    />
+                    <h5 className="deleted-user">Usuario eliminado</h5>
+                  </>
+                )}
               </div>
-            ) : null
-          )}
+              <Stars rating={review.rating} editable={false} />
+              <p className="product-review-comment">{review.text}</p>
+            </div>
+          ))}
           {reviews.length > numReviewsToShow && !showAllReviews && (
             <button onClick={handleShowMoreReviews}>Mostrar más</button>
           )}
