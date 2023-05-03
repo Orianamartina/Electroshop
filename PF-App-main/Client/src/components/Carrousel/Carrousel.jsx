@@ -35,7 +35,7 @@ const Carrousel = () => {
       handleNext();
     }, INTERVAL_TIME);
 
-    return () => {
+    return () => { 
       clearCarrouselInterval();
     };
   }, [currentProductIndex]);
