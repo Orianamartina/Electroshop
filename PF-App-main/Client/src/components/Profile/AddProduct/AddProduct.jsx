@@ -144,7 +144,7 @@ const AddProduct = () => {
           />
         </div>
         <div className="preview">
-          <img src={formData.image} alt="" width={"100px"} />
+          <img src={formData.image} alt="Upload Image" width={"100px"} />
           Preview
         </div>
         <button type="submit" disabled={isLoading}>
