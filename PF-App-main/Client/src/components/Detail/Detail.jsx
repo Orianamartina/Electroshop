@@ -159,7 +159,7 @@ const Detail = () => {
                 </div>
                 <div className="detail-description__div">
                   <h3>Marca: </h3>
-                  <p>{productDetail.brand}</p>
+                  <p className="brand-detail">{productDetail.brand}</p>
                 </div>
                 <h4>Descripción</h4>
                 <p>{productDetail.description}</p>

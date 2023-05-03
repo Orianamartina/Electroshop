@@ -88,27 +88,30 @@ const Billing = () => {
     }
   });
 
-  let sortedOrders;
-  switch (sortOptionDate) {
-    case "dateAsc":
-      sortedOrders = filteredOrders.sort((a, b) => (a.date > b.date ? 1 : -1));
-      break;
-    case "dateDesc":
-      sortedOrders = filteredOrders.sort((a, b) => (a.date < b.date ? 1 : -1));
-      break;
-    default:
-      sortedOrders = filteredOrders;
-  }
+  let sortedOrders = filteredOrders.sort((a, b) => {
+    let result;
+    switch (sortOptionDate) {
+      case "dateAsc":
+        result = new Date(b.date) - new Date(a.date);
+        break;
+      case "dateDesc":
+        result = new Date(a.date) - new Date(b.date);
+        break;
+      default:
+        result = 0;
+        break;
+    }
+    return result;
+  });
 
   switch (sortOptionPrice) {
     case "totalPriceDesc":
-      sortedOrders = sortedOrders.sort((a, b) => a.totalPrice - b.totalPrice);
+      sortedOrders = sortedOrders.reverse();
       break;
     case "totalPriceAsc":
-      sortedOrders = sortedOrders.sort((a, b) => b.totalPrice - a.totalPrice);
       break;
     default:
-      sortedOrders = sortedOrders;
+      break;
   }
 
   return (
@@ -132,6 +135,9 @@ const Billing = () => {
         <button onClick={handleClearSearch}>Limpiar</button>
       </div>
       {filteredOrders.map((order) => {
+        if (!order.products.length) {
+          return null;
+        }
         const user = usersList.find((user) => user.id === order.userId);
         return (
           <div key={order.id} className="billing-cards">
@@ -140,14 +146,25 @@ const Billing = () => {
             </div>
             <hr />
             <div className="billing-user">
-              {user && (
-                <>
+              {user ? (
+                <div>
                   <h4>
-                    {user.name} {user.lastName}
+                    <b>
+                      {user.name} {user.lastName}
+                    </b>
                   </h4>
-                  <p>Email: {user.email}</p>
+                  <p>{user.email}</p>
+                  <p>
+                    <b>Usuario:</b> {user.userName}
+                  </p>
                   <p>Teléfono: {user.cellphone}</p>
-                </>
+                </div>
+              ) : (
+                <div>
+                  <h4>
+                    <b>Usuario eliminado</b>
+                  </h4>
+                </div>
               )}
             </div>
             <hr />
@@ -158,7 +175,9 @@ const Billing = () => {
                     <img src={product.image} alt="Producto" />
                   </Link>
                   <h4>{product.name}</h4>
-                  <p>Cantidad: {product.quantitySold}</p>
+                  <p>
+                    <b>Cantidad:</b> {product.quantitySold}
+                  </p>
                   <hr />
                 </div>
               ))}
