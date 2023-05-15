@@ -16,5 +16,5 @@ stock control.
 
 
 ## 🛠 
-NodeJs, React vite, Bootstrap, Scss, Local storage, Google auth, Mercado Pago payment, nodeMailer, ExpressJs, Sequelize, postgreSQL, MySQL, 
+NodeJs, React vite, Bootstrap, Scss, Local storage, Google auth, Mercado Pago payment, nodeMailer, ExpressJs, Sequelize, postgreSQL, MySQL, Scrum methodology. 
 
