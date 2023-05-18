@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import axios from 'axios';
-axios.defaults.baseURL = 'https://electroshop-production.up.railway.app/';
+axios.defaults.baseURL = 'https://electroshop-mhek.onrender.com';
 
 
 const root = document.getElementById("root");
